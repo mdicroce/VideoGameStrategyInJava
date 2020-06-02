@@ -58,6 +58,9 @@ public class GamePruebasPantalla extends Canvas implements Runnable
 		
 	}
 
+	/**
+	 * Here we have the thread running, with 60 actualizaciones for second. 
+	 */
 	public void run() 
 	{
 		System.nanoTime();
@@ -77,8 +80,12 @@ public class GamePruebasPantalla extends Canvas implements Runnable
 			referenciaActualizacion = inicioBucle;
 			
 			delta+= tiempoTranscurrido / NS_POR_ACTUALIZACION;
-			
-			actualizar();
+			while (delta >= 1)
+			{
+				actualizar();
+				delta--;
+			}
+			 
 			mostrar();
 		}
 	}
