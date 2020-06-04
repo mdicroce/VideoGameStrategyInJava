@@ -3,19 +3,36 @@ package gamePrincipal;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
+import grafics.Windows;
 
 public class GamePruebasPantalla extends Canvas implements Runnable
 {
 
 	private static final long serialVersionUID = 1L;
 	private static JFrame window;
+	private static Thread thread;
+	private static Windows ventana;
+	
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 640;
-	private static Thread thread;
+	
+	private static volatile boolean enFuncionamiento = false;
+	
+	private static int x = 0;
+	private static int y = 0;
+	
+	private static BufferedImage imagen = new BufferedImage (WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+	private static int[] pixeles = ((DataBufferInt)imagen.getRaster().getDataBuffer()).getData();
+	
 	private GamePruebasPantalla() 
 	{
+		ventana = new Windows(WIDTH,HEIGHT);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		window = new JFrame("Menem");
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -26,8 +43,6 @@ public class GamePruebasPantalla extends Canvas implements Runnable
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
 	}
-	
-	private static volatile boolean enFuncionamiento = false;
 
 	public static void main(String[] args) 
 	{
@@ -55,7 +70,21 @@ public class GamePruebasPantalla extends Canvas implements Runnable
 	}
 	private void mostrar()
 	{
+		BufferStrategy estrategia = getBufferStrategy();
+		if (estrategia == null)
+		{
+			createBufferStrategy(3);
+			return;
+		}
+		ventana.limpiar();
+		ventana.mostrar(x,y);
 		
+		System.arraycopy(ventana.pixeles, 0, pixeles, 0, pixeles.length);
+		Graphics g = estrategia.getDrawGraphics();
+		g.drawImage(imagen, 0, 0, getWidth(), getHeight(), null);
+		g.dispose();
+		
+		estrategia.show();
 	}
 
 	/**

@@ -9,6 +9,9 @@ public class SpriteSheet {
 	private final int ancho;
 	private final int alto;
 	public final int[] pixeles;
+	//Colecciones de hojas de sprites
+	public static SpriteSheet hojaPrueba = new SpriteSheet("/Textures/pruebas.png",320,320);
+	//Fin de la coleccion
 	
 	public SpriteSheet (final String ruta, final int ancho, final int alto) {
 		this.ancho = ancho;
