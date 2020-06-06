@@ -1,6 +1,6 @@
 package Unidades;
 
-import maps.cuadros.Celda;
+import Mapa.Celda;
 
 public abstract class Unidad {
 
@@ -8,8 +8,9 @@ public abstract class Unidad {
 	private double puntosVida;
 	private double puntosAtaque;
 	private double puntosDefensa;
-	private byte propiedad;
+	private int propiedad;
 	private int id;
+	private double costoOro;
 	private Celda posicion;
 
 	public Unidad() {
@@ -19,15 +20,18 @@ public abstract class Unidad {
 		puntosDefensa = -1;
 		propiedad = 0;
 		id = -1;
+		costoOro = -1;
 		posicion = null;
 	}
 
-	public Unidad(String nombre, double pVida, double pAtaque, double pDefensa, byte propiedad, int id) {
+	public Unidad(String nombre, double pVida, double pAtaque, double pDefensa, double costoOro, int propiedad,
+			int id) {
 		this.nombre = nombre;
 		puntosVida = pVida;
 		puntosAtaque = pAtaque;
 		puntosDefensa = pDefensa;
 		this.propiedad = propiedad;
+		this.costoOro = costoOro;
 		this.id = id;
 		posicion = null;
 	}
@@ -41,6 +45,10 @@ public abstract class Unidad {
 
 		// Una vez calculado el daño, le resto a la vida de la unidad atacada
 		defensora.puntosVida -= hurtOcasionado;
+
+		if (defensora.puntosVida <= 0) {
+			morir(defensora, defensora.posicion);
+		}
 		return hurtOcasionado;
 	}
 
@@ -70,7 +78,7 @@ public abstract class Unidad {
 		return posicion;
 	}
 
-	public byte getPropiedad() {
+	public int getPropiedad() {
 		return propiedad;
 	}
 
@@ -84,6 +92,11 @@ public abstract class Unidad {
 
 	public double getPuntosVida() {
 		return puntosVida;
+	}
+
+	@Override
+	public String toString() {
+		return nombre + "PV: " + puntosVida;
 	}
 
 }

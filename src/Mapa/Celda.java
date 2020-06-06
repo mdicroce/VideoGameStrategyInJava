@@ -1,4 +1,4 @@
-package maps.cuadros;
+package Mapa;
 
 import Unidades.Unidad;
 
@@ -46,5 +46,10 @@ public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE H
 
 	public Unidad getUnidadCelda() {
 		return unidad;
+	}
+
+	@Override
+	public String toString() {
+		return "[ " + posX + "] [" + posY + "]" + unidad;
 	}
 }
