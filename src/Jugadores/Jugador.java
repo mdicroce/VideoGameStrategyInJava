@@ -7,17 +7,25 @@ public class Jugador {
 	private String name;
 
 	private int idPlayer;
+	
+	private float oro;
 
-	private int limiteY;
-
+	private int limiteYMayor;
+	
+	private int limiteYMenor;
+	
 	private Cuartel<Unidad> cuartel;
 
-	public Jugador (String name,int idPlayer,int limiteY) {
+	public Jugador (String name,int idPlayer,float oro,int limiteYMayor,int limiteYMenor) {
 		this.name = name;
 		
 		this.idPlayer = idPlayer;
 		
-		this.limiteY = limiteY;
+		this.oro = oro;
+		
+		this.limiteYMayor = limiteYMayor;
+		
+		this.limiteYMenor = limiteYMenor;
 		
 		cuartel = new Cuartel<Unidad>();
 	}
@@ -37,16 +45,48 @@ public class Jugador {
 	public void setIdPlayer(int idPlayer) {
 		this.idPlayer = idPlayer;
 	}
-
-	public int getLimiteY() {
-		return limiteY;
+	
+	
+	public float getOro() {
+		return oro;
 	}
 
-	public void setLimiteY(int limiteY) {
-		this.limiteY = limiteY;
+	public void setOro(float oro) {
+		this.oro = oro;
 	}
 
+	public int getLimiteYMayor() {
+		return limiteYMayor;
+	}
 
+	public void setLimiteYMayor(int limiteYMayor) {
+		this.limiteYMayor = limiteYMayor;
+	}
+
+	public int getLimiteYMenor() {
+		return limiteYMenor;
+	}
+
+	public void setLimiteYMenor(int limiteYMenor) {
+		this.limiteYMenor = limiteYMenor;
+	}
+
+	public Cuartel<Unidad> getCuartel() {
+		return cuartel;
+	}
+
+	public void setCuartel(Cuartel<Unidad> cuartel) {
+		this.cuartel = cuartel;
+	}
+
+	public void restarOro(float cant) {
+		oro = oro - cant;
+	}
+	
+	public void sumarOro(float cant) {
+		oro = oro + cant;
+	}
+	
 	
 	//public void seleccionar();
 
