@@ -17,6 +17,6 @@ public abstract class Tiles {
 	}
 	
 	public void mostrar (int x, int y, Windows pantalla) {
-		
+		pantalla.mostrarCuadro(x,y,this);
 	}
 }

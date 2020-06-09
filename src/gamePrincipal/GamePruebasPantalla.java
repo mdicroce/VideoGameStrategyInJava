@@ -33,6 +33,7 @@ public class GamePruebasPantalla extends Canvas implements Runnable
 	private GamePruebasPantalla() 
 	{
 		ventana = new Windows(WIDTH,HEIGHT);
+		
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		window = new JFrame("Menem");
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -1,5 +1,7 @@
 package grafics;
 
+import maps.cuadros.Tiles;
+
 public final class Windows {
 	private final int width;
 	private final int height;
@@ -39,6 +41,18 @@ public final class Windows {
 				}
 				// despues veremos como se hace
 				pixeles[posicionX + posicionY * width] = Sprite.pruebita.pixeles[(x & MASCARA_SPRITE)+ (y & MASCARA_SPRITE) * LADO_SPRITE]; 
+			}
+		}
+	}
+	public void mostrarCuadro (int compensacionX, int compensacionY, Tiles cuadro) {
+		for (int y = 0; y < cuadro.sprites.getSize() ; y++) {
+			int posicionY = y + compensacionY;
+			for (int x = 0; x < cuadro.sprites.getSize(); x++) {
+				int posicionX =  x + compensacionX;
+				if (posicionX < 0 || posicionX > width || posicionY < 0 || posicionY > height) {
+					break;
+				}
+				pixeles[posicionX + posicionY * width] = cuadro.sprites.pixeles[x + y * cuadro.sprites.getSize()];
 			}
 		}
 	}

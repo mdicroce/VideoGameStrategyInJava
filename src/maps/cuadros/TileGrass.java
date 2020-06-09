@@ -10,9 +10,9 @@ public class TileGrass extends Tiles {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void mostrar(int x, int y, Windows pantalla) {
+	/*public void mostrar(int x, int y, Windows pantalla) {
 		
-	}
+	}*/
 	 
 	
 }

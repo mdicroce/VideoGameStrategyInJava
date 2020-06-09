@@ -29,4 +29,7 @@ public class Sprite {
 			}
 		}
 	}
+	public int getSize () {
+		return this.size;
+	}
 }
