@@ -4,6 +4,14 @@ import maps.cuadros.Tiles;
 
 public final class Windows {
 	private final int width;
+	public int getWidth() {
+		return width;
+	}
+
+
+	public int getHeight() {
+		return height;
+	}
 	private final int height;
 	public final int[] pixeles;
 	
@@ -19,14 +27,21 @@ public final class Windows {
 		this.width = width;
 		pixeles = new int[width * height];
 	}
-	public void limpiar () {
-		for (int i = 0; i < pixeles.length; i++) {
-			pixeles[i] = 0;
-		}
-	}
+
 	
 	public void mostrar (final int compesacionX, final int compesacionY)
 	{
+		Sprite[] aux = new Sprite[100];
+		int j = 0;
+		for (int i = 0; i< 10 ; i++)
+		{
+			for (int i2 = 0; i2 < 10; i2++) {
+				aux[j] = new Sprite(32,i,i2,SpriteSheet.hojaPrueba);
+				j++;
+			}
+		}
+		j=0;
+		int i = 0;
 		for (int y = 0; y<height; y++)
 		{
 			int posicionY = y + compesacionY;
@@ -40,7 +55,16 @@ public final class Windows {
 					continue;
 				}
 				// despues veremos como se hace
-				pixeles[posicionX + posicionY * width] = Sprite.pruebita.pixeles[(x & MASCARA_SPRITE)+ (y & MASCARA_SPRITE) * LADO_SPRITE]; 
+				pixeles[posicionX + posicionY * width] = aux[j].pixeles[(x & MASCARA_SPRITE)+ (y & MASCARA_SPRITE) * LADO_SPRITE];
+				i++;
+				if (i==32) {
+					i=0;
+					if (j!=99) {
+						j++;
+					}
+					
+				}
+				
 			}
 		}
 	}

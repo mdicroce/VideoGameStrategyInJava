@@ -10,6 +10,7 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 import grafics.Windows;
+import maps.Maps;
 
 public class GamePruebasPantalla extends Canvas implements Runnable
 {
@@ -18,6 +19,7 @@ public class GamePruebasPantalla extends Canvas implements Runnable
 	private static JFrame window;
 	private static Thread thread;
 	private static Windows ventana;
+	private static Maps mapa;
 	
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 640;
@@ -33,7 +35,7 @@ public class GamePruebasPantalla extends Canvas implements Runnable
 	private GamePruebasPantalla() 
 	{
 		ventana = new Windows(WIDTH,HEIGHT);
-		
+		mapa = new Maps(10,10);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		window = new JFrame("Menem");
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -77,8 +79,7 @@ public class GamePruebasPantalla extends Canvas implements Runnable
 			createBufferStrategy(3);
 			return;
 		}
-		ventana.limpiar();
-		ventana.mostrar(x,y);
+		mapa.mostrar(x, y, ventana, 10, 10);
 		
 		System.arraycopy(ventana.pixeles, 0, pixeles, 0, pixeles.length);
 		Graphics g = estrategia.getDrawGraphics();

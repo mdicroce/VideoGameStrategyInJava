@@ -14,7 +14,8 @@ public class Sprite {
 	public int[] pixeles;
 	private SpriteSheet hoja;
 	//coleccion de sprites
-	public static Sprite pruebita = new Sprite(32,0,0, SpriteSheet.hojaPrueba);
+	public static Sprite pastito = new Sprite(32,0,0,SpriteSheet.hojaPrueba);
+	public static Sprite noPastito = new Sprite(32,1,0,SpriteSheet.hojaPrueba);
 	//fin de la coleccion
 	
 	public Sprite (final int size, final int column, final int fila, final SpriteSheet hoja) {
