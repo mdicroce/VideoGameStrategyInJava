@@ -9,6 +9,9 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
+
+import grafics.Sprite;
+import grafics.SpriteSheet;
 import grafics.Windows;
 import maps.Maps;
 
@@ -35,7 +38,7 @@ public class GamePruebasPantalla extends Canvas implements Runnable
 	private GamePruebasPantalla() 
 	{
 		ventana = new Windows(WIDTH,HEIGHT);
-		
+
 		mapa = new Maps(50,50);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		window = new JFrame("Menem");

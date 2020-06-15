@@ -1,34 +1,37 @@
 package maps;
 
+import gamePrincipal.GamePruebasPantalla;
 import grafics.Sprite;
 import grafics.SpriteSheet;
 import grafics.Windows;
 import maps.cuadros.Tiles;
 
 public class Maps {
-	private int ancho;
-	private int alto;
-	private Tiles[] cuadritos;
-	private int[] tiles;
+	public int getAnchoPix() {
+		return anchoPix;
+	}
+	public int getAltoPix() {
+		return altoPix;
+	}
+	public int getSizeTile() {
+		return sizeTile;
+	}
+	private int anchoPix;
+	private int altoPix;
+	private int tablero[][];
+	private int sizeTile;
 	
-	public Maps (int ancho, int alto) {
-		this.ancho = ancho;
-		this.alto = alto;
-		tiles = new int[alto * ancho];
+	public Maps (int ancho, int alto, int sizeTile) {
+		this.anchoPix = ancho;
+		this.altoPix = alto;
+		this.sizeTile = sizeTile;
+		tablero = new int[this.altoPix/sizeTile][this.anchoPix/sizeTile];
 		generarMapa();
 	}
 	public Maps (String ruta) {
 		cargarMapa(ruta);
 	}
 	public void generarMapa() {
-		int i = 0;
-		for (int y=0; y<alto ; y++) {
-			for (int x = 0; x < ancho; x++)
-			{
-				tiles[x + y * ancho] = i % 2;
-				i++;
-			}
-		}
 	}
 	public void cargarMapa(String ruta) {
 		
@@ -36,34 +39,25 @@ public class Maps {
 	public void actualizar() {
 		
 	}
-	public void mostrar(int compensacionX, int compensacionY, Windows pantalla, int tiles1, int tiles2) {
-		
-		
-		int o = compensacionX >> 5;
-		int es = (compensacionX + pantalla.getWidth()) >> 5;
-		int n = compensacionY >> 5;
-		int s = (compensacionY + pantalla.getHeight()) >> 5;
-		if (es > tiles1) {
-			es = tiles1;
-		}
-		if (s > tiles2) {
-			s = tiles2;
-		}
-		for (int y = n; y < s ; y++) {
-			for (int x = o; x < es; x++) {
-				getTiles(x,y).mostrar(x, y, pantalla);
+	/**
+	 * @apiNote Este es el metodo por el cual se dibujan los pixeles del mapa. 
+	 * Va a guardar en el arreglo de pixeles del mapa todos los elementos que lo componen, tomando los sprites 
+	 * correspondientes a cada Tile.  
+	 * @param pantalla: Es la pantalla que se está usando, se tiene que pasar por parámetro para usarse
+	 * @param spriteSizePix: Es el tamaño de los sprites en pixeles (size * size)
+	 */
+	public void mostrar(Windows pantalla, int spriteSizePix) {
+		int[] pixelesAux = new int [spriteSizePix];
+		for (int i = 0; i<(altoPix/sizeTile);i++) {
+			for (int j = 0; j<(anchoPix/sizeTile);j++) {
+				pixelesAux = pantalla.sprites.getPixeles(tablero[i][j]);
+				for (int y = sizeTile*i; y < altoPix; y++) {
+					for (int x = sizeTile * j; x < anchoPix; x ++) {
+						pantalla.pixeles[(x+pantalla.getDifIz()) + (y+pantalla.getDifTop()) * anchoPix] = pixelesAux[x + y * pantalla.sprites.getSize()];
+					}
+				}
 			}
 		}
-	}
-	public Tiles getTiles(int x, int y) {
-		switch (tiles[x + y * ancho]){
-		case 0: 
-			return cuadritos[0];
-		case 1:
-			return cuadritos[1];
-			default:
-				return cuadritos[1];
-		}
-			//return Tiles.this.pastito
+		
 	}
 }

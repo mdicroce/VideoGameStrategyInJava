@@ -13,7 +13,7 @@ public class Sprite {
 	private int y;
 	public int[][] pixeles;
 	
-	public Sprite (final int size, final int column, final int fila, final SpriteSheet hoja) {
+	public Sprite (final int size, final SpriteSheet hoja) {
 		this.size = size;
 		pixeles = new int [(hoja.getAncho()/size)*(hoja.getAlto()/size)] [size * size];
 		this.x = 0 * size;
