@@ -35,7 +35,8 @@ public class GamePruebasPantalla extends Canvas implements Runnable
 	private GamePruebasPantalla() 
 	{
 		ventana = new Windows(WIDTH,HEIGHT);
-		mapa = new Maps(10,10);
+		
+		mapa = new Maps(50,50);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		window = new JFrame("Menem");
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -79,7 +80,7 @@ public class GamePruebasPantalla extends Canvas implements Runnable
 			createBufferStrategy(3);
 			return;
 		}
-		mapa.mostrar(x, y, ventana, 10, 10);
+		mapa.mostrar(x, y, ventana, 50, 50);
 		
 		System.arraycopy(ventana.pixeles, 0, pixeles, 0, pixeles.length);
 		Graphics g = estrategia.getDrawGraphics();

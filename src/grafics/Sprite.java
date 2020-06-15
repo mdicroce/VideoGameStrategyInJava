@@ -1,8 +1,8 @@
 package grafics;
 /**
- * Size representa cuantos pixeles tendrá el sprite. puede ser 32x32, 16x16
- * pixeles guarda todos los pixeles que tendrá el sprite
- * En la spriteSheet tiene varias sprites, lo cual se seleccionara a través de su coordenada. Ejemplo: fila 1 - columna 5 o fila 0 columna 2.
+ * En este caso, subdivide la SpriteSheet en sprites que puedan ser usados, estos son guardados en un arreglo de pixeles. 
+ * 
+ * 
  * 
  * @author Matías Di Croce
  *
@@ -11,24 +11,26 @@ public class Sprite {
 	private final int size; 
 	private int x;
 	private int y;
-	public int[] pixeles;
-	private SpriteSheet hoja;
-	//coleccion de sprites
-	public static Sprite pastito = new Sprite(32,0,0,SpriteSheet.hojaPrueba);
-	public static Sprite noPastito = new Sprite(32,1,0,SpriteSheet.hojaPrueba);
-	//fin de la coleccion
+	public int[][] pixeles;
 	
 	public Sprite (final int size, final int column, final int fila, final SpriteSheet hoja) {
 		this.size = size;
-		pixeles = new int [size * size];
-		this.x = column * size;
-		this.y = fila * size;
-		this.hoja = hoja;
-		for (int y = 0; y< size; y++) {
-			for (int x = 0; x < size; x++) {
-				pixeles[x + y * size] = hoja.pixeles [(x+this.x) + (y + this.y) *hoja.getAncho()];
+		pixeles = new int [(hoja.getAncho()/size)*(hoja.getAlto()/size)] [size * size];
+		this.x = 0 * size;
+		this.y = 0 * size;
+		for (int i = 0; i<100 ; i++) {
+			for (int y = 0; y< size; y++) {
+				for (int x = 0; x < size; x++) {
+					pixeles[i][x + y * size] = hoja.pixeles [(x+this.x) + (y + this.y) *hoja.getAncho()];
+				}
 			}
+			this.x = (i%10) * size;
+			this.y = i/10 * size;
 		}
+		
+	}
+	public int[] getPixeles(int i) {
+		return this.pixeles[i];
 	}
 	public int getSize () {
 		return this.size;

@@ -15,9 +15,6 @@ public class Maps {
 		this.ancho = ancho;
 		this.alto = alto;
 		tiles = new int[alto * ancho];
-		cuadritos = new Tiles[2];
-		cuadritos[0] = new Tiles(Sprite.pastito);
-		cuadritos[1] = new Tiles(Sprite.noPastito);
 		generarMapa();
 	}
 	public Maps (String ruta) {
