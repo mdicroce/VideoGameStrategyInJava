@@ -1,5 +1,5 @@
 package Unidades;
 
 public interface IAccionesUnidades {
-	public void bonusUnidad();
+	public void bonusUnidad(Unidad unidad);
 }

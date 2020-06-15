@@ -19,7 +19,7 @@ public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE H
 	// ---------------------------METODOSPROPIOS------------------------------//
 
 	public void colocarUnidadTablero(Unidad unidad, Celda posicion) {
-		unidad.mover(unidad, posicion);
+		unidad.setPosicion(posicion);
 		ocupado = true;
 		this.unidad = unidad;
 	}
