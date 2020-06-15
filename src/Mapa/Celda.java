@@ -18,21 +18,17 @@ public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE H
 
 	// ---------------------------METODOSPROPIOS------------------------------//
 
-	public void colocarUnidadTablero(Unidad unidad, Celda posicion) {
-		unidad.setPosicion(posicion);
-		ocupado = true;
+	public void setUnidad(Unidad unidad) {
 		this.unidad = unidad;
 	}
 
-	public void quitarUnidadCelda(Celda posicion) {
-		posicion.ocupado = false;
-		posicion.unidad = null;
-
+	public void setOcupado(boolean ocupado) {
+		this.ocupado = ocupado;
 	}
 
-	public void moverUnidadTablero(Unidad unidad, Celda posActual, Celda destino) {
-		posActual.quitarUnidadCelda(posActual);
-		colocarUnidadTablero(unidad, destino);
+	public void quitarUnidadCelda(Celda celda) {
+		celda.unidad = null;
+		celda.ocupado = false;
 	}
 
 	// ---------------------------GETTERS-----------------------------------//
@@ -46,6 +42,10 @@ public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE H
 
 	public Unidad getUnidadCelda() {
 		return unidad;
+	}
+
+	public boolean getOcupado() {
+		return ocupado;
 	}
 
 	@Override

@@ -81,7 +81,15 @@ public abstract class Unidad {
 	}
 
 	public double defender(Unidad atacante, Unidad defensora) {
-		double hurtOcasionado = atacante.puntosAtaque - defensora.puntosDefensa;
+		double hurtOcasionado = 0;
+		if (defensora instanceof Infanteria) // BONUS INFANTERIA
+		{
+			if (((Infanteria) defensora).getBonusDisponible() == true) {
+				double defensaBonusInfanteria = defensora.getPuntosDefensa() * 2;
+				hurtOcasionado = atacante.puntosAtaque - defensaBonusInfanteria;
+			}
+		}
+		hurtOcasionado = atacante.puntosAtaque - defensora.puntosDefensa;
 		return hurtOcasionado;
 	}
 
