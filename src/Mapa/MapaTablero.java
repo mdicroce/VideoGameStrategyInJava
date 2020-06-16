@@ -1,23 +1,45 @@
 package Mapa;
 
+import java.util.HashMap;
+
 import Unidades.Caballero;
+import gamePrincipal.GamePruebasPantalla;
+import grafics.Sprite;
+import grafics.SpriteSheet;
+import grafics.Windows;
+import maps.cuadros.Tiles;
+
 import Unidades.Unidad;
 
 public class MapaTablero {
-	private static final int FILAS = 4;
-	private static final int COLUMNAS = 8;
+	private final int FILAS;
+	private final int COLUMNAS;
 	private Celda tablero[][];
+	private int anchoPix;
+	private int altoPix;
+	private int sizeTile;
 
-	public MapaTablero() {
+	public MapaTablero(int FILAS, int COLUMNAS, int sizeTile) {
+		this.FILAS = FILAS;
+		this.COLUMNAS = COLUMNAS;
+		this.anchoPix = sizeTile * COLUMNAS;
+		this.altoPix = sizeTile * FILAS;
+		this.sizeTile = sizeTile;
 		tablero = new Celda[FILAS][COLUMNAS];
 	}
 
 	// -----------------------------------------------------//
 
+
 	public void generarTablero() {
+		int i = 0;
 		for (int x = 0; x < FILAS; x++) {
 			for (int y = 0; y < COLUMNAS; y++) {
-				tablero[x][y] = new Celda(x, y);
+				tablero[x][y] = new Celda(x, y,(byte) i);
+				i++;
+				if (i==4) {
+					i = 0;
+				}
 			}
 		}
 	}
@@ -84,4 +106,50 @@ public class MapaTablero {
 			}
 		}
 	}
+	public void mostrar(Windows pantalla, int spriteSizePix) {
+		int[] pixelesAux = new int [spriteSizePix];
+		for (int i = 0; i<(altoPix/sizeTile);i++) {
+			for (int j = 0; j<(anchoPix/sizeTile);j++) {
+				pixelesAux = pantalla.sprites.getPixeles(tablero[i][j].getTipoDeSprite());
+				for (int y = sizeTile*i; y < altoPix; y++) {
+					for (int x = sizeTile * j; x < anchoPix; x ++) {
+						pantalla.pixeles[(x+pantalla.getDifIz()) + (y+pantalla.getDifTop()) * anchoPix] = pixelesAux[x + y * pantalla.sprites.getSize()];
+						if ( tablero[i][j].getOcupado()) 
+						{
+							tablero[i][j].getUnidadCelda().mostrar(pantalla);
+						}
+					}
+				}
+			}
+		}
+		
+	}
+	public void actualizar() {
+		
+	}
+	// ------------------------Getters-----------------------------//
+	public int getFilas() {
+		return FILAS;
+	}
+
+	public int getColumnas() {
+		return COLUMNAS;
+	}
+
+	public Celda[][] getTablero() {
+		return tablero;
+	}
+
+	public int getAnchoPix() {
+		return anchoPix;
+	}
+
+	public int getAltoPix() {
+		return altoPix;
+	}
+
+	public int getSizeTile() {
+		return sizeTile;
+	}
 }
+

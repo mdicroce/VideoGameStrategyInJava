@@ -7,6 +7,14 @@ public class Infanteria extends Unidad implements IAccionesUnidades {
 	{
 		super("Infanteria", 18, 8, 8, 3, 5, 5, propiedad, 1);
 		bonusDisponible = true;
+		if (propiedad == 0) {
+			super.pos1 = 8;
+			super.pos2 = 18;
+		}
+		else {
+			pos1 = 26; 
+			pos2 = 36;
+		}
 	}
 
 	// -------GETTERS----//

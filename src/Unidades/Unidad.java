@@ -1,6 +1,7 @@
 package Unidades;
 
 import Mapa.Celda;
+import grafics.Windows;
 
 public abstract class Unidad {
 
@@ -14,6 +15,7 @@ public abstract class Unidad {
 	private double costoOroGuarecido;
 	private double costoOroEnCampo; // PUESTO EN EL TABLERO
 	private Celda posicion;
+	protected int pos1,pos2;
 
 	public Unidad() {
 		nombre = "";
@@ -40,6 +42,15 @@ public abstract class Unidad {
 		this.costoOroEnCampo = costoOroCampo;
 		this.id = id++;
 		posicion = null;
+	}
+	public void mostrar(Windows pantalla) {
+		for (int y = 0; y < 64 ;y++) {
+			for (int x = 0; x < 32;x++) {
+				pantalla.pixeles[(x+posicion.getPosX()*32)+(y+posicion.getPosY()*32)*pantalla.sprites.getSize()]= pantalla.sprites.pixeles[pos2][x+y*pantalla.sprites.getSize()];
+				pantalla.pixeles[(x+posicion.getPosX()*32)+((y-32)+posicion.getPosY()*32)*pantalla.sprites.getSize()] = pantalla.sprites.pixeles[pos1][x+y*pantalla.sprites.getSize()];
+			}
+		}
+	}
 	}
 
 	// -------------------------------------METODOSPROPIOS-------------------------------------//
