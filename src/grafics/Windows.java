@@ -1,6 +1,6 @@
 package grafics;
 
-import maps.Maps;
+import Mapa.*;
 import maps.cuadros.Tiles;
 
 public final class Windows {
@@ -28,7 +28,7 @@ public final class Windows {
 	public final int[] pixeles;
 
 	
-	public Windows(final int width, final int height, Maps mapita)
+	public Windows(final int width, final int height, MapaTablero mapita)
 	{
 		sprites = new Sprite(32,SpriteSheet.hojaPrueba);
 		this.height = height;

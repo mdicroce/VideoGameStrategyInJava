@@ -40,7 +40,7 @@ public abstract class Unidad {
 		this.costoOroCompra = costoOro;
 		this.costoOroGuarecido = costoOroGuarecido;
 		this.costoOroEnCampo = costoOroCampo;
-		this.id = id++;
+		Unidad.id = id++;
 		posicion = null;
 	}
 	public void mostrar(Windows pantalla) {
@@ -50,7 +50,6 @@ public abstract class Unidad {
 				pantalla.pixeles[(x+posicion.getPosX()*32)+((y-32)+posicion.getPosY()*32)*pantalla.sprites.getSize()] = pantalla.sprites.pixeles[pos1][x+y*pantalla.sprites.getSize()];
 			}
 		}
-	}
 	}
 
 	// -------------------------------------METODOSPROPIOS-------------------------------------//

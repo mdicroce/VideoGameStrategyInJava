@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 import grafics.Sprite;
 import grafics.SpriteSheet;
 import grafics.Windows;
-import maps.Maps;
+import Mapa.*;
 
 public class GamePruebasPantalla extends Canvas implements Runnable
 {
@@ -22,7 +22,7 @@ public class GamePruebasPantalla extends Canvas implements Runnable
 	private static JFrame window;
 	private static Thread thread;
 	private static Windows ventana;
-	private static Maps mapa;
+	private static MapaTablero mapa;
 	
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 640;
