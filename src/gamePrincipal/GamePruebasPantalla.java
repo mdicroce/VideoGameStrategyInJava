@@ -10,36 +10,37 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
-import grafics.Sprite;
-import grafics.SpriteSheet;
+import Mapa.MapaTablero;
 import grafics.Windows;
-import Mapa.*;
 
-public class GamePruebasPantalla extends Canvas implements Runnable
-{
+public class GamePruebasPantalla extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
 	private static JFrame window;
 	private static Thread thread;
 	private static Windows ventana;
 	private static MapaTablero mapa;
-	
+
+	private static GameController teclado;
+
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 640;
-	
+
 	private static volatile boolean enFuncionamiento = false;
-	
+
 	private static int x = 0;
 	private static int y = 0;
-	
-	private static BufferedImage imagen = new BufferedImage (WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-	private static int[] pixeles = ((DataBufferInt)imagen.getRaster().getDataBuffer()).getData();
-	
-	private GamePruebasPantalla() 
-	{
-		ventana = new Windows(WIDTH,HEIGHT);
 
-		mapa = new Maps(50,50);
+	private static BufferedImage imagen = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+	private static int[] pixeles = ((DataBufferInt) imagen.getRaster().getDataBuffer()).getData();
+
+	private GamePruebasPantalla() {
+		ventana = new Windows(WIDTH, HEIGHT);
+
+		teclado = new GameController();
+		addKeyListener(teclado);
+
+		mapa = new Maps(50, 50);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		window = new JFrame("Menem");
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,19 +52,18 @@ public class GamePruebasPantalla extends Canvas implements Runnable
 		window.setVisible(true);
 	}
 
-	public static void main(String[] args) 
-	{
+	public static void main(String[] args) {
 		GamePruebasPantalla jueguitos = new GamePruebasPantalla();
 		jueguitos.iniciar();
 	}
-	private synchronized void iniciar()
-	{
+
+	private synchronized void iniciar() {
 		enFuncionamiento = true;
-		thread = new Thread(this,"Grafics");
+		thread = new Thread(this, "Grafics");
 		thread.start();
 	}
-	private synchronized void detener()
-	{
+
+	private synchronized void detener() {
 		enFuncionamiento = false;
 		try {
 			thread.join();
@@ -71,56 +71,67 @@ public class GamePruebasPantalla extends Canvas implements Runnable
 			e.printStackTrace();
 		}
 	}
-	private void actualizar() 
-	{
-		
+
+	private void actualizar() {
+		teclado.actualizar();
+
+		if (teclado.arriba) {
+
+		}
+		if (teclado.abajo) {
+
+		}
+		if (teclado.derecha) {
+
+		}
+		if (teclado.izquierda) {
+
+		}
 	}
-	private void mostrar()
-	{
+
+	private void mostrar() {
 		BufferStrategy estrategia = getBufferStrategy();
-		if (estrategia == null)
-		{
+		if (estrategia == null) {
 			createBufferStrategy(3);
 			return;
 		}
 		mapa.mostrar(x, y, ventana, 50, 50);
-		
+
 		System.arraycopy(ventana.pixeles, 0, pixeles, 0, pixeles.length);
 		Graphics g = estrategia.getDrawGraphics();
 		g.drawImage(imagen, 0, 0, getWidth(), getHeight(), null);
 		g.dispose();
-		
+
+		requestFocus();
+
 		estrategia.show();
 	}
 
 	/**
-	 * Here we have the thread running, with 60 actualizaciones for second. 
+	 * Here we have the thread running, with 60 actualizaciones for second.
 	 */
-	public void run() 
-	{
+	public void run() {
 		System.nanoTime();
 		final int NS_POR_SEGUNDO = 1000000000;
 		final byte APS_OBJETIVO = 60;
 		final double NS_POR_ACTUALIZACION = NS_POR_SEGUNDO / APS_OBJETIVO;
-		
+
 		long referenciaActualizacion = System.nanoTime();
 		double tiempoTranscurrido;
 		double delta = 0;
-		
-		while (enFuncionamiento)
-		{
+
+		while (enFuncionamiento) {
 			final long inicioBucle = System.nanoTime();
-			
+
 			tiempoTranscurrido = inicioBucle - referenciaActualizacion;
 			referenciaActualizacion = inicioBucle;
-			
-			delta+= tiempoTranscurrido / NS_POR_ACTUALIZACION;
-			while (delta >= 1)
-			{
+
+			delta += tiempoTranscurrido / NS_POR_ACTUALIZACION;
+			while (delta >= 1) {
 				actualizar();
 				delta--;
 			}
-			 
+
 			mostrar();
 		}
 	}
