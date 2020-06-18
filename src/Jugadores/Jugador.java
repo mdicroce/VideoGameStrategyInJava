@@ -15,6 +15,20 @@ public class Jugador {
 	private int limiteYMenor;
 	
 	private Cuartel<Unidad> cuartel;
+	
+	public Jugador () {
+		name = "";
+		
+		idPlayer = 0;
+		
+		oro = 0;
+		
+		limiteYMayor = -1;
+		
+		limiteYMenor = -1;
+		
+		cuartel = new Cuartel<Unidad>();
+	}
 
 	public Jugador (String name,int idPlayer,float oro,int limiteYMayor,int limiteYMenor) {
 		this.name = name;
