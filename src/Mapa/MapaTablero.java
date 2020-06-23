@@ -24,8 +24,9 @@ public class MapaTablero {
 		this.COLUMNAS = COLUMNAS;
 		this.anchoPix = sizeTile * COLUMNAS;
 		this.altoPix = sizeTile * FILAS;
-		this.sizeTile = sizeTile;
+		this.sizeTile = sizeTile;	
 		tablero = new Celda[FILAS][COLUMNAS];
+		generarTablero();
 	}
 
 	// -----------------------------------------------------//
@@ -113,7 +114,7 @@ public class MapaTablero {
 				pixelesAux = pantalla.sprites.getPixeles(tablero[i][j].getTipoDeSprite());
 				for (int y = sizeTile*i; y < altoPix; y++) {
 					for (int x = sizeTile * j; x < anchoPix; x ++) {
-						pantalla.pixeles[(x+pantalla.getDifIz()) + (y+pantalla.getDifTop()) * anchoPix] = pixelesAux[x + y * pantalla.sprites.getSize()];
+						pantalla.pixeles[(x+pantalla.getDifIz()) + (y+pantalla.getDifTop()) * anchoPix] = pixelesAux[(x%32) + (y%32) * pantalla.sprites.getSize()];
 						if ( tablero[i][j].getOcupado()) 
 						{
 							tablero[i][j].getUnidadCelda().mostrar(pantalla);

@@ -22,6 +22,7 @@ public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE H
 		this.posY = posY;
 		ocupado = false;
 		unidad = null;
+		this.tipoDeSprite = tipoDeSprite;
 	}
 
 	// ---------------------------METODOSPROPIOS------------------------------//

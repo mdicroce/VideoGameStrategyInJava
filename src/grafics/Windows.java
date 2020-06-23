@@ -26,6 +26,7 @@ public final class Windows {
 	}
 	private final int height;
 	public final int[] pixeles;
+	public final int[][]pixelesAux;
 
 	
 	public Windows(final int width, final int height, MapaTablero mapita)
@@ -34,12 +35,15 @@ public final class Windows {
 		this.height = height;
 		this.width = width;
 		pixeles = new int[width * height];
-		difIz = width/2 - mapita.getAltoPix();
-		difTop = height/2 - mapita.getAnchoPix();
+		pixelesAux = new int [height][width];
+		difIz = width/2 - mapita.getAltoPix()/2;
+		difTop = height/2 - mapita.getAnchoPix()/2;
 	}
 
-	
-	public void guardarMapa (int anchoMapa, int altoMapa, Maps mapa)
+	public void pixAuxAPix() {
+		for (int y = 0; y < )
+	}
+	public void guardarMapa (int anchoMapa, int altoMapa, MapaTablero mapa)
 	{
 		
 	}

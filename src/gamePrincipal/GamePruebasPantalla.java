@@ -35,12 +35,11 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 	private static int[] pixeles = ((DataBufferInt) imagen.getRaster().getDataBuffer()).getData();
 
 	private GamePruebasPantalla() {
-		ventana = new Windows(WIDTH, HEIGHT);
+		mapa = new MapaTablero(20, 5, 32);
+		ventana = new Windows(WIDTH, HEIGHT, mapa);
 
 		teclado = new GameController();
 		addKeyListener(teclado);
-
-		mapa = new Maps(50, 50);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		window = new JFrame("Menem");
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -95,7 +94,7 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 			createBufferStrategy(3);
 			return;
 		}
-		mapa.mostrar(x, y, ventana, 50, 50);
+		mapa.mostrar(GamePruebasPantalla.ventana,32);
 
 		System.arraycopy(ventana.pixeles, 0, pixeles, 0, pixeles.length);
 		Graphics g = estrategia.getDrawGraphics();
