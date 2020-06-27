@@ -1,15 +1,8 @@
 package Mapa;
 
-import java.util.HashMap;
-
 import Unidades.Caballero;
-import gamePrincipal.GamePruebasPantalla;
-import grafics.Sprite;
-import grafics.SpriteSheet;
-import grafics.Windows;
-import maps.cuadros.Tiles;
-
 import Unidades.Unidad;
+import grafics.Windows;
 
 public class MapaTablero {
 	private final int FILAS;
@@ -24,21 +17,20 @@ public class MapaTablero {
 		this.COLUMNAS = COLUMNAS;
 		this.anchoPix = sizeTile * COLUMNAS;
 		this.altoPix = sizeTile * FILAS;
-		this.sizeTile = sizeTile;	
+		this.sizeTile = sizeTile;
 		tablero = new Celda[FILAS][COLUMNAS];
 		generarTablero();
 	}
 
 	// -----------------------------------------------------//
 
-
 	public void generarTablero() {
 		int i = 0;
 		for (int x = 0; x < FILAS; x++) {
 			for (int y = 0; y < COLUMNAS; y++) {
-				tablero[x][y] = new Celda(x, y,(byte) i);
+				tablero[x][y] = new Celda(x, y, (byte) i);
 				i++;
-				if (i==4) {
+				if (i == 4) {
 					i = 0;
 				}
 			}
@@ -59,17 +51,27 @@ public class MapaTablero {
 				unidad.atacar(unidad, destino.getUnidadCelda());
 			}
 		}
-		if (validarMovimiento(unidad, posActual, destino) == true) // VERIFICO SI EL MOVIMIENTO ES VALIDO
-		{
-			insertarUnidadTablero(unidad, destino); // LA INSERTO EN EL DESTINO
+		try {
+			if (validarMovimiento(unidad, posActual, destino) == true) // VERIFICO SI EL MOVIMIENTO ES VALIDO
+			{
+				insertarUnidadTablero(unidad, destino); // LA INSERTO EN EL DESTINO
+			}
+		} catch (MovimientoInvalidoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
-	public boolean validarMovimiento(Unidad unidad, Celda posActual, Celda destino) // EN CASO DE RETORNAR TRUE, EL
-																					// MOVIMIENTO ES VALIDO
+	public static boolean validarMovimiento(Unidad unidad, Celda posActual, Celda destino)
+			throws MovimientoInvalidoException // EN
+	// CASO
+	// DE
+	// RETORNAR
+	// TRUE,
+	// EL
+	// MOVIMIENTO ES VALIDO
 	{
 		boolean bandera = false;
-
 		// PRIMERO VAMOS CON QUE NO PUEDE MOVERSE MAS DE UNA CELDA (EXCEPTO QUE SEA
 		// CABALLERO)
 		if (Math.abs(posActual.getPosX() - destino.getPosX()) == 1) {
@@ -97,6 +99,9 @@ public class MapaTablero {
 			bandera = true;
 		}
 
+		if (bandera == false) {
+			throw new MovimientoInvalidoException("Movimiento inválido.");
+		}
 		return bandera;
 	}
 
@@ -107,27 +112,31 @@ public class MapaTablero {
 			}
 		}
 	}
+
 	public void mostrar(Windows pantalla, int spriteSizePix) {
-		int[] pixelesAux = new int [spriteSizePix];
-		for (int i = 0; i<(altoPix/sizeTile);i++) {
-			for (int j = 0; j<(anchoPix/sizeTile);j++) {
+		int[] pixelesAux = new int[spriteSizePix];
+		for (int i = 0; i < (altoPix / sizeTile); i++) {
+			for (int j = 0; j < (anchoPix / sizeTile); j++) {
 				pixelesAux = pantalla.sprites.getPixeles(tablero[i][j].getTipoDeSprite());
-				for (int y = sizeTile*i; y < altoPix; y++) {
-					for (int x = sizeTile * j; x < anchoPix; x ++) {
-						pantalla.pixeles[(x+pantalla.getDifIz()) + (y+pantalla.getDifTop()) * anchoPix] = pixelesAux[(x%32) + (y%32) * pantalla.sprites.getSize()];
-						if ( tablero[i][j].getOcupado()) 
-						{
+				for (int y = sizeTile * i; y < altoPix; y++) {
+					for (int x = sizeTile * j; x < anchoPix; x++) {
+						pantalla.pixeles[(x + pantalla.getDifIz())
+								+ (y + pantalla.getDifTop()) * anchoPix] = pixelesAux[(x % 32)
+										+ (y % 32) * pantalla.sprites.getSize()];
+						if (tablero[i][j].getOcupado()) {
 							tablero[i][j].getUnidadCelda().mostrar(pantalla);
 						}
 					}
 				}
 			}
 		}
-		
+
 	}
+
 	public void actualizar() {
-		
+
 	}
+
 	// ------------------------Getters-----------------------------//
 	public int getFilas() {
 		return FILAS;
@@ -153,4 +162,3 @@ public class MapaTablero {
 		return sizeTile;
 	}
 }
-
