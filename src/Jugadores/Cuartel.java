@@ -10,6 +10,10 @@ package Jugadores;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import Unidades.Infanteria;
 import Unidades.Unidad;
 
 public class Cuartel <T extends Unidad > {
@@ -38,17 +42,18 @@ public class Cuartel <T extends Unidad > {
 				for (T unidad : cuartel) {
 					if(unidad.getId() == id) {
 						fueEliminado = cuartel.remove(unidad);
-					}else {
-						throw new ExceptionNoExiste("El elemento que busco no existe");
-					
 					}
-				}		
+				}
+				
+				if (fueEliminado == false) {
+					throw new ExceptionNoExiste("El elemento que usted desea eliminar no existe");	
+				}
 		}
 			
 		return fueEliminado;
 	}
 	
-	public boolean eliminar(T eliminar) throws ExceptionNoExiste,ExceptionEstaVacio{
+	public void eliminar(T eliminar) throws ExceptionNoExiste,ExceptionEstaVacio{
 		boolean fueEliminado = false;
 		
 		if (cuartel.isEmpty()) {
@@ -60,14 +65,12 @@ public class Cuartel <T extends Unidad > {
 					if(unidad.equals(eliminar)) {
 						fueEliminado = cuartel.remove(unidad);
 					}
-					else {
-						throw new ExceptionNoExiste("El elemento que busco no existe");
-					
-					}
-				}		
-		}
-			
-		return fueEliminado;
+				}
+				
+				if (fueEliminado == false) {
+					throw new ExceptionNoExiste("El elemento que usted desea eliminar no existe");	
+				}
+		}	
 	}
 	
 	public T buscar(int id)  throws ExceptionNoExiste,ExceptionEstaVacio {
@@ -82,11 +85,13 @@ public class Cuartel <T extends Unidad > {
 					if(unidad.getId() == id) {
 						buscado = unidad;
 					}
-					else {
-						throw new ExceptionNoExiste("El elemento que busco no existe");
 					
-					}
-				}		
+				}
+				
+				if(buscado == null) {
+					throw new ExceptionNoExiste("El elemento que busco no existe");
+				
+				}
 		}
 			
 		return buscado;
@@ -104,13 +109,34 @@ public class Cuartel <T extends Unidad > {
 					if(unidad.equals(buscar)) {
 						buscado = unidad;
 					}
-					else {
-						throw new ExceptionNoExiste("El elemento que busco no existe");
 					
-					}
-				}		
+				}
+				
+				if(buscado == null) {
+					throw new ExceptionNoExiste("El elemento que busco no existe");
+				
+				}
 		}
 			
 		return buscado;
+	}
+	
+	public JSONArray toJsonArray() throws JSONException {
+		JSONArray jsonArray = new JSONArray();
+		int i = 0;
+
+		for (Unidad unidad : cuartel) {
+			
+			if (unidad instanceof Infanteria) {//Esto se realiza ya que la infanteria tiene un toJson diferente
+				Infanteria infanteria = (Infanteria) unidad;
+				jsonArray.put(i, infanteria.toJson()); 
+			}else {
+				jsonArray.put(i, unidad.toJson());
+			} 
+			
+			i++;	
+		}
+		
+		return jsonArray;
 	}
 }

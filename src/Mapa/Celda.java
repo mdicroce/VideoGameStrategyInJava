@@ -2,6 +2,10 @@ package Mapa;
 
 
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import Unidades.Infanteria;
 import Unidades.Unidad;
 
 public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE HABIA HECHO, DESPUES
@@ -38,6 +42,25 @@ public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE H
 	public void quitarUnidadCelda(Celda celda) {
 		celda.unidad = null;
 		celda.ocupado = false;
+	}
+	
+	public JSONObject  toJson() throws JSONException {
+		
+		JSONObject jsonObject = new JSONObject();
+		
+		jsonObject.put("Pos X", posX);
+		jsonObject.put("Pos Y", posY);
+		jsonObject.put("Ocupado", ocupado);
+		if (unidad instanceof Infanteria) {//Esto se realiza ya que la infanteria tiene un toJson diferente
+			Infanteria infanteria = (Infanteria) unidad;
+			jsonObject.put("Unidad", infanteria.toJson()); 
+		}else {
+			jsonObject.put("Unidad", unidad.toJson());
+		} 
+		
+		jsonObject.put("Tipo de Sprite", tipoDeSprite);
+		
+	return jsonObject;
 	}
 
 	// ---------------------------GETTERS-----------------------------------//

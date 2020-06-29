@@ -1,5 +1,8 @@
 package Unidades;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Infanteria extends Unidad implements IAccionesUnidades {
 	private boolean bonusDisponible; // EL SOLDADO SOLO PUEDE UTILIZAR EL BONUS POR UNICA VEZ
 
@@ -15,6 +18,15 @@ public class Infanteria extends Unidad implements IAccionesUnidades {
 			pos1 = 26; 
 			pos2 = 36;
 		}
+	}
+	
+	@Override
+	public JSONObject toJson() throws JSONException {
+		JSONObject jsonObject = super.toJson();
+		
+		jsonObject.put("Bonus Disponible", bonusDisponible);
+		
+		return jsonObject;
 	}
 
 	// -------GETTERS----//

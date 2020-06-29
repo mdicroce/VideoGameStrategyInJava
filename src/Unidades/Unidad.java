@@ -1,5 +1,8 @@
 package Unidades;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import Mapa.Celda;
 import grafics.Windows;
 
@@ -114,6 +117,27 @@ public abstract class Unidad {
 
 	public void morir(Unidad unidad, Celda posicionActual) {
 		unidad.posicion.quitarUnidadCelda(posicionActual);
+	}
+	
+	public JSONObject toJson() throws JSONException {
+		JSONObject jsonObject = new JSONObject();
+		
+		jsonObject.put("Nombre", nombre);
+		jsonObject.put("Puntos de Vida", puntosVida);
+		jsonObject.put("Puntos de Ataque", puntosAtaque);
+		jsonObject.put("Puntos de Defensa", puntosDefensa);
+		jsonObject.put("Propiedad", propiedad);
+		jsonObject.put("ID", id);
+		jsonObject.put("Costo de oro Compra", costoOroCompra);
+		jsonObject.put("Costo de oro Guarecido", costoOroGuarecido);
+		jsonObject.put("Costo de oro en Campo", costoOroEnCampo);
+		jsonObject.put("Celda posicion", posicion.to);
+		jsonObject.put("Costo de oro Compra", costoOroCompra);
+		jsonObject.put("Posicion 1", pos1);
+		jsonObject.put("Posicion 2", pos2);
+		
+		
+		return jsonObject;
 	}
 
 	// -------------------------------------GETTERS--------------------------------------------//

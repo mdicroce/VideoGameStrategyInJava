@@ -1,5 +1,9 @@
 package Jugadores;
 
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Clase Jugadores la cual posee una contenedor generico  llamado cuartel el cual posee unidades 
  * 
@@ -22,7 +26,11 @@ public class Jugador {
 	
 	private int limiteYMenor;
 	
+	private boolean turno;
+	
 	private Cuartel<Unidad> cuartel;
+	
+	
 	
 	public Jugador () {
 		name = "";
@@ -34,6 +42,8 @@ public class Jugador {
 		limiteYMayor = -1;
 		
 		limiteYMenor = -1;
+		
+		turno = false;
 		
 		cuartel = new Cuartel<Unidad>();
 	}
@@ -48,6 +58,8 @@ public class Jugador {
 		this.limiteYMayor = limiteYMayor;
 		
 		this.limiteYMenor = limiteYMenor;
+		
+		turno = false;
 		
 		cuartel = new Cuartel<Unidad>();
 	}
@@ -109,6 +121,19 @@ public class Jugador {
 		oro = oro + cant;
 	}
 	
+	public JSONObject toJson() throws JSONException {
+		JSONObject jsonObject = new JSONObject();
+		
+		jsonObject.put("Nombre", name);
+		jsonObject.put("ID Jugador", idPlayer);
+		jsonObject.put("Oro", oro);
+		jsonObject.put("Limite Y Mayor", limiteYMayor);
+		jsonObject.put("Limite Y Menor", limiteYMenor);
+		jsonObject.put("Turno", turno);
+		jsonObject.put("Cuartel", cuartel.toJsonArray());
+		
+	return jsonObject;	
+	}
 	
 	//public void seleccionar();
 
