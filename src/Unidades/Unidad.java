@@ -13,12 +13,13 @@ public abstract class Unidad {
 	private double puntosAtaque;
 	private double puntosDefensa;
 	private int propiedad; // a que jugador pertenece
-	private static int id;
+	private static int idIncremento;
+	private int idUnidad;
 	private double costoOroCompra;
 	private double costoOroGuarecido;
 	private double costoOroEnCampo; // PUESTO EN EL TABLERO
 	private Celda posicion;
-	protected int pos1,pos2;
+	protected int pos1, pos2;
 
 	public Unidad() {
 		nombre = "";
@@ -26,7 +27,7 @@ public abstract class Unidad {
 		puntosVida = -1;
 		puntosDefensa = -1;
 		propiedad = 0;
-		id++;
+		idUnidad = idIncremento++;
 		costoOroCompra = -1;
 		costoOroGuarecido = 0;
 		costoOroEnCampo = 0;
@@ -34,7 +35,7 @@ public abstract class Unidad {
 	}
 
 	public Unidad(String nombre, double pVida, double pAtaque, double pDefensa, double costoOro,
-			double costoOroGuarecido, double costoOroCampo, int propiedad, int id) {
+			double costoOroGuarecido, double costoOroCampo, int propiedad) {
 		this.nombre = nombre;
 		puntosVida = pVida;
 		puntosAtaque = pAtaque;
@@ -43,14 +44,19 @@ public abstract class Unidad {
 		this.costoOroCompra = costoOro;
 		this.costoOroGuarecido = costoOroGuarecido;
 		this.costoOroEnCampo = costoOroCampo;
-		Unidad.id = id++;
+		this.idUnidad = idIncremento++;
 		posicion = null;
 	}
+
 	public void mostrar(Windows pantalla) {
-		for (int y = 0; y < 64 ;y++) {
-			for (int x = 0; x < 32;x++) {
-				pantalla.pixeles[(x+posicion.getPosX()*32)+(y+posicion.getPosY()*32)*pantalla.sprites.getSize()]= pantalla.sprites.pixeles[pos2][x+y*pantalla.sprites.getSize()];
-				pantalla.pixeles[(x+posicion.getPosX()*32)+((y-32)+posicion.getPosY()*32)*pantalla.sprites.getSize()] = pantalla.sprites.pixeles[pos1][x+y*pantalla.sprites.getSize()];
+		for (int y = 0; y < 64; y++) {
+			for (int x = 0; x < 32; x++) {
+				pantalla.pixeles[(x + posicion.getPosX() * 32)
+						+ (y + posicion.getPosY() * 32) * pantalla.sprites.getSize()] = pantalla.sprites.pixeles[pos2][x
+								+ y * pantalla.sprites.getSize()];
+				pantalla.pixeles[(x + posicion.getPosX() * 32) + ((y - 32) + posicion.getPosY() * 32)
+						* pantalla.sprites.getSize()] = pantalla.sprites.pixeles[pos1][x
+								+ y * pantalla.sprites.getSize()];
 			}
 		}
 	}
@@ -118,25 +124,24 @@ public abstract class Unidad {
 	public void morir(Unidad unidad, Celda posicionActual) {
 		unidad.posicion.quitarUnidadCelda(posicionActual);
 	}
-	
+
 	public JSONObject toJson() throws JSONException {
 		JSONObject jsonObject = new JSONObject();
-		
+
 		jsonObject.put("Nombre", nombre);
 		jsonObject.put("Puntos de Vida", puntosVida);
 		jsonObject.put("Puntos de Ataque", puntosAtaque);
 		jsonObject.put("Puntos de Defensa", puntosDefensa);
 		jsonObject.put("Propiedad", propiedad);
-		jsonObject.put("ID", id);
+		jsonObject.put("ID", idUnidad);
 		jsonObject.put("Costo de oro Compra", costoOroCompra);
 		jsonObject.put("Costo de oro Guarecido", costoOroGuarecido);
 		jsonObject.put("Costo de oro en Campo", costoOroEnCampo);
-		jsonObject.put("Celda posicion", posicion.to);
+		jsonObject.put("Celda posicion", posicion.toJson());
 		jsonObject.put("Costo de oro Compra", costoOroCompra);
 		jsonObject.put("Posicion 1", pos1);
 		jsonObject.put("Posicion 2", pos2);
-		
-		
+
 		return jsonObject;
 	}
 
@@ -145,8 +150,8 @@ public abstract class Unidad {
 		return nombre;
 	}
 
-	public int getId() {
-		return id;
+	public int getIdUnidad() {
+		return idUnidad;
 	}
 
 	public Celda getPosicion() {
@@ -185,7 +190,7 @@ public abstract class Unidad {
 
 	@Override
 	public String toString() {
-		return nombre + id + "PV: " + puntosVida;
+		return nombre + idUnidad + "PV: " + puntosVida;
 	}
 
 	@Override
@@ -193,7 +198,7 @@ public abstract class Unidad {
 		boolean bandera = false;
 		if (obj instanceof Unidad) {
 			Unidad aux = (Unidad) obj;
-			if (aux.getId() == this.getId()) {
+			if (aux.getIdUnidad() == this.getIdUnidad()) {
 				bandera = true;
 			}
 		}
