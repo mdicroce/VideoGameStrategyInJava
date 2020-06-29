@@ -1,5 +1,13 @@
 package Jugadores;
 
+/**
+ * Clase Cuartel la cual es un contenedor generico de unidades. 
+ * 
+ * 
+ * @author Nahuel Flores
+ *
+ */
+
 import java.util.ArrayList;
 
 import Unidades.Unidad;

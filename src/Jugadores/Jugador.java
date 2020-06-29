@@ -1,5 +1,13 @@
 package Jugadores;
 
+/**
+ * Clase Jugadores la cual posee una contenedor generico  llamado cuartel el cual posee unidades 
+ * 
+ * 
+ * @author Nahuel Flores
+ *
+ */
+
 import Unidades.Unidad;
 
 public class Jugador {
