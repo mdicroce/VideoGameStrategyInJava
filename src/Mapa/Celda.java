@@ -28,6 +28,14 @@ public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE H
 		unidad = null;
 		this.tipoDeSprite = tipoDeSprite;
 	}
+	
+	public Celda() { // SE VA A UTILIZAR PARA CREAR UNA CELDA A PARTIR DE UN JSonObject
+		this.posX = -1;
+		this.posY = -1;
+		ocupado = false;
+		unidad = null;
+		this.tipoDeSprite = -1;
+	}
 
 	// ---------------------------METODOSPROPIOS------------------------------//
 
