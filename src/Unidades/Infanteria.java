@@ -18,6 +18,11 @@ public class Infanteria extends Unidad {
 			pos2 = 36;
 		}
 	}
+	
+	public Infanteria() { // SE VA A UTILIZAR PARA CREAR UNA INFANTERIA A PARTIR DE UN JSonObject
+		super();
+		bonusDisponible = false;
+	}
 
 	@Override
 	public JSONObject toJson() throws JSONException {

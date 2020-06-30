@@ -13,6 +13,10 @@ public class Arquero extends Unidad {
 			pos2 = 38;
 		}
 	}
+	
+	public Arquero() { // SE VA A UTILIZAR PARA CREAR UN ARQUERO A PARTIR DE UN JSonObject
+		super();
+	}
 
 	@Override
 	public int hashCode() {

@@ -1,6 +1,5 @@
 package Jugadores;
 
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -13,6 +12,13 @@ import org.json.JSONObject;
  */
 
 import Unidades.Unidad;
+
+/**
+ * Clase Jugador que coniene un Contenedor Generico llamado cuartel que contiene Unidades.
+ * En esta clase se puede sumar oro al jugador, restar oro al jugador, convertir la clase a un JSONObject.
+ * @author Nahue
+ *
+ */
 
 public class Jugador {
 	
@@ -64,54 +70,59 @@ public class Jugador {
 		cuartel = new Cuartel<Unidad>();
 	}
 
+// -------------------------------------GETTERS--------------------------------------------//
+	
 	public String getName() {
 		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public int getIdPlayer() {
 		return idPlayer;
 	}
-
-	public void setIdPlayer(int idPlayer) {
-		this.idPlayer = idPlayer;
-	}
-	
 	
 	public float getOro() {
 		return oro;
 	}
-
-	public void setOro(float oro) {
-		this.oro = oro;
-	}
-
+	
 	public int getLimiteYMayor() {
 		return limiteYMayor;
+	}
+	
+	public int getLimiteYMenor() {
+		return limiteYMenor;
+	}
+	
+	public Cuartel<Unidad> getCuartel() {
+		return cuartel;
+	}
+	
+// -------------------------------------SETTERS--------------------------------------------//		
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void setIdPlayer(int idPlayer) {
+		this.idPlayer = idPlayer;
+	}
+	
+	public void setOro(float oro) {
+		this.oro = oro;
 	}
 
 	public void setLimiteYMayor(int limiteYMayor) {
 		this.limiteYMayor = limiteYMayor;
 	}
 
-	public int getLimiteYMenor() {
-		return limiteYMenor;
-	}
-
 	public void setLimiteYMenor(int limiteYMenor) {
 		this.limiteYMenor = limiteYMenor;
-	}
-
-	public Cuartel<Unidad> getCuartel() {
-		return cuartel;
 	}
 
 	public void setCuartel(Cuartel<Unidad> cuartel) {
 		this.cuartel = cuartel;
 	}
+	
+// -------------------------------------METODOS PROPIOS-------------------------------------//
 
 	public void restarOro(float cant) {
 		oro = oro - cant;

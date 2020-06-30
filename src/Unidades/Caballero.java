@@ -13,6 +13,12 @@ public class Caballero extends Unidad {
 			pos2 = 37;
 		}
 	}
+	
+	public Caballero() // SE VA A UTILIZAR PARA CREAR UN CABALLERO A PARTIR DE UN JSonObject
+	{
+		super();
+	
+	}
 
 	@Override
 	public int hashCode() {
