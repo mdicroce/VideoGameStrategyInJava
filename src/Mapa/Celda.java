@@ -3,6 +3,7 @@ package Mapa;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import Unidades.Arquero;
 import Unidades.Infanteria;
 import Unidades.Unidad;
 
@@ -67,6 +68,10 @@ public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE H
 		jsonObject.put("Tipo de Sprite", tipoDeSprite);
 		
 	return jsonObject;
+	}
+	public void prueba () {
+		this.unidad = new Arquero(0,this);
+		this.ocupado = true;
 	}
 
 	// ---------------------------GETTERS-----------------------------------//

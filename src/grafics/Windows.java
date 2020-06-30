@@ -40,9 +40,6 @@ public final class Windows {
 		difTop = height/2 - mapita.getAnchoPix()/2;
 	}
 
-	public void pixAuxAPix() {
-		for (int y = 0; y < )
-	}
 	public void guardarMapa (int anchoMapa, int altoMapa, MapaTablero mapa)
 	{
 		
