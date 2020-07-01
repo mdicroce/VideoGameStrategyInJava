@@ -10,7 +10,9 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
+import Mapa.Celda;
 import Mapa.MapaTablero;
+import Unidades.Unidad;
 import grafics.Cursor;
 import grafics.Windows;
 
@@ -40,7 +42,7 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 		this.estado = 0;
 		mapa = new MapaTablero(10, 10, 32);
 		ventana = new Windows(WIDTH, HEIGHT, mapa);
-		cursor = new Cursor(ventana,mapa);
+		cursor = new Cursor(ventana, mapa);
 		teclado = new GameController();
 		addKeyListener(teclado);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -74,21 +76,48 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 		}
 	}
 
-	private void actualizar() {
-		teclado.actualizar();
+	/*
+	 * private void actualizar() { teclado.actualizar();
+	 * 
+	 * if (teclado.arriba) {
+	 * 
+	 * } if (teclado.abajo) {
+	 * 
+	 * } if (teclado.derecha) {
+	 * 
+	 * } if (teclado.izquierda) {
+	 * 
+	 * } if (teclado.enter) {
+	 * 
+	 * } }
+	 */
+
+	public static void moverPiezaTeclado(Unidad unidad, Celda posActual) {
+		Celda aux;
+		int xPosActual = posActual.getPosX();
+		int yPosActual = posActual.getPosY();
 
 		if (teclado.arriba) {
-			
+			aux = new Celda(xPosActual--, yPosActual, posActual.getTipoDeSprite());
+			mapa.moverUnidadTablero(unidad, posActual, aux);
 		}
 		if (teclado.abajo) {
-
+			aux = new Celda(xPosActual++, yPosActual, posActual.getTipoDeSprite());
+			mapa.moverUnidadTablero(unidad, posActual, aux);
 		}
 		if (teclado.derecha) {
-
+			aux = new Celda(xPosActual, yPosActual++, posActual.getTipoDeSprite());
+			mapa.moverUnidadTablero(unidad, posActual, aux);
 		}
 		if (teclado.izquierda) {
-
+			aux = new Celda(xPosActual, yPosActual--, posActual.getTipoDeSprite());
+			mapa.moverUnidadTablero(unidad, posActual, aux);
 		}
+	}
+
+	public static void moverCuartel() // PARA MOVERSE POR CUARTEL
+	{
+
 	}
 
 	private void mostrar() {
@@ -97,15 +126,15 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 			createBufferStrategy(3);
 			return;
 		}
-		mapa.mostrar(GamePruebasPantalla.ventana,32);
+		mapa.mostrar(GamePruebasPantalla.ventana, 32);
 		cursor.mostrar(ventana);
 		switch (estado) {
 		case 1:
-			
+
 			break;
 		case 2:
 			break;
-			
+
 		}
 		System.arraycopy(ventana.pixeles, 0, pixeles, 0, pixeles.length);
 		Graphics g = estrategia.getDrawGraphics();
@@ -138,7 +167,6 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 
 			delta += tiempoTranscurrido / NS_POR_ACTUALIZACION;
 			while (delta >= 1) {
-				actualizar();
 				delta--;
 			}
 

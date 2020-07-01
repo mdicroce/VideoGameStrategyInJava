@@ -1,7 +1,12 @@
 package Jugadores;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import Unidades.Arquero;
+import Unidades.Caballero;
+import Unidades.Infanteria;
 
 /**
  * Clase Jugadores la cual posee una contenedor generico  llamado cuartel el cual posee unidades 
@@ -92,6 +97,10 @@ public class Jugador {
 		return limiteYMenor;
 	}
 	
+	public boolean getTurno() {
+		return turno;
+	}
+	
 	public Cuartel<Unidad> getCuartel() {
 		return cuartel;
 	}
@@ -116,6 +125,10 @@ public class Jugador {
 
 	public void setLimiteYMenor(int limiteYMenor) {
 		this.limiteYMenor = limiteYMenor;
+	}
+	
+	public void setTurno(boolean turno) {
+		this.turno = turno;
 	}
 
 	public void setCuartel(Cuartel<Unidad> cuartel) {
@@ -148,13 +161,59 @@ public class Jugador {
 	
 	public void decodeJsonObject(JSONObject jsonObject) throws JSONException {
 		
-		jsonObject.getString("Nombre");
-		jsonObject.getInt("ID Jugador");
-		jsonObject.getDouble("Oro");
-		jsonObject.getInt("Limite Y Mayor");
-		jsonObject.getInt("Limite Y Menor");
-		jsonObject.getBoolean("Turno");
-		jsonObject.getJSONArray("Cuartel");
+		setName(jsonObject.getString("Nombre"));
+		setIdPlayer(jsonObject.getInt("ID Jugador"));
+		setOro(jsonObject.getDouble("Oro"));
+		setLimiteYMayor(jsonObject.getInt("Limite Y Mayor"));
+		setLimiteYMenor(jsonObject.getInt("Limite Y Menor"));
+		setTurno(jsonObject.getBoolean("Turno"));
+		
+		decodeJsonArray(jsonObject.getJSONArray("Cuartel"));
+	}
+	
+	public void decodeJsonArray(JSONArray jsonArray) {
+		
+		int i = 0;
+		
+		while (i<jsonArray.length()) {
+			try {
+				decodeUnidad(jsonArray.getJSONObject(i));
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExceptionNoSePudoAgregar e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			i++;
+		}
+		
+	}
+	
+	
+public void decodeUnidad(JSONObject unidadJsonObject) throws JSONException, ExceptionNoSePudoAgregar {
+		
+		String nombre = unidadJsonObject.getString("Nombre");
+		
+		if (nombre.compareToIgnoreCase("Arquero") == 1) {
+			Arquero arquero = new Arquero();
+			arquero.decodeJsonObject(unidadJsonObject);
+			cuartel.agregar(arquero);
+			
+		} else {
+			if (nombre.compareToIgnoreCase("Caballero") == 1) {
+				Caballero caballero = new Caballero();
+				caballero.decodeJsonObject(unidadJsonObject);
+				cuartel.agregar(caballero);
+				
+			} else {
+				Infanteria infanteria = new Infanteria();
+				infanteria.decodeJsonObject(unidadJsonObject);
+				cuartel.agregar(infanteria);
+				
+			}
+		}
+		
 	}
 	
 	//public void seleccionar();

@@ -62,13 +62,7 @@ public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE H
 		jsonObject.put("Pos X", posX);
 		jsonObject.put("Pos Y", posY);
 		jsonObject.put("Ocupado", ocupado);
-		if (unidad instanceof Infanteria) {//Esto se realiza ya que la infanteria tiene un toJson diferente
-			Infanteria infanteria = (Infanteria) unidad;
-			jsonObject.put("Unidad", infanteria.toJsonObject()); 
-		}else {
-			jsonObject.put("Unidad", unidad.toJsonObject());
-		} 
-		
+		//no se guarda la unidad ya que la celda esta dentro de la misma.
 		jsonObject.put("Tipo de Sprite", tipoDeSprite);
 		
 	return jsonObject;
@@ -81,44 +75,13 @@ public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE H
 		setPosY(jsonObject.getInt("Pos Y"));
 		setOcupado(jsonObject.getBoolean("Ocupado"));
 		
-		if (!jsonObject.isNull("Unidad")) {
-			
-			decodeUnidad(jsonObject.getJSONObject("Unidad"));
-		}
-		else {
-			setUnidad(null);
-		}
+		setUnidad(null);//Esto se realiza ya que si Ocupado es tru luego se usara el set para colocar la unidad y no crear una nueva que no este enlazada y si ocupado es false queda en null
 		
 		setTipoDeSprite((byte) jsonObject.getInt("Tipo de Sprite"));//Revisar getByte
 		
 	}
 	
 	
-	public void decodeUnidad(JSONObject unidadJsonObject) throws JSONException {
-		
-		String nombre = unidadJsonObject.getString("Nombre");
-		
-		if (nombre.compareToIgnoreCase("Arquero") == 1) {
-			Arquero arquero = new Arquero();
-			arquero.decodeJsonObject(unidadJsonObject);
-			setUnidad(arquero);
-			
-		} else {
-			if (nombre.compareToIgnoreCase("Caballero") == 1) {
-				Caballero caballero = new Caballero();
-				caballero.decodeJsonObject(unidadJsonObject);
-				setUnidad(caballero);
-				
-			} else {
-				Infanteria infanteria = new Infanteria();
-				infanteria.decodeJsonObject(unidadJsonObject);
-				setUnidad(infanteria);
-				
-			}
-		}
-		
-	}	
-		
 
 	public void prueba () {
 		this.unidad = new Caballero(0,this);

@@ -1,7 +1,5 @@
 package Mapa;
 
-
-
 import Unidades.Caballero;
 import Unidades.Unidad;
 import grafics.Windows;
@@ -24,7 +22,7 @@ public class MapaTablero {
 		generarTablero();
 		tablero[2][0].prueba();
 		tablero[2][1].prueba();
-		
+
 	}
 
 	// -----------------------------------------------------//
@@ -42,7 +40,10 @@ public class MapaTablero {
 		}
 	}
 
-	public void insertarUnidadTablero(Unidad unidad, Celda celda) {
+	public void insertarUnidadTablero(Unidad unidad, Celda celda) throws CeldaOcupadaException {
+		if (celda.getOcupado() != false) {
+			throw new CeldaOcupadaException();
+		}
 		celda.setUnidad(unidad); // INSERTO LA UNIDAD EN LA CELDA
 		celda.setOcupado(true); // LA CELDA PASA A ESTAR OCUPADA
 		unidad.setPosicion(celda); // LE ASIGNO LA NUEVA POSICION A LA UNIDAD
@@ -59,7 +60,12 @@ public class MapaTablero {
 		try {
 			if (validarMovimiento(unidad, posActual, destino) == true) // VERIFICO SI EL MOVIMIENTO ES VALIDO
 			{
-				insertarUnidadTablero(unidad, destino); // LA INSERTO EN EL DESTINO
+				try {
+					insertarUnidadTablero(unidad, destino);
+				} catch (CeldaOcupadaException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} // LA INSERTO EN EL DESTINO
 			}
 		} catch (MovimientoInvalidoException e) {
 			// TODO Auto-generated catch block
@@ -127,18 +133,18 @@ public class MapaTablero {
 	}
 
 	public void mostrar(Windows pantalla, int spriteSizePix) {
-		int [] spriteAux = new int [spriteSizePix*spriteSizePix];
-		for (int i = 0; i<this.FILAS ;i++)
-		{
-			for (int j = 0; j<this.COLUMNAS;j++) {
+		int[] spriteAux = new int[spriteSizePix * spriteSizePix];
+		for (int i = 0; i < this.FILAS; i++) {
+			for (int j = 0; j < this.COLUMNAS; j++) {
 				spriteAux = pantalla.sprites.getPixeles(tablero[i][j].getTipoDeSprite());
-				for (int x = spriteSizePix * i; x < spriteSizePix *i +32; x++) {
-					for(int y = spriteSizePix * j; y< spriteSizePix * j +32; y++) {
-						pantalla.pixeles[(x)+pantalla.getDifIz()+((y)+pantalla.getDifTop())*pantalla.getWidth()] = spriteAux[(x%32)+(y%32)*spriteSizePix];
+				for (int x = spriteSizePix * i; x < spriteSizePix * i + 32; x++) {
+					for (int y = spriteSizePix * j; y < spriteSizePix * j + 32; y++) {
+						pantalla.pixeles[(x) + pantalla.getDifIz()
+								+ ((y) + pantalla.getDifTop()) * pantalla.getWidth()] = spriteAux[(x % 32)
+										+ (y % 32) * spriteSizePix];
 					}
 				}
-				if(this.tablero[i][j].getOcupado())
-				{
+				if (this.tablero[i][j].getOcupado()) {
 					this.tablero[i][j].getUnidadCelda().mostrar(pantalla);
 				}
 			}
