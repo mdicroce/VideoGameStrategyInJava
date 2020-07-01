@@ -7,6 +7,14 @@ import Mapa.Celda;
 import grafics.Sprite;
 import grafics.Windows;
 
+/**
+ * Esta clase abstracta representa los atributos que toda Unidad tendrá por
+ * defecto
+ * 
+ * @author Lucas
+ *
+ */
+
 public abstract class Unidad {
 
 	private String nombre;
@@ -32,7 +40,7 @@ public abstract class Unidad {
 		costoOroCompra = -1;
 		costoOroGuarecido = 0;
 		costoOroEnCampo = 0;
-		posicion = new Celda();
+		posicion = null;
 	}
 
 	public Unidad(String nombre, double pVida, double pAtaque, double pDefensa, double costoOro,

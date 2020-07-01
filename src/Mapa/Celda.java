@@ -18,12 +18,14 @@ public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE H
 	private boolean ocupado;
 	private Unidad unidad;
 	private byte tipoDeSprite;
-/**
- * 
- * @param posX Posicion de la celda en el eje X
- * @param posY Posicion de la celda en el eje Y
- * @param tipoDeSprite Pasto 0 = 0, Pasto 1 = 1, Pasto 2 = 2, bosque = 3, Montaña = 4, capital = 5.
- */
+
+	/**
+	 * 
+	 * @param posX         Posicion de la celda en el eje X
+	 * @param posY         Posicion de la celda en el eje Y
+	 * @param tipoDeSprite Pasto 0 = 0, Pasto 1 = 1, Pasto 2 = 2, bosque = 3,
+	 *                     Montaña = 4, capital = 5.
+	 */
 	public Celda(int posX, int posY, byte tipoDeSprite) {
 		this.posX = posX;
 		this.posY = posY;
@@ -31,7 +33,7 @@ public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE H
 		unidad = null;
 		this.tipoDeSprite = tipoDeSprite;
 	}
-	
+
 	public Celda() { // SE VA A UTILIZAR PARA CREAR UNA CELDA A PARTIR DE UN JSonObject
 		this.posX = -1;
 		this.posY = -1;
@@ -54,24 +56,38 @@ public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE H
 		celda.unidad = null;
 		celda.ocupado = false;
 	}
+<<<<<<< HEAD
 	
 	public JSONObject  toJsonObject() throws JSONException {
 		
+=======
+
+	public JSONObject toJson() throws JSONException {
+
+>>>>>>> 7ff8bd047163055e09fda76522f2a8cdd3a870e7
 		JSONObject jsonObject = new JSONObject();
-		
+
 		jsonObject.put("Pos X", posX);
 		jsonObject.put("Pos Y", posY);
 		jsonObject.put("Ocupado", ocupado);
-		if (unidad instanceof Infanteria) {//Esto se realiza ya que la infanteria tiene un toJson diferente
+		if (unidad instanceof Infanteria) {// Esto se realiza ya que la infanteria tiene un toJson diferente
 			Infanteria infanteria = (Infanteria) unidad;
+<<<<<<< HEAD
 			jsonObject.put("Unidad", infanteria.toJsonObject()); 
 		}else {
 			jsonObject.put("Unidad", unidad.toJsonObject());
 		} 
 		
+=======
+			jsonObject.put("Unidad", infanteria.toJson());
+		} else {
+			jsonObject.put("Unidad", unidad.toJson());
+		}
+
+>>>>>>> 7ff8bd047163055e09fda76522f2a8cdd3a870e7
 		jsonObject.put("Tipo de Sprite", tipoDeSprite);
-		
-	return jsonObject;
+
+		return jsonObject;
 	}
 <<<<<<< HEAD
 	
