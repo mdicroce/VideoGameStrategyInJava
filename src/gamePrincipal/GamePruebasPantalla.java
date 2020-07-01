@@ -11,7 +11,6 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import Mapa.MapaTablero;
-import grafics.ConvertidorDeTexto;
 import grafics.Cursor;
 import grafics.Windows;
 
@@ -25,7 +24,6 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 	private static Cursor cursor;
 	private static GameController teclado;
 	public static byte estado;
-	private static ConvertidorDeTexto textCuadro;
 
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 640;
@@ -41,9 +39,8 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 	private GamePruebasPantalla() {
 		this.estado = 0;
 		mapa = new MapaTablero(10, 10, 32);
-		textCuadro = new ConvertidorDeTexto();
 		ventana = new Windows(WIDTH, HEIGHT, mapa);
-		cursor = new Cursor(ventana,mapa);
+		cursor = new Cursor(ventana, mapa);
 		teclado = new GameController();
 		addKeyListener(teclado);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -77,21 +74,29 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 		}
 	}
 
-	public void actualizar() {
+	private void actualizar() {
 		teclado.actualizar();
 
 		if (teclado.arriba) {
-			
+
 		}
+
 		if (teclado.abajo) {
-
+			System.out.println("abajo");
 		}
+
 		if (teclado.derecha) {
-
+			System.out.println("derecha");
 		}
+
 		if (teclado.izquierda) {
-
+			System.out.println("izq");
 		}
+	}
+
+	public static void moverCuartel() // PARA MOVERSE POR CUARTEL
+	{
+
 	}
 
 	private void mostrar() {
@@ -100,16 +105,15 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 			createBufferStrategy(3);
 			return;
 		}
-		mapa.mostrar(GamePruebasPantalla.ventana,32);
+		mapa.mostrar(GamePruebasPantalla.ventana, 32);
 		cursor.mostrar(ventana);
-		textCuadro.mostrar(ventana, "puto el\n hola \n juedios \n que lea");
 		switch (estado) {
 		case 1:
-			
+
 			break;
 		case 2:
 			break;
-			
+
 		}
 		System.arraycopy(ventana.pixeles, 0, pixeles, 0, pixeles.length);
 		Graphics g = estrategia.getDrawGraphics();
@@ -133,7 +137,7 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 		long referenciaActualizacion = System.nanoTime();
 		double tiempoTranscurrido;
 		double delta = 0;
-
+		requestFocus();
 		while (enFuncionamiento) {
 			final long inicioBucle = System.nanoTime();
 
@@ -149,6 +153,4 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 			mostrar();
 		}
 	}
-
-
 }
