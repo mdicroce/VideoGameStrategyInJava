@@ -56,31 +56,6 @@ public class Cuartel<T extends Unidad> {
 		} 
 	}
 
-/**
- * Elimina un elemento del Arraylist buscandolo mediante el id pasado por parametro.
- * @param id Identificador de la unidad de tipo int.
- * @throws ExceptionNoExiste se lanza cuando no existe un elemento con ese ID.
- * @throws ExceptionEstaVacio se lanza cuando el ArrayList esta vacio.
- */
-	public void eliminar(int id) throws ExceptionNoExiste, ExceptionEstaVacio {
-		boolean fueEliminado = false;
-
-		if (cuartel.isEmpty()) {
-			throw new ExceptionNoExiste("El cuartel esta vacio");
-		} else {
-
-			for (T unidad : cuartel) {
-				if (unidad.getIdUnidad() == id) {
-					fueEliminado = cuartel.remove(unidad);
-				}
-			}
-
-			if (fueEliminado == false) {
-				throw new ExceptionNoExiste("El elemento que usted desea eliminar no existe");
-			}
-		}
-
-	}
 
 /**
  * Elimina un elemento del Arraylist buscandolo mediante la comparacion con el objeto pasado por parametro.
@@ -173,17 +148,17 @@ public class Cuartel<T extends Unidad> {
 	}
 	
 	
-	public T buscar(int buscar) throws ExceptionNoExiste, ExceptionEstaVacio {
+	public T buscar(int pos) throws ExceptionNoExiste, ExceptionEstaVacio {
 		
 		if(cuartel.isEmpty()) {
 			throw new ExceptionNoExiste("El cuartel esta vacio");
 		}
 		else {
 			
-			if (buscar>=getValidos()) {
+			if (pos>=getValidos()) {
 				throw new ExceptionNoExiste("El elemento que busco no existe");
 			} else {
-				return cuartel.get(buscar);
+				return cuartel.get(pos);
 			}
 		}
 	}

@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import Mapa.Celda;
 import Unidades.Arquero;
 import Unidades.Caballero;
 import Unidades.Infanteria;
@@ -266,6 +267,64 @@ public class Jugador {
 			System.out.println(e.getMessage());
 		}
 		
+	}
+	
+	public void eliminarUnidadAlCuartel(Unidad eliminar) {
+		
+			try {
+				cuartel.eliminar(eliminar);
+			} catch (ExceptionNoExiste e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExceptionEstaVacio e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		
+	}
+	
+
+	public void buscarUnidadAlCuartel(Unidad buscar) {
+		
+		try {
+			cuartel.buscar(buscar);
+		} catch (ExceptionNoExiste e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExceptionEstaVacio e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+	}
+	
+	public void buscarUnidadAlCuartel(Celda posicion) {
+		
+		try {
+			cuartel.buscar(posicion);
+		} catch (ExceptionNoExiste e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExceptionEstaVacio e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+	}
+	
+	public void buscarUnidadAlCuartel(int pos) {
+		
+		try {
+			cuartel.buscar(pos);
+		} catch (ExceptionNoExiste e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExceptionEstaVacio e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 	}
 	
 	
