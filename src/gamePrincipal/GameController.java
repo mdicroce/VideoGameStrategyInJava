@@ -24,7 +24,6 @@ public final class GameController implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent arg0) { // TECLA PULSADA (MANTENER PULSADA)
-		teclas[arg0.getKeyCode()] = true;
 
 	}
 
@@ -35,7 +34,7 @@ public final class GameController implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent arg0) { // TECLA PULSADA Y LIBERADA (PULSAR Y SOLTAR LA TECLA)
-		// TODO Auto-generated method stub
+		teclas[arg0.getKeyCode()] = true;
 
 	}
 
