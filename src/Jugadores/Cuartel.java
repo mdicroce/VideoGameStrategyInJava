@@ -128,7 +128,6 @@ public class Cuartel<T extends Unidad> {
 			} else {
 				jsonArray.put(i, unidad.toJson());
 			}
-
 			i++;
 		}
 

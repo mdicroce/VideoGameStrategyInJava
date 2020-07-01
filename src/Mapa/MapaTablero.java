@@ -72,8 +72,9 @@ public class MapaTablero {
 	// MOVIMIENTO ES VALIDO
 	{
 		boolean bandera = false;
-		// PRIMERO VAMOS CON QUE NO PUEDE MOVERSE MAS DE UNA CELDA (EXCEPTO QUE SEA
-		// CABALLERO)
+
+		// PUEDE MOVERSE AL DESTINO SOLO SI ESTA A UNA CELDA DE DISTANCIA, SALVO QUE SEA
+		// CABALLERO
 		if (Math.abs(posActual.getPosX() - destino.getPosX()) == 1) {
 			if (Math.abs(posActual.getPosY() - destino.getPosY()) == 1) {
 				bandera = true;
@@ -87,16 +88,23 @@ public class MapaTablero {
 			}
 		}
 
-		// NO PUEDE SUPERAR LOS LIMITES DEL MAPA
+		// SOLO PUEDE MOVERSE DENTRO DE LOS LIMITES DEL MAPA
 		if (destino.getPosX() >= 0 && destino.getPosX() <= 7) {
 			if (destino.getPosY() >= 0 && destino.getPosY() <= 3) {
 				bandera = true;
 			}
 		}
 
-		// NO PUEDE MOVERSE A UNA UNIDAD QUE ESTA OCUPADA
+		// PUEDE MOVERSE A UNA CELDA QUE ESTA VACIA
 		if (destino.getOcupado() == false) {
 			bandera = true;
+		}
+
+		// PUEDE MOVERSE UNA CELDA ENEMIGA PERO DEBE ATACARLA
+		if (destino.getOcupado() == true) {
+			if (destino.getUnidadCelda().getPropiedad() != unidad.getPropiedad()) {
+				bandera = true;
+			}
 		}
 
 		if (bandera == false) {

@@ -6,6 +6,14 @@ import org.json.JSONObject;
 import Mapa.Celda;
 import grafics.Windows;
 
+/**
+ * Esta clase abstracta representa los atributos que toda Unidad tendrá por
+ * defecto
+ * 
+ * @author Lucas
+ *
+ */
+
 public abstract class Unidad {
 
 	private String nombre;
