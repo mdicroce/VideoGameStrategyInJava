@@ -257,6 +257,17 @@ public class Jugador {
 		
 	}
 	
+	public void agregarUnidadAlCuartel(Unidad unidad) {
+		
+		try {
+			cuartel.agregar(unidad);
+		} catch (ExceptionNoSePudoAgregar e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+		
+	}
+	
 	
 	//public void seleccionar();
 
