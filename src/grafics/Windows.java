@@ -6,6 +6,7 @@ import maps.cuadros.Tiles;
 public final class Windows {
 	private final int width;
 	public Sprite sprites;
+	public Sprite tipoSprite;
 	int difTop;
 	public int getDifTop() {
 		return difTop;
@@ -32,6 +33,7 @@ public final class Windows {
 	public Windows(final int width, final int height, MapaTablero mapita)
 	{
 		sprites = new Sprite(32,SpriteSheet.hojaPrueba);
+		tipoSprite = new Sprite(8, SpriteSheet.hojaTipos);
 		this.height = height;
 		this.width = width;
 		pixeles = new int[width * height];

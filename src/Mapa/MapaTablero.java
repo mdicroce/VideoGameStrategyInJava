@@ -128,6 +128,7 @@ public class MapaTablero {
 
 	public void mostrar(Windows pantalla, int spriteSizePix) {
 		int [] spriteAux = new int [spriteSizePix*spriteSizePix];
+		
 		for (int i = 0; i<this.FILAS ;i++)
 		{
 			for (int j = 0; j<this.COLUMNAS;j++) {

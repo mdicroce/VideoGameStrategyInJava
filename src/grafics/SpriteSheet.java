@@ -11,6 +11,7 @@ public class SpriteSheet {
 	public final int[] pixeles;
 	//Colecciones de hojas de sprites
 	public static SpriteSheet hojaPrueba = new SpriteSheet("/Textures/Finales.png",320,320);
+	public static SpriteSheet hojaTipos = new SpriteSheet("/Textures/icons.png", 256, 256);
 	//Fin de la coleccion
 	
 	public SpriteSheet (final String ruta, final int ancho, final int alto) {

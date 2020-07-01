@@ -15,6 +15,7 @@ public class Sprite {
 	
 	public Sprite (final int size, final SpriteSheet hoja) {
 		this.size = size;
+		int eseQueVaAbajo = hoja.getAncho()/size;
 		pixeles = new int [(hoja.getAncho()/size)*(hoja.getAlto()/size)] [size * size];
 		this.x = 0 * size;
 		this.y = 0 * size;
@@ -24,8 +25,8 @@ public class Sprite {
 					pixeles[i][x + y * size] = hoja.pixeles [(x+this.x) + (y + this.y) *hoja.getAncho()];
 				}
 			}
-			this.x = (i%10) * size;
-			this.y = i/10 * size;
+			this.x = (i%eseQueVaAbajo) * size;
+			this.y = i/eseQueVaAbajo * size;
 		}
 		
 	}

@@ -11,6 +11,7 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import Mapa.MapaTablero;
+import grafics.ConvertidorDeTexto;
 import grafics.Cursor;
 import grafics.Windows;
 
@@ -24,6 +25,7 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 	private static Cursor cursor;
 	private static GameController teclado;
 	public static byte estado;
+	private static ConvertidorDeTexto textCuadro;
 
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 640;
@@ -39,6 +41,7 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 	private GamePruebasPantalla() {
 		this.estado = 0;
 		mapa = new MapaTablero(10, 10, 32);
+		textCuadro = new ConvertidorDeTexto();
 		ventana = new Windows(WIDTH, HEIGHT, mapa);
 		cursor = new Cursor(ventana,mapa);
 		teclado = new GameController();
@@ -74,7 +77,7 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 		}
 	}
 
-	private void actualizar() {
+	public void actualizar() {
 		teclado.actualizar();
 
 		if (teclado.arriba) {
@@ -99,6 +102,7 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 		}
 		mapa.mostrar(GamePruebasPantalla.ventana,32);
 		cursor.mostrar(ventana);
+		textCuadro.mostrar(ventana, "puto el\n hola \n juedios \n que lea");
 		switch (estado) {
 		case 1:
 			
@@ -145,4 +149,6 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 			mostrar();
 		}
 	}
+
+
 }
