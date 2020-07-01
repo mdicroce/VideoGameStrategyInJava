@@ -154,10 +154,51 @@ public class Jugador {
 		jsonObject.put("Limite Y Mayor", limiteYMayor);
 		jsonObject.put("Limite Y Menor", limiteYMenor);
 		jsonObject.put("Turno", turno);
-		jsonObject.put("Cuartel", cuartel.toJsonArray());
+		jsonObject.put("Cuartel", toJsonArray());
 		
 	return jsonObject;	
 	}
+	
+/**
+ * Convierte el arreglo a un JSONArray.	
+ * @return JSONArray construido a partir del ArrayList y todos sus elementos.
+ * @throws JSONException es lanzada cuando ocurre un error con los puts del JSONArray.
+ */
+
+	public JSONArray toJsonArray() {
+		JSONArray jsonArray = new JSONArray();
+		Unidad unidad;
+		int i = 0;
+
+		while(cuartel.getValidos()>i) {
+			
+			
+			try {
+				unidad = cuartel.buscar(i);
+				
+				if (unidad instanceof Infanteria) {// Esto se realiza ya que la infanteria tiene un toJson diferente
+					Infanteria infanteria = (Infanteria) unidad;
+					jsonArray.put(i, infanteria.toJsonObject());
+				} else {
+					jsonArray.put(i, unidad.toJsonObject());
+						}
+			} catch (ExceptionNoExiste e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExceptionEstaVacio e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			i++;
+		}
+
+		return jsonArray;
+	}
+	
 	
 	public void decodeJsonObject(JSONObject jsonObject) throws JSONException {
 		

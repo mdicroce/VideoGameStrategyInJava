@@ -9,11 +9,7 @@ package Jugadores;
  */
 
 import java.util.ArrayList;
-import org.json.JSONArray;
-import org.json.JSONException;
-
 import Mapa.Celda;
-import Unidades.Infanteria;
 import Unidades.Unidad;
 
 /**
@@ -177,28 +173,24 @@ public class Cuartel<T extends Unidad> {
 	}
 	
 	
-	
-/**
- * Convierte el arreglo a un JSONArray.	
- * @return JSONArray construido a partir del ArrayList y todos sus elementos.
- * @throws JSONException es lanzada cuando ocurre un error con los puts del JSONArray.
- */
-
-	public JSONArray toJsonArray() throws JSONException {
-		JSONArray jsonArray = new JSONArray();
-		int i = 0;
-
-		for (Unidad unidad : cuartel) {
-
-			if (unidad instanceof Infanteria) {// Esto se realiza ya que la infanteria tiene un toJson diferente
-				Infanteria infanteria = (Infanteria) unidad;
-				jsonArray.put(i, infanteria.toJsonObject());
-			} else {
-				jsonArray.put(i, unidad.toJsonObject());
-			}
-			i++;
+	public T buscar(int buscar) throws ExceptionNoExiste, ExceptionEstaVacio {
+		
+		if(cuartel.isEmpty()) {
+			throw new ExceptionNoExiste("El cuartel esta vacio");
 		}
-
-		return jsonArray;
+		else {
+			
+			if (buscar>=getValidos()) {
+				throw new ExceptionNoExiste("El elemento que busco no existe");
+			} else {
+				return cuartel.get(buscar);
+			}
+		}
 	}
+	
+	public int getValidos() {
+		return cuartel.size();
+	}
+	
+
 }
