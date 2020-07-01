@@ -4,7 +4,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import Unidades.Arquero;
+<<<<<<< HEAD
 import Unidades.Caballero;
+=======
+>>>>>>> 87af5db7e3a387dee610bfbdd4a868f2e78d789d
 import Unidades.Infanteria;
 import Unidades.Unidad;
 
@@ -70,6 +73,7 @@ public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE H
 		
 	return jsonObject;
 	}
+<<<<<<< HEAD
 	
 	public void decodeJsonObject(JSONObject jsonObject) throws JSONException {
 		setPosX(jsonObject.getInt("Pos X"));
@@ -112,6 +116,11 @@ public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE H
 			}
 		}
 		
+=======
+	public void prueba () {
+		this.unidad = new Arquero(0,this);
+		this.ocupado = true;
+>>>>>>> 87af5db7e3a387dee610bfbdd4a868f2e78d789d
 	}
 
 	// ---------------------------GETTERS-----------------------------------//

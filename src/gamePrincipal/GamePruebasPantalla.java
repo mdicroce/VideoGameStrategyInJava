@@ -11,6 +11,7 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import Mapa.MapaTablero;
+import grafics.Cursor;
 import grafics.Windows;
 
 public class GamePruebasPantalla extends Canvas implements Runnable {
@@ -20,8 +21,9 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 	private static Thread thread;
 	private static Windows ventana;
 	private static MapaTablero mapa;
-
+	private static Cursor cursor;
 	private static GameController teclado;
+	public static byte estado;
 
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 640;
@@ -35,9 +37,10 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 	private static int[] pixeles = ((DataBufferInt) imagen.getRaster().getDataBuffer()).getData();
 
 	private GamePruebasPantalla() {
-		mapa = new MapaTablero(20, 5, 32);
+		this.estado = 0;
+		mapa = new MapaTablero(10, 10, 32);
 		ventana = new Windows(WIDTH, HEIGHT, mapa);
-
+		cursor = new Cursor(ventana,mapa);
 		teclado = new GameController();
 		addKeyListener(teclado);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -75,7 +78,7 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 		teclado.actualizar();
 
 		if (teclado.arriba) {
-
+			
 		}
 		if (teclado.abajo) {
 
@@ -95,7 +98,15 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 			return;
 		}
 		mapa.mostrar(GamePruebasPantalla.ventana,32);
-
+		cursor.mostrar(ventana);
+		switch (estado) {
+		case 1:
+			
+			break;
+		case 2:
+			break;
+			
+		}
 		System.arraycopy(ventana.pixeles, 0, pixeles, 0, pixeles.length);
 		Graphics g = estrategia.getDrawGraphics();
 		g.drawImage(imagen, 0, 0, getWidth(), getHeight(), null);

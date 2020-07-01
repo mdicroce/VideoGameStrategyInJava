@@ -4,6 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import Mapa.Celda;
+import grafics.Sprite;
 import grafics.Windows;
 
 public abstract class Unidad {
@@ -35,7 +36,7 @@ public abstract class Unidad {
 	}
 
 	public Unidad(String nombre, double pVida, double pAtaque, double pDefensa, double costoOro,
-			double costoOroGuarecido, double costoOroCampo, int propiedad) {
+			double costoOroGuarecido, double costoOroCampo, int propiedad, Celda posicion) {
 		this.nombre = nombre;
 		puntosVida = pVida;
 		puntosAtaque = pAtaque;
@@ -45,18 +46,32 @@ public abstract class Unidad {
 		this.costoOroGuarecido = costoOroGuarecido;
 		this.costoOroEnCampo = costoOroCampo;
 		this.idUnidad = idIncremento++;
-		posicion = null;
+		this.posicion = posicion;
 	}
 
 	public void mostrar(Windows pantalla) {
-		for (int y = 0; y < 64; y++) {
-			for (int x = 0; x < 32; x++) {
-				pantalla.pixeles[(x + posicion.getPosX() * 32)
-						+ (y + posicion.getPosY() * 32) * pantalla.sprites.getSize()] = pantalla.sprites.pixeles[pos2][x
-								+ y * pantalla.sprites.getSize()];
-				pantalla.pixeles[(x + posicion.getPosX() * 32) + ((y - 32) + posicion.getPosY() * 32)
-						* pantalla.sprites.getSize()] = pantalla.sprites.pixeles[pos1][x
-								+ y * pantalla.sprites.getSize()];
+		int x2=-1;
+		int y2 = -1;
+		int tope = pantalla.getDifTop()+this.posicion.getPosY()*32, topeIz = pantalla.getDifIz()+this.posicion.getPosX()*32;
+		for (int y = tope-32; y < tope; y++) {
+			y2++;
+			for (int x = topeIz; x < topeIz+32; x++) {
+				
+				
+				x2++;
+				
+				if (pantalla.sprites.pixeles[pos1][(x2%32)+(y2%32)*pantalla.sprites.getSize()] != -16711936)
+				pantalla.pixeles[x+y*pantalla.getWidth()] = pantalla.sprites.pixeles[pos1][(x2%32)+(y2%32)*pantalla.sprites.getSize()];
+			}
+		}
+		x2 = -1;
+		y2=-1;
+		for (int y = tope; y < tope+32; y++) {
+			y2++;
+			for (int x = topeIz; x < topeIz+32; x++) {
+				x2++;
+				if (pantalla.sprites.pixeles[pos2][(x2%32)+(y2%32)*pantalla.sprites.getSize()] != -16711936)
+				pantalla.pixeles[x+y*pantalla.getWidth()] = pantalla.sprites.pixeles[pos2][(x2%32)+(y2%32)*pantalla.sprites.getSize()];
 			}
 		}
 	}

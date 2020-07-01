@@ -1,5 +1,7 @@
 package Mapa;
 
+
+
 import Unidades.Caballero;
 import Unidades.Unidad;
 import grafics.Windows;
@@ -20,6 +22,9 @@ public class MapaTablero {
 		this.sizeTile = sizeTile;
 		tablero = new Celda[FILAS][COLUMNAS];
 		generarTablero();
+		tablero[2][0].prueba();
+		tablero[2][1].prueba();
+		
 	}
 
 	// -----------------------------------------------------//
@@ -114,23 +119,22 @@ public class MapaTablero {
 	}
 
 	public void mostrar(Windows pantalla, int spriteSizePix) {
-		int[] pixelesAux = new int[spriteSizePix];
-		for (int i = 0; i < (altoPix / sizeTile); i++) {
-			for (int j = 0; j < (anchoPix / sizeTile); j++) {
-				pixelesAux = pantalla.sprites.getPixeles(tablero[i][j].getTipoDeSprite());
-				for (int y = sizeTile * i; y < altoPix; y++) {
-					for (int x = sizeTile * j; x < anchoPix; x++) {
-						pantalla.pixeles[(x + pantalla.getDifIz())
-								+ (y + pantalla.getDifTop()) * anchoPix] = pixelesAux[(x % 32)
-										+ (y % 32) * pantalla.sprites.getSize()];
-						if (tablero[i][j].getOcupado()) {
-							tablero[i][j].getUnidadCelda().mostrar(pantalla);
-						}
+		int [] spriteAux = new int [spriteSizePix*spriteSizePix];
+		for (int i = 0; i<this.FILAS ;i++)
+		{
+			for (int j = 0; j<this.COLUMNAS;j++) {
+				spriteAux = pantalla.sprites.getPixeles(tablero[i][j].getTipoDeSprite());
+				for (int x = spriteSizePix * i; x < spriteSizePix *i +32; x++) {
+					for(int y = spriteSizePix * j; y< spriteSizePix * j +32; y++) {
+						pantalla.pixeles[(x)+pantalla.getDifIz()+((y)+pantalla.getDifTop())*pantalla.getWidth()] = spriteAux[(x%32)+(y%32)*spriteSizePix];
 					}
+				}
+				if(this.tablero[i][j].getOcupado())
+				{
+					this.tablero[i][j].getUnidadCelda().mostrar(pantalla);
 				}
 			}
 		}
-
 	}
 
 	public void actualizar() {
