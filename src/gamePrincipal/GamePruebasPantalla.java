@@ -167,7 +167,6 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 
 			delta += tiempoTranscurrido / NS_POR_ACTUALIZACION;
 			while (delta >= 1) {
-				actualizar();
 				delta--;
 			}
 
