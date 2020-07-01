@@ -192,9 +192,9 @@ public class Cuartel<T extends Unidad> {
 
 			if (unidad instanceof Infanteria) {// Esto se realiza ya que la infanteria tiene un toJson diferente
 				Infanteria infanteria = (Infanteria) unidad;
-				jsonArray.put(i, infanteria.toJson());
+				jsonArray.put(i, infanteria.toJsonObject());
 			} else {
-				jsonArray.put(i, unidad.toJson());
+				jsonArray.put(i, unidad.toJsonObject());
 			}
 
 			i++;

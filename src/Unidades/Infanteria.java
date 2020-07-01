@@ -25,20 +25,35 @@ public class Infanteria extends Unidad {
 	}
 
 	@Override
-	public JSONObject toJson() throws JSONException {
-		JSONObject jsonObject = super.toJson();
-
+	public JSONObject toJsonObject() throws JSONException {
+		
+		JSONObject jsonObject = super.toJsonObject();
+		
 		jsonObject.put("Bonus Disponible", bonusDisponible);
 
 		return jsonObject;
 	}
+	
+	@Override
+	public void decodeJsonObject(JSONObject jsonObject) throws JSONException {
+		super.decodeJsonObject(jsonObject);
+		
+		setBonusDisponible(jsonObject.getBoolean("Bonus Disponible")); 
+	}
+		
 
 	// -------GETTERS----//
 
 	public boolean getBonusDisponible() {
 		return bonusDisponible;
 	}
-
+	
+	// -------SETTERS----//
+	
+	public void setBonusDisponible(boolean bonusDisponible) {
+		this.bonusDisponible = bonusDisponible;
+	}
+	
 	@Override
 	public int hashCode() {
 		return 1;

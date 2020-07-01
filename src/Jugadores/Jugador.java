@@ -132,7 +132,7 @@ public class Jugador {
 		oro = oro + cant;
 	}
 	
-	public JSONObject toJson() throws JSONException {
+	public JSONObject toJsonObject() throws JSONException {
 		JSONObject jsonObject = new JSONObject();
 		
 		jsonObject.put("Nombre", name);
@@ -146,9 +146,13 @@ public class Jugador {
 	return jsonObject;	
 	}
 	
+	
+	
 	//public void seleccionar();
 
-	//public void cederTurno();
+	public void terminarTurno() {
+		turno = false;
+	}
 
 	//public void selecionarUnida ();
 

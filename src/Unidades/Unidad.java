@@ -31,7 +31,7 @@ public abstract class Unidad {
 		costoOroCompra = -1;
 		costoOroGuarecido = 0;
 		costoOroEnCampo = 0;
-		posicion = null;
+		posicion = new Celda();
 	}
 
 	public Unidad(String nombre, double pVida, double pAtaque, double pDefensa, double costoOro,
@@ -125,9 +125,9 @@ public abstract class Unidad {
 		unidad.posicion.quitarUnidadCelda(posicionActual);
 	}
 
-	public JSONObject toJson() throws JSONException {
+	public JSONObject toJsonObject() throws JSONException {
 		JSONObject jsonObject = new JSONObject();
-
+		
 		jsonObject.put("Nombre", nombre);
 		jsonObject.put("Puntos de Vida", puntosVida);
 		jsonObject.put("Puntos de Ataque", puntosAtaque);
@@ -137,14 +137,36 @@ public abstract class Unidad {
 		jsonObject.put("Costo de oro Compra", costoOroCompra);
 		jsonObject.put("Costo de oro Guarecido", costoOroGuarecido);
 		jsonObject.put("Costo de oro en Campo", costoOroEnCampo);
-		jsonObject.put("Celda posicion", posicion.toJson());
-		jsonObject.put("Costo de oro Compra", costoOroCompra);
+		jsonObject.put("Celda posicion", posicion.toJsonObject());
 		jsonObject.put("Posicion 1", pos1);
 		jsonObject.put("Posicion 2", pos2);
 
-		return jsonObject;
+	return jsonObject;
 	}
 
+	public void decodeJsonObject(JSONObject jsonObject) throws JSONException {
+		
+		setNombre(jsonObject.getString("Nombre"));
+		setPuntosVida(jsonObject.getDouble("Puntos de Vida"));
+		setPuntosAtaque(jsonObject.getDouble("Puntos de Ataque"));
+		setPuntosDefensa(jsonObject.getDouble("Puntos de Defensa"));
+		setPropiedad(jsonObject.getInt("Propiedad"));
+		setIdUnidad(jsonObject.getInt("ID"));
+		setCostoOroCompra(jsonObject.getDouble("Costo de oro Compra"));
+		setCostoOroGuarecido(jsonObject.getDouble("Costo de oro Guarecido"));
+		setCostoOroEnCampo(jsonObject.getDouble("Costo de oro en Campo"));
+		
+		
+		
+		jsonObject.getJSONObject("Celda posicion");
+		
+		
+		setPos1(jsonObject.getInt("Posicion 1"));
+		setPos2(jsonObject.getInt("Posicion 2"));
+		
+		
+	}
+	
 	// -------------------------------------GETTERS--------------------------------------------//
 	public String getNombre() {
 		return nombre;
@@ -185,6 +207,68 @@ public abstract class Unidad {
 	public double getPuntosVida() {
 		return puntosVida;
 	}
+	
+	public static int getIdIncremento() {
+		return idIncremento;
+	}
+
+	public int getPos1() {
+		return pos1;
+	}
+
+	public int getPos2() {
+		return pos2;
+	}
+	
+	// -------------------------------------SETTERS--------------------------------------------//
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void setPuntosVida(double puntosVida) {
+		this.puntosVida = puntosVida;
+	}
+
+	public void setPuntosAtaque(double puntosAtaque) {
+		this.puntosAtaque = puntosAtaque;
+	}
+
+	public void setPuntosDefensa(double puntosDefensa) {
+		this.puntosDefensa = puntosDefensa;
+	}
+
+	public void setPropiedad(int propiedad) {
+		this.propiedad = propiedad;
+	}
+
+	public static void setIdIncremento(int idIncremento) {
+		Unidad.idIncremento = idIncremento;
+	}
+
+	public void setIdUnidad(int idUnidad) {
+		this.idUnidad = idUnidad;
+	}
+
+	public void setCostoOroCompra(double costoOroCompra) {
+		this.costoOroCompra = costoOroCompra;
+	}
+
+	public void setCostoOroGuarecido(double costoOroGuarecido) {
+		this.costoOroGuarecido = costoOroGuarecido;
+	}
+
+	public void setCostoOroEnCampo(double costoOroEnCampo) {
+		this.costoOroEnCampo = costoOroEnCampo;
+	}
+
+	public void setPos1(int pos1) {
+		this.pos1 = pos1;
+	}
+
+	public void setPos2(int pos2) {
+		this.pos2 = pos2;
+	}
 
 	// -------------------------------------------OVERRIDES----------------------------------------//
 
@@ -192,6 +276,8 @@ public abstract class Unidad {
 	public String toString() {
 		return nombre + idUnidad + "PV: " + puntosVida;
 	}
+
+	
 
 	@Override
 	public boolean equals(Object obj) {
@@ -204,5 +290,6 @@ public abstract class Unidad {
 		}
 		return bandera;
 	}
+
 
 }

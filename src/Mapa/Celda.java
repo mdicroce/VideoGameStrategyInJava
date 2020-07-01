@@ -3,6 +3,8 @@ package Mapa;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import Unidades.Arquero;
+import Unidades.Caballero;
 import Unidades.Infanteria;
 import Unidades.Unidad;
 
@@ -50,7 +52,7 @@ public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE H
 		celda.ocupado = false;
 	}
 	
-	public JSONObject  toJson() throws JSONException {
+	public JSONObject  toJsonObject() throws JSONException {
 		
 		JSONObject jsonObject = new JSONObject();
 		
@@ -59,14 +61,57 @@ public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE H
 		jsonObject.put("Ocupado", ocupado);
 		if (unidad instanceof Infanteria) {//Esto se realiza ya que la infanteria tiene un toJson diferente
 			Infanteria infanteria = (Infanteria) unidad;
-			jsonObject.put("Unidad", infanteria.toJson()); 
+			jsonObject.put("Unidad", infanteria.toJsonObject()); 
 		}else {
-			jsonObject.put("Unidad", unidad.toJson());
+			jsonObject.put("Unidad", unidad.toJsonObject());
 		} 
 		
 		jsonObject.put("Tipo de Sprite", tipoDeSprite);
 		
 	return jsonObject;
+	}
+	
+	public void decodeJsonObject(JSONObject jsonObject) throws JSONException {
+		setPosX(jsonObject.getInt("Pos X"));
+		setPosY(jsonObject.getInt("Pos Y"));
+		setOcupado(jsonObject.getBoolean("Ocupado"));
+		
+		if (!jsonObject.isNull("Unidad")) {
+			
+			decodeUnidad(jsonObject.getJSONObject("Unidad"));
+		}
+		else {
+			setUnidad(null);
+		}
+		
+		setTipoDeSprite((byte) jsonObject.getInt("Tipo de Sprite"));//Revisar getByte
+		
+	}
+	
+	
+	public void decodeUnidad(JSONObject unidadJsonObject) throws JSONException {
+		
+		String nombre = unidadJsonObject.getString("Nombre");
+		
+		if (nombre.compareToIgnoreCase("Arquero") == 1) {
+			Arquero arquero = new Arquero();
+			arquero.decodeJsonObject(unidadJsonObject);
+			setUnidad(arquero);
+			
+		} else {
+			if (nombre.compareToIgnoreCase("Caballero") == 1) {
+				Caballero caballero = new Caballero();
+				caballero.decodeJsonObject(unidadJsonObject);
+				setUnidad(caballero);
+				
+			} else {
+				Infanteria infanteria = new Infanteria();
+				infanteria.decodeJsonObject(unidadJsonObject);
+				setUnidad(infanteria);
+				
+			}
+		}
+		
 	}
 
 	// ---------------------------GETTERS-----------------------------------//
@@ -85,13 +130,35 @@ public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE H
 	public boolean getOcupado() {
 		return ocupado;
 	}
-
-	@Override
-	public String toString() {
-		return "[ " + posX + "] [" + posY + "]" + unidad;
-	}
-
+	
 	public byte getTipoDeSprite() {
 		return tipoDeSprite;
 	}
+	
+	// ---------------------------SETTERS-----------------------------------//
+
+	
+	public Unidad getUnidad() {
+		return unidad;
+	}
+
+	public void setPosX(int posX) {
+		this.posX = posX;
+	}
+
+	public void setPosY(int posY) {
+		this.posY = posY;
+	}
+
+	public void setTipoDeSprite(byte tipoDeSprite) {
+		this.tipoDeSprite = tipoDeSprite;
+	}
+	
+
+	@Override
+	public String toString() {
+		return "[ " + posX + "] [" + posY + "]" + unidad.toString();
+	}
+
+	
 }
