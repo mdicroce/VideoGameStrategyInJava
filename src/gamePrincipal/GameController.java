@@ -12,17 +12,18 @@ public final class GameController implements KeyListener {
 	public boolean abajo;
 	public boolean izquierda;
 	public boolean derecha;
+	public boolean enter;
 
 	public void actualizar() {
 		arriba = teclas[KeyEvent.VK_W];
 		abajo = teclas[KeyEvent.VK_S];
 		izquierda = teclas[KeyEvent.VK_A];
 		derecha = teclas[KeyEvent.VK_D];
+		enter = teclas[KeyEvent.VK_ENTER];
 	}
 
 	@Override
 	public void keyPressed(KeyEvent arg0) { // TECLA PULSADA (MANTENER PULSADA)
-		teclas[arg0.getKeyCode()] = true;
 
 	}
 
@@ -33,7 +34,7 @@ public final class GameController implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent arg0) { // TECLA PULSADA Y LIBERADA (PULSAR Y SOLTAR LA TECLA)
-		// TODO Auto-generated method stub
+		teclas[arg0.getKeyCode()] = true;
 
 	}
 

@@ -56,34 +56,36 @@ public abstract class Unidad {
 		this.posicion = posicion;
 	}
 
+	// -------------------------------------METODOSPROPIOS-------------------------------------//
+
 	public void mostrar(Windows pantalla) {
-		int x2=-1;
+		int x2 = -1;
 		int y2 = -1;
-		int tope = pantalla.getDifTop()+this.posicion.getPosY()*32, topeIz = pantalla.getDifIz()+this.posicion.getPosX()*32;
-		for (int y = tope-32; y < tope; y++) {
+		int tope = pantalla.getDifTop() + this.posicion.getPosY() * 32,
+				topeIz = pantalla.getDifIz() + this.posicion.getPosX() * 32;
+		for (int y = tope - 32; y < tope; y++) {
 			y2++;
-			for (int x = topeIz; x < topeIz+32; x++) {
-				
-				
+			for (int x = topeIz; x < topeIz + 32; x++) {
+
 				x2++;
-				
-				if (pantalla.sprites.pixeles[pos1][(x2%32)+(y2%32)*pantalla.sprites.getSize()] != -16711936)
-				pantalla.pixeles[x+y*pantalla.getWidth()] = pantalla.sprites.pixeles[pos1][(x2%32)+(y2%32)*pantalla.sprites.getSize()];
+
+				if (pantalla.sprites.pixeles[pos1][(x2 % 32) + (y2 % 32) * pantalla.sprites.getSize()] != -16711936)
+					pantalla.pixeles[x + y * pantalla.getWidth()] = pantalla.sprites.pixeles[pos1][(x2 % 32)
+							+ (y2 % 32) * pantalla.sprites.getSize()];
 			}
 		}
 		x2 = -1;
-		y2=-1;
-		for (int y = tope; y < tope+32; y++) {
+		y2 = -1;
+		for (int y = tope; y < tope + 32; y++) {
 			y2++;
-			for (int x = topeIz; x < topeIz+32; x++) {
+			for (int x = topeIz; x < topeIz + 32; x++) {
 				x2++;
-				if (pantalla.sprites.pixeles[pos2][(x2%32)+(y2%32)*pantalla.sprites.getSize()] != -16711936)
-				pantalla.pixeles[x+y*pantalla.getWidth()] = pantalla.sprites.pixeles[pos2][(x2%32)+(y2%32)*pantalla.sprites.getSize()];
+				if (pantalla.sprites.pixeles[pos2][(x2 % 32) + (y2 % 32) * pantalla.sprites.getSize()] != -16711936)
+					pantalla.pixeles[x + y * pantalla.getWidth()] = pantalla.sprites.pixeles[pos2][(x2 % 32)
+							+ (y2 % 32) * pantalla.sprites.getSize()];
 			}
 		}
 	}
-
-	// -------------------------------------METODOSPROPIOS-------------------------------------//
 
 	public double atacar(Unidad atacante, Unidad defensora) {
 		boolean valido = validarAtaque(atacante, defensora); // Valido si la unidad puede atacar.
@@ -149,7 +151,7 @@ public abstract class Unidad {
 
 	public JSONObject toJsonObject() throws JSONException {
 		JSONObject jsonObject = new JSONObject();
-		
+
 		jsonObject.put("Nombre", nombre);
 		jsonObject.put("Puntos de Vida", puntosVida);
 		jsonObject.put("Puntos de Ataque", puntosAtaque);
@@ -163,11 +165,11 @@ public abstract class Unidad {
 		jsonObject.put("Posicion 1", pos1);
 		jsonObject.put("Posicion 2", pos2);
 
-	return jsonObject;
+		return jsonObject;
 	}
 
 	public void decodeJsonObject(JSONObject jsonObject) throws JSONException {
-		
+
 		setNombre(jsonObject.getString("Nombre"));
 		setPuntosVida(jsonObject.getDouble("Puntos de Vida"));
 		setPuntosAtaque(jsonObject.getDouble("Puntos de Ataque"));
@@ -177,18 +179,14 @@ public abstract class Unidad {
 		setCostoOroCompra(jsonObject.getDouble("Costo de oro Compra"));
 		setCostoOroGuarecido(jsonObject.getDouble("Costo de oro Guarecido"));
 		setCostoOroEnCampo(jsonObject.getDouble("Costo de oro en Campo"));
-		
-		
-		
+
 		jsonObject.getJSONObject("Celda posicion");
-		
-		
+
 		setPos1(jsonObject.getInt("Posicion 1"));
 		setPos2(jsonObject.getInt("Posicion 2"));
-		
-		
+
 	}
-	
+
 	// -------------------------------------GETTERS--------------------------------------------//
 	public String getNombre() {
 		return nombre;
@@ -229,7 +227,7 @@ public abstract class Unidad {
 	public double getPuntosVida() {
 		return puntosVida;
 	}
-	
+
 	public static int getIdIncremento() {
 		return idIncremento;
 	}
@@ -241,9 +239,9 @@ public abstract class Unidad {
 	public int getPos2() {
 		return pos2;
 	}
-	
+
 	// -------------------------------------SETTERS--------------------------------------------//
-	
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
@@ -299,8 +297,6 @@ public abstract class Unidad {
 		return nombre + idUnidad + "PV: " + puntosVida;
 	}
 
-	
-
 	@Override
 	public boolean equals(Object obj) {
 		boolean bandera = false;
@@ -312,6 +308,5 @@ public abstract class Unidad {
 		}
 		return bandera;
 	}
-
 
 }
