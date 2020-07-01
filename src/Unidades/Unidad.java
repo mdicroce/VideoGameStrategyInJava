@@ -178,15 +178,10 @@ public abstract class Unidad {
 		setCostoOroGuarecido(jsonObject.getDouble("Costo de oro Guarecido"));
 		setCostoOroEnCampo(jsonObject.getDouble("Costo de oro en Campo"));
 		
-		
-		
-		jsonObject.getJSONObject("Celda posicion");
-		
+		posicion.decodeJsonObject(jsonObject.getJSONObject("Celda posicion"));
 		
 		setPos1(jsonObject.getInt("Posicion 1"));
 		setPos2(jsonObject.getInt("Posicion 2"));
-		
-		
 	}
 	
 	// -------------------------------------GETTERS--------------------------------------------//
