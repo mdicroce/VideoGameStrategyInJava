@@ -26,7 +26,7 @@ public class Jugador {
 
 	private int idPlayer;
 	
-	private float oro;
+	private double oro;
 
 	private int limiteYMayor;
 	
@@ -54,7 +54,7 @@ public class Jugador {
 		cuartel = new Cuartel<Unidad>();
 	}
 
-	public Jugador (String name,int idPlayer,float oro,int limiteYMayor,int limiteYMenor) {
+	public Jugador (String name,int idPlayer,double oro,int limiteYMayor,int limiteYMenor) {
 		this.name = name;
 		
 		this.idPlayer = idPlayer;
@@ -80,7 +80,7 @@ public class Jugador {
 		return idPlayer;
 	}
 	
-	public float getOro() {
+	public double getOro() {
 		return oro;
 	}
 	
@@ -106,7 +106,7 @@ public class Jugador {
 		this.idPlayer = idPlayer;
 	}
 	
-	public void setOro(float oro) {
+	public void setOro(double oro) {
 		this.oro = oro;
 	}
 
@@ -124,11 +124,11 @@ public class Jugador {
 	
 // -------------------------------------METODOS PROPIOS-------------------------------------//
 
-	public void restarOro(float cant) {
+	public void restarOro(double cant) {
 		oro = oro - cant;
 	}
 	
-	public void sumarOro(float cant) {
+	public void sumarOro(double cant) {
 		oro = oro + cant;
 	}
 	
@@ -146,7 +146,16 @@ public class Jugador {
 	return jsonObject;	
 	}
 	
-	
+	public void decodeJsonObject(JSONObject jsonObject) throws JSONException {
+		
+		jsonObject.getString("Nombre");
+		jsonObject.getInt("ID Jugador");
+		jsonObject.getDouble("Oro");
+		jsonObject.getInt("Limite Y Mayor");
+		jsonObject.getInt("Limite Y Menor");
+		jsonObject.getBoolean("Turno");
+		jsonObject.getJSONArray("Cuartel");
+	}
 	
 	//public void seleccionar();
 
