@@ -11,8 +11,8 @@ public class Arquero extends Unidad {
 			super.pos1 = 7;
 			super.pos2 = 17;
 		} else {
-			pos1 = 28;
-			pos2 = 38;
+			pos1 = 29;
+			pos2 = 39;
 		}
 	}
 	

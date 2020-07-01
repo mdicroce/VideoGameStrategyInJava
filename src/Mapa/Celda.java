@@ -121,7 +121,7 @@ public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE H
 		
 
 	public void prueba () {
-		this.unidad = new Arquero(0,this);
+		this.unidad = new Caballero(0,this);
 		this.ocupado = true;
 
 	}

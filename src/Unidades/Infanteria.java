@@ -3,19 +3,21 @@ package Unidades;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import Mapa.Celda;
+
 public class Infanteria extends Unidad {
 	private boolean bonusDisponible; // EL SOLDADO SOLO PUEDE UTILIZAR EL BONUS POR UNICA VEZ
 
-	public Infanteria(int propiedad) // SE PASA A QUE JUGADOR PERTENECE
+	public Infanteria(int propiedad, Celda celdi) // SE PASA A QUE JUGADOR PERTENECE
 	{
-		super("Infanteria", 18, 8, 8, 3, 5, 5, propiedad);
+		super("Infanteria", 18, 8, 8, 3, 5, 5, propiedad,celdi);
 		bonusDisponible = true;
 		if (propiedad == 0) {
-			super.pos1 = 8;
-			super.pos2 = 18;
+			super.pos1 = 9;
+			super.pos2 = 19;
 		} else {
-			pos1 = 26;
-			pos2 = 36;
+			pos1 = 27;
+			pos2 = 37;
 		}
 	}
 	
