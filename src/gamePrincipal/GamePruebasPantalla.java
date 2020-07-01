@@ -40,7 +40,7 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 		this.estado = 0;
 		mapa = new MapaTablero(10, 10, 32);
 		ventana = new Windows(WIDTH, HEIGHT, mapa);
-		cursor = new Cursor(ventana,mapa);
+		cursor = new Cursor(ventana, mapa);
 		teclado = new GameController();
 		addKeyListener(teclado);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -78,7 +78,7 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 		teclado.actualizar();
 
 		if (teclado.arriba) {
-			
+
 		}
 		if (teclado.abajo) {
 
@@ -89,6 +89,9 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 		if (teclado.izquierda) {
 
 		}
+		if (teclado.enter) {
+
+		}
 	}
 
 	private void mostrar() {
@@ -97,15 +100,15 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 			createBufferStrategy(3);
 			return;
 		}
-		mapa.mostrar(GamePruebasPantalla.ventana,32);
+		mapa.mostrar(GamePruebasPantalla.ventana, 32);
 		cursor.mostrar(ventana);
 		switch (estado) {
 		case 1:
-			
+
 			break;
 		case 2:
 			break;
-			
+
 		}
 		System.arraycopy(ventana.pixeles, 0, pixeles, 0, pixeles.length);
 		Graphics g = estrategia.getDrawGraphics();

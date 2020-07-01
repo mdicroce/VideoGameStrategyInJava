@@ -8,9 +8,9 @@ import Mapa.Celda;
 public class Infanteria extends Unidad {
 	private boolean bonusDisponible; // EL SOLDADO SOLO PUEDE UTILIZAR EL BONUS POR UNICA VEZ
 
-	public Infanteria(int propiedad, Celda celdi) // SE PASA A QUE JUGADOR PERTENECE
+	public Infanteria(int propiedad, Celda celda) // SE PASA A QUE JUGADOR PERTENECE
 	{
-		super("Infanteria", 18, 8, 8, 3, 5, 5, propiedad,celdi);
+		super("Infanteria", 18, 8, 8, 3, 5, 5, propiedad, celda);
 		bonusDisponible = true;
 		if (propiedad == 0) {
 			super.pos1 = 9;
@@ -20,7 +20,7 @@ public class Infanteria extends Unidad {
 			pos2 = 37;
 		}
 	}
-	
+
 	public Infanteria() { // SE VA A UTILIZAR PARA CREAR UNA INFANTERIA A PARTIR DE UN JSonObject
 		super();
 		bonusDisponible = false;
@@ -28,34 +28,33 @@ public class Infanteria extends Unidad {
 
 	@Override
 	public JSONObject toJsonObject() throws JSONException {
-		
+
 		JSONObject jsonObject = super.toJsonObject();
-		
+
 		jsonObject.put("Bonus Disponible", bonusDisponible);
 
 		return jsonObject;
 	}
-	
+
 	@Override
 	public void decodeJsonObject(JSONObject jsonObject) throws JSONException {
 		super.decodeJsonObject(jsonObject);
-		
-		setBonusDisponible(jsonObject.getBoolean("Bonus Disponible")); 
+
+		setBonusDisponible(jsonObject.getBoolean("Bonus Disponible"));
 	}
-		
 
 	// -------GETTERS----//
 
 	public boolean getBonusDisponible() {
 		return bonusDisponible;
 	}
-	
+
 	// -------SETTERS----//
-	
+
 	public void setBonusDisponible(boolean bonusDisponible) {
 		this.bonusDisponible = bonusDisponible;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return 1;
