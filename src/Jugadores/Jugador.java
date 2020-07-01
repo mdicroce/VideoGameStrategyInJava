@@ -191,7 +191,7 @@ public class Jugador {
 	}
 	
 	
-public void decodeUnidad(JSONObject unidadJsonObject) throws JSONException, ExceptionNoSePudoAgregar {
+	public void decodeUnidad(JSONObject unidadJsonObject) throws JSONException, ExceptionNoSePudoAgregar {
 		
 		String nombre = unidadJsonObject.getString("Nombre");
 		
@@ -215,6 +215,7 @@ public void decodeUnidad(JSONObject unidadJsonObject) throws JSONException, Exce
 		}
 		
 	}
+	
 	
 	//public void seleccionar();
 
