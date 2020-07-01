@@ -23,6 +23,15 @@ public class Partida {
 	}
 	
 	
+	public Jugador getJugadorPorId(int id) {
+		if (id == jugador1.getIdPlayer()) {
+			return jugador1;
+		} else {
+			return jugador2;
+			}
+	}
+	
+	
 	public void crearNuevaPartida() {
 		
 		cargarNuevoCuartel(jugador1);
