@@ -1,5 +1,130 @@
 package grafics;
 
+import java.util.ArrayList;
+
+import gamePrincipal.GameController;
+import gamePrincipal.GamePruebasPantalla;
+
 public class CuadroTextoG {
+	private ConvertidorDeTexto textosAMostrar;
+	private ArrayList<String> textArray;
+	private byte selected;
+	private boolean isSeleccionable;
+	public CuadroTextoG() {
+		textosAMostrar = new ConvertidorDeTexto();
+		textArray = new ArrayList<String>();
+		selected = -1;
+		isSeleccionable = false;
+	}
+	public void cargarMensajes(String mensaje) {
+		if (textArray.size() <=14) {
+			textArray.add(mensaje);
+		}
+	}
+	public void dibujarCuadro(Windows pantalla) {
+		for (int x = pantalla.getWidth()-28*8; x < pantalla.getWidth()-4*8;x++) {
+			for (int y = pantalla.difTop-10*8;y < pantalla.getHeight()+10*8-pantalla.difTop;y++) {
+				pantalla.pixeles[x+y*pantalla.getWidth()]=-0;
+				if ((x == pantalla.getWidth()-28*8)||(y == pantalla.difTop-10*8) || (x == (pantalla.getWidth()-4*8)-1) || (y==(pantalla.getHeight()+10*8-pantalla.difTop)-1)) {
+					pantalla.pixeles[x+y*pantalla.getWidth()] = -1;
+				}
+				
+			}
+		}
+	}
+	public void dejarDeMostrar() {
+		textArray.clear();
+	}
+	public void mostrar(Windows pantalla) {
+		dibujarCuadro(pantalla);
+		
+		int [] tipoAux;
+		int i2 = 1;
+		if (!isSeleccionable) {
+			for (int j = 0; j<textArray.size();j++) {
+				ArrayList<Integer> letrasArrayList = textosAMostrar.convertirMensaje(textArray.get(j));
+				for (int i = 0; i < letrasArrayList.size();i++,i2++) {
+					int inicioDeTexto = 8-j*4;
+					if (i%20 == 19) {
+						inicioDeTexto--;
+						i2=1;
+					}
+					int x2=-1,y2=-1;
+					if (letrasArrayList.get(i) != -1) {
+						tipoAux = pantalla.tipoSprite.getPixeles(letrasArrayList.get(i));
+						for (int x = pantalla.getWidth()-(27-i2)*8; x < pantalla.getWidth()-(26-i2)*8;x++) {
+							x2++;
+							for(int y = pantalla.difTop-inicioDeTexto*8;y<pantalla.difTop-(inicioDeTexto-1)*8;y++) {
+								y2++;
+								pantalla.pixeles[x+y*pantalla.getWidth()]=tipoAux[(x2%8)+(y2%8)*8];
+							}
+						}
+					}
+					else {
+						inicioDeTexto--;
+						i2=1;
+					}
 	
+				}
+			}
+		}
+		else {
+			for (int j = 0; j<textArray.size();j++) {
+				ArrayList<Integer> letrasArrayList = textosAMostrar.convertirMensaje(textArray.get(j));
+				if (selected == j) {
+					int auxiliar = textosAMostrar.convertirMensaje(">").get(0);
+					int inicioDeTexto = 8-j*4;
+					int x2=-1, y2=-1;
+					tipoAux = pantalla.tipoSprite.getPixeles(auxiliar);
+					for (int x = pantalla.getWidth()-(26-i2)*8; x < pantalla.getWidth()-(25-i2)*8;x++) {
+						x2++;
+						for(int y = pantalla.difTop-inicioDeTexto*8;y<pantalla.difTop-(inicioDeTexto-1)*8;y++) {
+							y2++;
+							pantalla.pixeles[x+y*pantalla.getWidth()]=tipoAux[(x2%8)+(y2%8)*8];
+						}
+					}
+				}
+				for (int i = 0; i < letrasArrayList.size();i++,i2++) {
+					int inicioDeTexto = 8-j*4;
+					if (i%20 == 19) {
+						inicioDeTexto--;
+						i2=1;
+					}
+					int x2=-1,y2=-1;
+					if (letrasArrayList.get(i) != -1) {
+						tipoAux = pantalla.tipoSprite.getPixeles(letrasArrayList.get(i));
+						for (int x = pantalla.getWidth()-(26-i2)*8; x < pantalla.getWidth()-(25-i2)*8;x++) {
+							x2++;
+							for(int y = pantalla.difTop-inicioDeTexto*8;y<pantalla.difTop-(inicioDeTexto-1)*8;y++) {
+								y2++;
+								pantalla.pixeles[x+y*pantalla.getWidth()]=tipoAux[(x2%8)+(y2%8)*8];
+							}
+						}
+					}
+					else {
+						inicioDeTexto--;
+						i2=1;
+					}
+	
+				}
+			}
+		}
+		
+	}
+	public void actualizar(GameController teclado) {
+		if (teclado.arriba) {
+			if (selected > 0)
+			{
+				selected--;
+			}
+		}
+		else if (teclado.abajo) {
+			if (selected < textArray.size()) {
+				selected++;
+			}
+		}
+		else if (teclado.enter) {
+			
+		}
+	}
 }
