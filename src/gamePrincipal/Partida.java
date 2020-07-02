@@ -24,8 +24,8 @@ public class Partida {
 	private Jugador jugador2;
 	
 	public Partida(int cantOro){
-		jugador1 = new Jugador("Jugador 1", 1, cantOro, 4 , 0);
-		jugador2 = new Jugador("Jugador 2", 2, cantOro, 10 , 7);
+		jugador1 = new Jugador("Jugador 1", 0, cantOro, 4 , 0);
+		jugador2 = new Jugador("Jugador 2", 1, cantOro, 10 , 7);
 	}
 	
 	public Partida(){

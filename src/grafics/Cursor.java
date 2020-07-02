@@ -14,7 +14,7 @@ public class Cursor {
 	public int[] pixels;
 	public Jugador player;
 	
-	public Cursor(Windows pantalla, MapaTablero mapita, Jugador playerActual) {
+	public Cursor(Windows pantalla, MapaTablero mapita) {
 		posicionY = (pantalla.difTop+(mapita.getAltoPix()/2))/32;
 		posicionX = (pantalla.difIz+(mapita.getAnchoPix()/2))/32;
 		this.limiteIZ = pantalla.difIz/32;
@@ -23,8 +23,8 @@ public class Cursor {
 		this.limiteDER = (pantalla.difIz + mapita.getAnchoPix())/32;
 		pixels = new int [pantalla.sprites.getSize()];
 		pixels = pantalla.sprites.getPixeles(21);
-		this.player = playerActual;
 	}
+	
 	public void mostrar(Windows pantalla) {
 		int x2 = -1,  y2=-1;
 		for (int x = posicionX*32;x<posicionX*32+32;x++) {

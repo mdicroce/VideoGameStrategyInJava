@@ -25,7 +25,7 @@ public class apuntaAlVacio {
 		texto.setSeleccionable(true);
 	}
 	private void seleccion() {
-		int seleccionado;
+		
 		
 		
 	}

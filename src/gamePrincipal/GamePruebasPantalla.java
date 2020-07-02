@@ -10,6 +10,7 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
+import Jugadores.Jugador;
 import Mapa.MapaTablero;
 import grafics.ConvertidorDeTexto;
 import grafics.Cursor;
@@ -26,6 +27,8 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 	private static GameController teclado;
 	public static byte estado;
 
+	private static Partida nuevaPartida;
+
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 640;
 
@@ -41,11 +44,12 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 		this.estado = 0;
 		mapa = new MapaTablero(10, 10, 32);
 		ventana = new Windows(WIDTH, HEIGHT, mapa);
-		//cursor = new Cursor(ventana, mapa);
+		cursor = new Cursor(ventana, mapa);
 		teclado = new GameController();
 		addKeyListener(teclado);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
-		window = new JFrame("Menem");
+		nuevaPartida = new Partida(100);
+		window = new JFrame("JavaWars");
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(false);
 		window.setLayout(new BorderLayout());
@@ -76,23 +80,7 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 	}
 
 	private void actualizar() {
-		teclado.actualizar();
-
-		if (teclado.arriba) {
-
-		}
-
-		if (teclado.abajo) {
-			System.out.println("abajo");
-		}
-
-		if (teclado.derecha) {
-			System.out.println("derecha");
-		}
-
-		if (teclado.izquierda) {
-			System.out.println("izq");
-		}
+		
 	}
 
 	public static void moverCuartel() // PARA MOVERSE POR CUARTEL
@@ -107,7 +95,7 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 			return;
 		}
 		mapa.mostrar(GamePruebasPantalla.ventana, 32);
-		//cursor.mostrar(ventana);
+		cursor.mostrar(ventana);
 		switch (estado) {
 		case 1:
 
