@@ -11,7 +11,7 @@ public class PantallaOpciones {
 	
 	
 	
-	public void mostrarOpciones() {
+	public static void mostrarOpciones() {
 		
 		System.out.println("\tMenu Principal");
 		System.out.println("\n\n 1 - Crear Partida Nueva");
@@ -20,21 +20,25 @@ public class PantallaOpciones {
 			
 	}
 	
-	public void crearPartidaNueva() {
+	public static Partida crearPartidaNueva() {
 		
 		Partida partida = new Partida(50);
 		
 		partida.crearNuevaPartida();
+		
+		return partida;
 	}
 	
-	public void cargarPartidaGuardada(String nombreArchi) {
+	public static Partida cargarPartidaGuardada(String nombreArchi) {
 		
 		Partida partida = new Partida();
 		
-		partida.cargarPartida(nombreArchi);;
+		partida.cargarPartida(nombreArchi);
+		
+		return partida;
 	}
 	
-	public int leerOpcionTeclado() {
+	public static int leerOpcionTeclado() {
 		int op;
 		Scanner scan = new Scanner(System.in);		
 		System.out.println("\n\tIngrese una opcion");
@@ -45,25 +49,28 @@ public class PantallaOpciones {
 		return op;
 	}
 	
-	public void mostrarArchivosGuardados() throws ExceptionNoHayArchivosGuardados{
+	public static void mostrarArchivosGuardados() throws ExceptionNoHayArchivosGuardados{
 		ArrayList<String> nombresArchivos = NombreArchivosGuardados.nombreArchivosGuardados();
 		int numArch = 1;
 		if (nombresArchivos.isEmpty()) {
-			throw new ExceptionNoHayArchivosGuardados("No hay ningun archivo guardado");
+			throw new ExceptionNoHayArchivosGuardados("No hay ningun archivo guardado.");
 		} else {
+			System.out.println("\tPartidas Guardadas\n\n");
+			
 			for (int i = 0; i < nombresArchivos.size(); i++) {
-				System.out.println("\tPartidas Guardadas");
-				System.out.println("\n\n "+numArch+" - "+nombresArchivos.get(i));
+				
+				System.out.println(numArch+" - "+nombresArchivos.get(i));
 				numArch++;
 				}
 			}
 			
 	}
 	
-	public String buscarNombreArchi(int posArchi) {
+	public static String buscarNombreArchi(int posArchi) {
 		ArrayList<String> nombresArchivos = NombreArchivosGuardados.nombreArchivosGuardados();
+		int pos=posArchi-1;
 		
-		return  nombresArchivos.get(posArchi);
+		return  nombresArchivos.get(pos);
 	}
 	
 }
