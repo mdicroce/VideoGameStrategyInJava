@@ -26,9 +26,7 @@ public class apuntaAlVacio {
 	}
 	private void seleccion() {
 		int seleccionado;
-		do {
-			seleccionado = texto.actualizar(this.teclado);
-		}while (seleccionado == -1);
+		
 		
 	}
 	

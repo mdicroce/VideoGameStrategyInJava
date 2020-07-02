@@ -407,5 +407,16 @@ public class Jugador {
 		
 	}
 	
+
+	
+	
+	public void seleccionar(MapaTablero mapita)
+	{
+		
+	}
+
+
+	//public void selecionarUnida ();
+
 }
 
