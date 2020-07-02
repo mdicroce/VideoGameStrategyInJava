@@ -16,6 +16,7 @@ public class CuadroTextoG {
 		selected = -1;
 		isSeleccionable = false;
 	}
+	
 	public void cargarMensajes(String mensaje) {
 		if (textArray.size() <=14) {
 			textArray.add(mensaje);
@@ -32,6 +33,10 @@ public class CuadroTextoG {
 			}
 		}
 	}
+	public void setSeleccionable(boolean isSeleccionable) {
+		this.isSeleccionable = isSeleccionable;
+	}
+
 	public void dejarDeMostrar() {
 		textArray.clear();
 	}
@@ -111,7 +116,7 @@ public class CuadroTextoG {
 		}
 		
 	}
-	public void actualizar(GameController teclado) {
+	public int actualizar(GameController teclado) {
 		if (teclado.arriba) {
 			if (selected > 0)
 			{
@@ -124,7 +129,8 @@ public class CuadroTextoG {
 			}
 		}
 		else if (teclado.enter) {
-			
+			return selected;
 		}
+		return -1;
 	}
 }

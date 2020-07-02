@@ -5,6 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import Mapa.Celda;
+import Mapa.MapaTablero;
 import Unidades.Arquero;
 import Unidades.Caballero;
 import Unidades.Infanteria;
@@ -328,7 +329,10 @@ public class Jugador {
 	}
 	
 	
-	//public void seleccionar();
+	public void seleccionar(MapaTablero mapita)
+	{
+		
+	}
 
 	public void terminarTurno() {
 		turno = false;
