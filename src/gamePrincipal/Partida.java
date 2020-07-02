@@ -168,7 +168,7 @@ public class Partida {
 	 * @return String que contiene Fecha y hora.
 	 */
 	public static String obtenerFechaYHoraActual() {
-		String formato = "dd-MM-yyyy HH:mm:ss";
+		String formato = "dd-MM-yyyy_HH:mm:ss";
 		DateTimeFormatter formateador = DateTimeFormatter.ofPattern(formato);
 		LocalDateTime ahora = LocalDateTime.now();
 		return formateador.format(ahora);
