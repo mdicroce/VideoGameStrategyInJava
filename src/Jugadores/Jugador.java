@@ -5,6 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import Mapa.Celda;
+import Mapa.MapaTablero;
 import Unidades.Arquero;
 import Unidades.Caballero;
 import Unidades.Infanteria;
@@ -406,5 +407,89 @@ public class Jugador {
 		
 	}
 	
+<<<<<<< HEAD
+	public void agregarUnidadAlCuartel(Unidad unidad) {
+		
+		try {
+			cuartel.agregar(unidad);
+		} catch (ExceptionNoSePudoAgregar e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+		
+	}
+	
+	public void eliminarUnidadAlCuartel(Unidad eliminar) {
+		
+			try {
+				cuartel.eliminar(eliminar);
+			} catch (ExceptionNoExiste e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExceptionEstaVacio e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		
+	}
+	
+
+	public void buscarUnidadAlCuartel(Unidad buscar) {
+		
+		try {
+			cuartel.buscar(buscar);
+		} catch (ExceptionNoExiste e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExceptionEstaVacio e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+	}
+	
+	public void buscarUnidadAlCuartel(Celda posicion) {
+		
+		try {
+			cuartel.buscar(posicion);
+		} catch (ExceptionNoExiste e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExceptionEstaVacio e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+	}
+	
+	public void buscarUnidadAlCuartel(int pos) {
+		
+		try {
+			cuartel.buscar(pos);
+		} catch (ExceptionNoExiste e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExceptionEstaVacio e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+	}
+	
+	
+	public void seleccionar(MapaTablero mapita)
+	{
+		
+	}
+
+	public void terminarTurno() {
+		turno = false;
+	}
+
+	//public void selecionarUnida ();
+
+=======
+>>>>>>> c5ebb77c68d8b0cc91c9ebe60e3a9da6e757db98
 }
 
