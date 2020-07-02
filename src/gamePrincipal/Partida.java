@@ -24,8 +24,8 @@ public class Partida {
 	private Jugador jugador2;
 	
 	public Partida(int cantOro){
-		jugador1 = new Jugador("Jugador 1", 1, cantOro, 4 , 0);
-		jugador2 = new Jugador("Jugador 2", 2, cantOro, 10 , 7);
+		jugador1 = new Jugador("Jugador 1", 0, cantOro, 4 , 0);
+		jugador2 = new Jugador("Jugador 2", 1, cantOro, 10 , 7);
 	}
 	
 	public Partida(){
@@ -109,6 +109,21 @@ public class Partida {
 		}
 		
 
+	}
+	/**
+	 * Esto devuelve el jugador que tiene el turno actualmente
+	 * @return Jugador con turno activo.
+	 */
+	public Jugador getJugadorxTurno() {
+		if(jugador1.getTurno()) {
+			return jugador1;
+		}
+		else if(jugador2.getTurno()) {
+			return jugador2;
+		}
+		else {
+			return null;
+		}
 	}
 	
 	/**

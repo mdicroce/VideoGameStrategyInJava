@@ -3,7 +3,7 @@ package grafics;
 import java.util.ArrayList;
 
 import gamePrincipal.GameController;
-import gamePrincipal.GamePruebasPantalla;
+import gamePrincipal.GameMain;
 
 public class CuadroTextoG {
 	private ConvertidorDeTexto textosAMostrar;
@@ -116,7 +116,7 @@ public class CuadroTextoG {
 		}
 		
 	}
-	public int actualizar(GameController teclado) {
+	public void actualizar(GameController teclado) {
 		if (teclado.arriba) {
 			if (selected > 0)
 			{
@@ -129,8 +129,7 @@ public class CuadroTextoG {
 			}
 		}
 		else if (teclado.enter) {
-			return selected;
+			
 		}
-		return -1;
 	}
 }

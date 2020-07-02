@@ -10,12 +10,14 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
+import Jugadores.Jugador;
 import Mapa.MapaTablero;
 import grafics.ConvertidorDeTexto;
+import grafics.CuadroTextoG;
 import grafics.Cursor;
 import grafics.Windows;
 
-public class GamePruebasPantalla extends Canvas implements Runnable {
+public class GameMain extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
 	private static JFrame window;
@@ -26,6 +28,8 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 	private static GameController teclado;
 	public static byte estado;
 
+	private static Partida nuevaPartida;
+	CuadroTextoG textoG = new CuadroTextoG();
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 640;
 
@@ -37,15 +41,16 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 	private static BufferedImage imagen = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private static int[] pixeles = ((DataBufferInt) imagen.getRaster().getDataBuffer()).getData();
 
-	private GamePruebasPantalla() {
+	private GameMain() {
 		this.estado = 0;
 		mapa = new MapaTablero(10, 10, 32);
 		ventana = new Windows(WIDTH, HEIGHT, mapa);
-		//cursor = new Cursor(ventana, mapa);
+		cursor = new Cursor(ventana, mapa);
 		teclado = new GameController();
 		addKeyListener(teclado);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
-		window = new JFrame("Menem");
+		nuevaPartida = new Partida(100);
+		window = new JFrame("JavaWars");
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(false);
 		window.setLayout(new BorderLayout());
@@ -53,10 +58,13 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 		window.pack();
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
+		nuevaPartida.getJugadorPorId(0).setTurno(true);
+		nuevaPartida.getJugadorPorId(1).setTurno(false);
+		cursor = new Cursor(ventana, mapa);
 	}
 
 	public static void main(String[] args) {
-		GamePruebasPantalla jueguitos = new GamePruebasPantalla();
+		GameMain jueguitos = new GameMain();
 		jueguitos.iniciar();
 	}
 
@@ -76,22 +84,16 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 	}
 
 	private void actualizar() {
-		teclado.actualizar();
-
-		if (teclado.arriba) {
-
+		if (estado == 0)
+		{
+			cursor.setJugador(nuevaPartida.getJugadorxTurno());
+			cursor.actualizar(teclado, mapa);
 		}
-
-		if (teclado.abajo) {
-			System.out.println("abajo");
+		else if (estado == 1) {
+			
 		}
-
-		if (teclado.derecha) {
-			System.out.println("derecha");
-		}
-
-		if (teclado.izquierda) {
-			System.out.println("izq");
+		else if (estado == 2) {
+			
 		}
 	}
 
@@ -106,16 +108,9 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 			createBufferStrategy(3);
 			return;
 		}
-		mapa.mostrar(GamePruebasPantalla.ventana, 32);
-		//cursor.mostrar(ventana);
-		switch (estado) {
-		case 1:
-
-			break;
-		case 2:
-			break;
-
-		}
+		mapa.mostrar(GameMain.ventana, 32);
+		cursor.mostrar(ventana);
+		
 		System.arraycopy(ventana.pixeles, 0, pixeles, 0, pixeles.length);
 		Graphics g = estrategia.getDrawGraphics();
 		g.drawImage(imagen, 0, 0, getWidth(), getHeight(), null);
