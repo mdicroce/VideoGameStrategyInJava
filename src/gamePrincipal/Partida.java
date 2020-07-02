@@ -1,8 +1,12 @@
 package gamePrincipal;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import JsonUtiles.JsonUtiles;
 import Jugadores.Jugador;
 import Unidades.Arquero;
 import Unidades.Caballero;
@@ -39,11 +43,29 @@ public class Partida {
 		
 	}
 	
-	public void cargarPartida() {
-		JSONArray jsonArray = null;
-		decodeJsonArray(jsonArray);
+	public void cargarPartida(String nombreArchi) {
 		
+		JSONArray jsonArray;
+		
+		try {
+			jsonArray = new JSONArray(JsonUtiles.leer(nombreArchi));
+			decodeJsonArray(jsonArray);
+		
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 	}
+	
+	public void guardarPartida() {
+		
+		String nombreArchi = "PG_"+obtenerFechaYHoraActual();
+		
+		JsonUtiles.grabar(toJsonArray(), nombreArchi);
+	
+	}
+	
 	
 	public void cargarNuevoCuartel(Jugador jugador) {
 		int idPlayer = jugador.getIdPlayer();
@@ -112,6 +134,13 @@ public class Partida {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public static String obtenerFechaYHoraActual() {
+		String formato = "dd-MM-yyyy HH:mm:ss";
+		DateTimeFormatter formateador = DateTimeFormatter.ofPattern(formato);
+		LocalDateTime ahora = LocalDateTime.now();
+		return formateador.format(ahora);
 	}
 	
 }
