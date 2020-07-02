@@ -36,7 +36,6 @@ public class MapaTablero {
 			insertarUnidadTablero(a1, tablero[5][1]);
 			moverUnidadTablero(a1, a1.getPosicion(), tablero[4][1]);
 			moverUnidadTablero(a1, a1.getPosicion(), tablero[4][1]);
-			moverUnidadTablero(a1, a1.getPosicion(), tablero[4][5]);
 		} catch (CeldaOcupadaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -81,6 +80,13 @@ public class MapaTablero {
 				if (!unidad.atacar(unidad, destino.getUnidadCelda())) {
 					try {
 						insertarUnidadTablero(unidad, posActual); // ATACO PERO NO MATO, QUE SE QUEDE EN SU LUGAR
+					} catch (CeldaOcupadaException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				} else {
+					try {
+						insertarUnidadTablero(unidad, destino);
 					} catch (CeldaOcupadaException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
