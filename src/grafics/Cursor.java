@@ -27,9 +27,9 @@ public class Cursor {
 	
 	public void mostrar(Windows pantalla) {
 		int x2 = -1,  y2=-1;
+		
 		for (int x = posicionX*32;x<posicionX*32+32;x++) {
 			x2++;
-			System.out.println("");
 			for(int y = posicionY*32;y<posicionY*32+32;y++) {
 			y2++;
 				if (pixels[(x2%32)+ (y2%32) *32] != -16711936) {
@@ -37,6 +37,10 @@ public class Cursor {
 				}
 			}
 		}
+		
+	}
+	public void setJugador(Jugador jugadorActual) {
+		this.player = jugadorActual;
 	}
 	public void actualizar(GameController teclado, MapaTablero mapita) {
 		if (teclado.arriba) {

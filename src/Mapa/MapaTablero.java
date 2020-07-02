@@ -21,7 +21,6 @@ public class MapaTablero {
 		this.sizeTile = sizeTile;
 		tablero = new Celda[FILAS][COLUMNAS];
 		generarTablero();
-		prueba();
 	}
 
 	// -----------------------------------------------------//

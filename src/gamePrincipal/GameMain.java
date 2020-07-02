@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import Jugadores.Jugador;
 import Mapa.MapaTablero;
 import grafics.ConvertidorDeTexto;
+import grafics.CuadroTextoG;
 import grafics.Cursor;
 import grafics.Windows;
 
@@ -28,7 +29,7 @@ public class GameMain extends Canvas implements Runnable {
 	public static byte estado;
 
 	private static Partida nuevaPartida;
-
+	CuadroTextoG textoG = new CuadroTextoG();
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 640;
 
@@ -57,6 +58,9 @@ public class GameMain extends Canvas implements Runnable {
 		window.pack();
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
+		nuevaPartida.getJugadorPorId(0).setTurno(true);
+		nuevaPartida.getJugadorPorId(1).setTurno(false);
+		cursor = new Cursor(ventana, mapa);
 	}
 
 	public static void main(String[] args) {
@@ -80,7 +84,17 @@ public class GameMain extends Canvas implements Runnable {
 	}
 
 	private void actualizar() {
-		
+		if (estado == 0)
+		{
+			cursor.setJugador(nuevaPartida.getJugadorxTurno());
+			cursor.actualizar(teclado, mapa);
+		}
+		else if (estado == 1) {
+			
+		}
+		else if (estado == 2) {
+			
+		}
 	}
 
 	public static void moverCuartel() // PARA MOVERSE POR CUARTEL
@@ -96,14 +110,7 @@ public class GameMain extends Canvas implements Runnable {
 		}
 		mapa.mostrar(GameMain.ventana, 32);
 		cursor.mostrar(ventana);
-		switch (estado) {
-		case 1:
-
-			break;
-		case 2:
-			break;
-
-		}
+		
 		System.arraycopy(ventana.pixeles, 0, pixeles, 0, pixeles.length);
 		Graphics g = estrategia.getDrawGraphics();
 		g.drawImage(imagen, 0, 0, getWidth(), getHeight(), null);

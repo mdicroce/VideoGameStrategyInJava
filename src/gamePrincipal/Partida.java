@@ -110,6 +110,21 @@ public class Partida {
 		
 
 	}
+	/**
+	 * Esto devuelve el jugador que tiene el turno actualmente
+	 * @return Jugador con turno activo.
+	 */
+	public Jugador getJugadorxTurno() {
+		if(jugador1.getTurno()) {
+			return jugador1;
+		}
+		else if(jugador2.getTurno()) {
+			return jugador2;
+		}
+		else {
+			return null;
+		}
+	}
 	
 	/**
 	 * Convierte la partida a un JSONArray.
