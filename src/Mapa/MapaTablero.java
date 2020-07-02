@@ -31,9 +31,20 @@ public class MapaTablero {
 		Caballero c1 = new Caballero(1, null);
 		a1.setPosicion(tablero[2][1]);
 		c1.setPosicion(tablero[2][2]);
-		// mostrarTablero();
-		moverUnidadTablero(a1, a1.getPosicion(), tablero[0][0]);
-		moverUnidadTablero(a1, a1.getPosicion(), tablero[1][0]);
+		try {
+			insertarUnidadTablero(c1, tablero[4][1]);
+			insertarUnidadTablero(a1, tablero[5][1]);
+			moverUnidadTablero(a1, a1.getPosicion(), tablero[4][1]);
+			moverUnidadTablero(a1, a1.getPosicion(), tablero[4][1]);
+			moverUnidadTablero(a1, a1.getPosicion(), tablero[4][5]);
+		} catch (CeldaOcupadaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// moverUnidadTablero(a1, a1.getPosicion(), tablero[8][0]);
+		// moverUnidadTablero(a1, a1.getPosicion(), tablero[0][0]);
+		// moverUnidadTablero(a1, a1.getPosicion(), tablero[1][0]);
 		// moverUnidadTablero(c1, c1.getPosicion(), tablero[3][1]);
 		// a1.atacar(a1, c1);
 		// a1.atacar(a1, c1);
@@ -53,25 +64,41 @@ public class MapaTablero {
 		}
 	}
 
-	public void insertarUnidadTablero(Unidad unidad, Celda celda) {
-		celda.setUnidad(unidad); // INSERTO LA UNIDAD EN LA CELDA
-		celda.setOcupado(true); // LA CELDA PASA A ESTAR OCUPADA
-		unidad.setPosicion(celda); // LE ASIGNO LA NUEVA POSICION A LA UNIDAD
+	public void insertarUnidadTablero(Unidad unidad, Celda celda) throws CeldaOcupadaException {
+		if (!celda.getOcupado()) {
+			celda.setUnidad(unidad); // INSERTO LA UNIDAD EN LA CELDA
+			celda.setOcupado(true); // LA CELDA PASA A ESTAR OCUPADA
+			unidad.setPosicion(celda); // LE ASIGNO LA NUEVA POSICION A LA UNIDAD
+		} else {
+			throw new CeldaOcupadaException();
+		}
 	}
 
 	public void moverUnidadTablero(Unidad unidad, Celda posActual, Celda destino) {
-		posActual.quitarUnidadCelda(posActual); // QUITO LA UNIDAD DE LA CELDA EN LA QUE ESTA
 		if (destino.getOcupado() == true) // SI QUIERE MOVERSE A UNA CELDA QUE ESTA OCUPADA POR UNA PIEZA ENEMIGA
 		{
 			if (destino.getUnidadCelda().getPropiedad() != posActual.getUnidadCelda().getPropiedad()) {
-				unidad.atacar(unidad, destino.getUnidadCelda());
+				if (!unidad.atacar(unidad, destino.getUnidadCelda())) {
+					try {
+						insertarUnidadTablero(unidad, posActual); // ATACO PERO NO MATO, QUE SE QUEDE EN SU LUGAR
+					} catch (CeldaOcupadaException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 			}
 		}
 		try {
-			if (validarMovimiento(unidad, posActual, destino) == true) // VERIFICO SI EL MOVIMIENTO ES VALIDO
+			if (!validarMovimiento(unidad, posActual, destino) == true) // VERIFICO SI EL MOVIMIENTO ES VALIDO
 			{
-				insertarUnidadTablero(unidad, destino); // LA INSERTO EN EL DESTINO
+				try {
+					insertarUnidadTablero(unidad, destino);
+				} catch (CeldaOcupadaException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} // LA INSERTO EN EL DESTINO
 			}
+
 		} catch (MovimientoInvalidoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

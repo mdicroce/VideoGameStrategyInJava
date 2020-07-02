@@ -87,7 +87,8 @@ public abstract class Unidad {
 		}
 	}
 
-	public double atacar(Unidad atacante, Unidad defensora) {
+	public boolean atacar(Unidad atacante, Unidad defensora) {
+		boolean murio = false;
 		boolean valido = validarAtaque(atacante, defensora); // Valido si la unidad puede atacar.
 		double hurtOcasionado = 0;
 		if (valido == true) {
@@ -101,10 +102,11 @@ public abstract class Unidad {
 
 			if (defensora.puntosVida <= 0) {
 				morir(defensora, defensora.posicion);
+				murio = true;
 			}
 		}
 
-		return hurtOcasionado;
+		return murio;
 	}
 
 	public boolean validarAtaque(Unidad atacante, Unidad defensora) {
