@@ -86,7 +86,7 @@ public class GameMain extends Canvas implements Runnable {
 	private void actualizar() {
 		if (estado == 0)
 		{
-			cursor.setJugador(nuevaPartida.getJugadorxTurno());
+			//cursor.setJugador(nuevaPartida.getJugadorxTurno());
 			cursor.actualizar(teclado, mapa);
 		}
 		else if (estado == 1) {

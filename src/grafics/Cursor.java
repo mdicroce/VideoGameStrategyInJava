@@ -3,6 +3,7 @@ package grafics;
 import Jugadores.Jugador;
 import Mapa.MapaTablero;
 import gamePrincipal.GameController;
+import gamePrincipal.PantallaOpciones;
 
 public class Cursor {
 	private int posicionX;
@@ -13,24 +14,27 @@ public class Cursor {
 	private int limiteDER;
 	public int[] pixels;
 	public Jugador player;
+	private int posicionYaux;
+	private int posicionXaux;
 	
 	public Cursor(Windows pantalla, MapaTablero mapita) {
-		posicionY = (pantalla.difTop+(mapita.getAltoPix()/2))/32;
-		posicionX = (pantalla.difIz+(mapita.getAnchoPix()/2))/32;
-		this.limiteIZ = pantalla.difIz/32;
-		this.limiteTOP = pantalla.difTop/32;
-		this.limiteBOT = (pantalla.difTop + mapita.getAltoPix())/32;
-		this.limiteDER = (pantalla.difIz + mapita.getAnchoPix())/32;
+		posicionY = pantalla.difTop;
+		posicionX = pantalla.difIz;
+		this.posicionXaux = posicionX;
+		this.posicionYaux = posicionY;
+		this.limiteIZ = pantalla.difIz;
+		this.limiteTOP = pantalla.difTop;
+		this.limiteBOT = pantalla.difTop + mapita.getAltoPix()-32;
+		this.limiteDER = pantalla.difIz + mapita.getAnchoPix()-32;
 		pixels = new int [pantalla.sprites.getSize()];
 		pixels = pantalla.sprites.getPixeles(21);
 	}
 	
 	public void mostrar(Windows pantalla) {
 		int x2 = -1,  y2=-1;
-		
-		for (int x = posicionX*32;x<posicionX*32+32;x++) {
+		for (int x = posicionX;x<posicionX+32;x++) {
 			x2++;
-			for(int y = posicionY*32;y<posicionY*32+32;y++) {
+			for(int y = posicionY;y<posicionY+32;y++) {
 			y2++;
 				if (pixels[(x2%32)+ (y2%32) *32] != -16711936) {
 				pantalla.pixeles[x+y*pantalla.getWidth()] = pixels[(x2%32)+ (y2%32) *32];
@@ -43,29 +47,61 @@ public class Cursor {
 		this.player = jugadorActual;
 	}
 	public void actualizar(GameController teclado, MapaTablero mapita) {
+		teclado.actualizar();
 		if (teclado.arriba) {
-			if(this.limiteTOP < this.posicionY)
-			this.posicionY--;
+			if(this.limiteTOP < this.posicionY) {
+				try {
+					this.posicionY -= 32;
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		else if (teclado.abajo)
 		{
-			if(this.limiteBOT > this.posicionY)
-			this.posicionY++;
+			if(this.limiteBOT > this.posicionY) {
+				try {
+					Thread.sleep(100);
+					this.posicionY+= 32;
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
 		}
 		else if (teclado.derecha)
 		{
-			if(this.limiteDER>this.posicionX)
-			this.posicionX++;
+			if(this.limiteDER>this.posicionX) {
+				try {
+					this.posicionX+=32;
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
 		}
 		else if (teclado.izquierda)
 		{
-			if (this.limiteIZ<this.posicionX)
-			this.posicionY++;
+			if (this.limiteIZ<this.posicionX) {
+				try {
+					this.posicionX-=32;
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
 		}
 		else if(teclado.enter)
 		{
-			if (mapita.getTablero()[posicionX][posicionY].getOcupado()) {
-				if(mapita.getTablero()[posicionX][posicionY].getUnidad().getPropiedad()==this.player.getIdPlayer())
+			if (mapita.getTablero()[(posicionX-posicionXaux)/32][(posicionY-posicionYaux)/32].getOcupado()) {
+				if(mapita.getTablero()[(posicionX-posicionXaux)/32][(posicionY-posicionYaux)/32].getUnidad().getPropiedad()==this.player.getIdPlayer())
 				{
 					
 				}
