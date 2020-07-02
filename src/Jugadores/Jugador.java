@@ -271,6 +271,26 @@ public class Jugador {
 		cantAcciones = 3;
 	}
 
+	/**
+	 * Recorre el cuartel y revisa si las unidades se tienen que mostrar en el mapa.
+	 * Si la unidad se tiene que mostrar en el mapa se setea la unidad en la celda. 
+	 */
+	public void linkearUnidadConSuPosOcupada() {
+		Unidad unidad;
+		Celda celda;
+		int i = 0;
+
+		while(cuartel.getValidos()>i) {
+			
+			unidad = buscarUnidadAlCuartel(i);
+			celda = unidad.getPosicion();
+			if(celda != null) {
+				celda.setUnidad(unidad);
+			}
+			
+			i++;
+		}
+	}
 	
 	
 	/**
