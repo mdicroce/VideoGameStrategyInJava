@@ -4,7 +4,7 @@ import Jugadores.Jugador;
 import gamePrincipal.GameController;
 import grafics.CuadroTextoG;
 
-public class apuntaAlVacio {
+public class apuntaAlVacio extends Textos {
 	private CuadroTextoG texto;
 	private Jugador playerActual;
 	private GameController teclado;
@@ -17,7 +17,7 @@ public class apuntaAlVacio {
 		
 		
 	}
-	private void cargaDeMensajes() {
+	public void cargaDeMensajes(){
 		texto.cargarMensajes("Cuartel");
 		texto.cargarMensajes("Pasar Turno");
 		texto.cargarMensajes("Rendirse");
