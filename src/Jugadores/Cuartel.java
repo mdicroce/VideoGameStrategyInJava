@@ -163,6 +163,22 @@ public class Cuartel<T extends Unidad> {
 		}
 	}
 	
+	public ArrayList<String> listar() throws ExceptionEstaVacio{
+		Unidad unidad;
+		ArrayList<String> listado = new ArrayList<String>();
+		if (cuartel.isEmpty()) {
+			throw new ExceptionEstaVacio("El cuartel esta vacio no se puede listar");
+		} else {
+			for (int i = 0; i < cuartel.size(); i++) {
+				unidad = cuartel.get(i);
+				listado.add(unidad.toString());
+			}
+		}
+		
+		return null;
+	}
+	
+	
 	public int getValidos() {
 		return cuartel.size();
 	}
