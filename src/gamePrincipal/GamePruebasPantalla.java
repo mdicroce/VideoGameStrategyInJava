@@ -11,6 +11,7 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import Mapa.MapaTablero;
+import grafics.ConvertidorDeTexto;
 import grafics.Cursor;
 import grafics.Windows;
 

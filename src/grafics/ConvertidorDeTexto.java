@@ -16,10 +16,12 @@ public class ConvertidorDeTexto {
 	private String caracteres;
 	private int[] texto;
 	private String textoString;
+	private boolean cursor;
 
 		
 	public ConvertidorDeTexto () {
 		caracteres = "]abcdefghijklmnopqrstuvwxyz      0123456789.,!?'\"-+=/\\%()<>:;    ";
+		cursor = false;
 		texto = new int[18];
 		
 	}
@@ -95,43 +97,13 @@ public class ConvertidorDeTexto {
 /**
  * Muestra cada uno de los Sprites que existen con su posicion en el arreglo.
  */
-	private void dibujarCuadro(Windows pantalla) {
-		for (int x = pantalla.getWidth()-28*8; x < pantalla.getWidth()-4*8;x++) {
-			for (int y = pantalla.difTop-10*8;y < pantalla.getHeight()+10*8-pantalla.difTop;y++) {
-				pantalla.pixeles[x+y*pantalla.getWidth()]=-0;
-				if ((x == pantalla.getWidth()-28*8)||(y == pantalla.difTop-10*8) || (x == (pantalla.getWidth()-4*8)-1) || (y==(pantalla.getHeight()+10*8-pantalla.difTop)-1)) {
-					pantalla.pixeles[x+y*pantalla.getWidth()] = -1;
-				}
-				
-			}
-		}
-	}
-	public void mostrar(Windows pantalla,String mensaje) {
-		dibujarCuadro(pantalla);
-		int inicioDeTexto = 8;
-		int [] tipoAux;
-		int i2 = 1;
-		ArrayList<Integer> letrasArrayList = convertirMensaje(mensaje);
-		for (int i = 0; i < letrasArrayList.size();i++,i2++) {
+	
+	
+	public void mostrarCursor () {
+		if (this.cursor)
+		{
 			
-			int x2=-1,y2=-1;
-			if (letrasArrayList.get(i) != -1) {
-				tipoAux = pantalla.tipoSprite.getPixeles(letrasArrayList.get(i));
-				for (int x = pantalla.getWidth()-(27-i2)*8; x < pantalla.getWidth()-(26-i2)*8;x++) {
-					x2++;
-					for(int y = pantalla.difTop-inicioDeTexto*8;y<pantalla.difTop-(inicioDeTexto-1)*8;y++) {
-						y2++;
-						pantalla.pixeles[x+y*pantalla.getWidth()]=tipoAux[(x2%8)+(y2%8)*8];
-					}
-				}
-			}
-			else {
-				inicioDeTexto--;
-				i2=-1;
-			}
-
 		}
-		
 	}
 	public void actualizar() {
 		

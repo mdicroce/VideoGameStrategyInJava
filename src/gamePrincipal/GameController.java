@@ -21,6 +21,7 @@ public class GameController implements KeyListener {
 		derecha = teclas[KeyEvent.VK_D];
 		enter = teclas[KeyEvent.VK_ENTER];
 	}
+	public void actualizar()
 
 	@Override
 	public void keyPressed(KeyEvent arg0) { // TECLA PULSADA (MANTENER PULSADA)
