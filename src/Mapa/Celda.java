@@ -133,4 +133,16 @@ public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE H
 		return "[ " + posX + "] [" + posY + "]" + unidad.toString();
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		boolean bandera = false;
+		if (obj instanceof Celda) {
+			Celda aux = (Celda) obj;
+			if (aux.getPosX() == this.getPosX() && aux.getPosY() == this.getPosY()) {
+				bandera = true;
+			}
+		}
+		return bandera;
+	}
+
 }
