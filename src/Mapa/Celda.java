@@ -5,7 +5,6 @@ import org.json.JSONObject;
 
 import Unidades.Arquero;
 import Unidades.Caballero;
-import Unidades.Infanteria;
 import Unidades.Unidad;
 
 public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE HABIA HECHO, DESPUES
@@ -54,39 +53,40 @@ public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE H
 		celda.ocupado = false;
 	}
 
-		
-	public JSONObject  toJsonObject() throws JSONException {
-		
+	public JSONObject toJsonObject() throws JSONException {
+
 		JSONObject jsonObject = new JSONObject();
-		
+
 		jsonObject.put("Pos X", posX);
 		jsonObject.put("Pos Y", posY);
 		jsonObject.put("Ocupado", ocupado);
-		//no se guarda la unidad ya que la celda esta dentro de la misma.
+		// no se guarda la unidad ya que la celda esta dentro de la misma.
 		jsonObject.put("Tipo de Sprite", tipoDeSprite);
-		
-	return jsonObject;
+
+		return jsonObject;
 	}
 
-
-	
 	public void decodeJsonObject(JSONObject jsonObject) throws JSONException {
 		setPosX(jsonObject.getInt("Pos X"));
 		setPosY(jsonObject.getInt("Pos Y"));
 		setOcupado(jsonObject.getBoolean("Ocupado"));
-		
-		setUnidad(null);//Esto se realiza ya que si Ocupado es tru luego se usara el set para colocar la unidad y no crear una nueva que no este enlazada y si ocupado es false queda en null
-		
-		setTipoDeSprite((byte) jsonObject.getInt("Tipo de Sprite"));//Revisar getByte
-		
+
+		setUnidad(null);// Esto se realiza ya que si Ocupado es tru luego se usara el set para colocar
+						// la unidad y no crear una nueva que no este enlazada y si ocupado es false
+						// queda en null
+
+		setTipoDeSprite((byte) jsonObject.getInt("Tipo de Sprite"));// Revisar getByte
+
 	}
-	
-	
 
-	public void prueba () {
-		this.unidad = new Infanteria(0,this);
+	public void prueba2() {
+		this.unidad = new Arquero(0, this);
 		this.ocupado = true;
+	}
 
+	public void prueba3() {
+		this.unidad = new Caballero(0, this);
+		this.ocupado = true;
 	}
 
 	// ---------------------------GETTERS-----------------------------------//
@@ -105,14 +105,13 @@ public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE H
 	public boolean getOcupado() {
 		return ocupado;
 	}
-	
+
 	public byte getTipoDeSprite() {
 		return tipoDeSprite;
 	}
-	
+
 	// ---------------------------SETTERS-----------------------------------//
 
-	
 	public Unidad getUnidad() {
 		return unidad;
 	}
@@ -128,12 +127,10 @@ public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE H
 	public void setTipoDeSprite(byte tipoDeSprite) {
 		this.tipoDeSprite = tipoDeSprite;
 	}
-	
 
 	@Override
 	public String toString() {
 		return "[ " + posX + "] [" + posY + "]" + unidad.toString();
 	}
 
-	
 }

@@ -1,5 +1,6 @@
 package Mapa;
 
+import Unidades.Arquero;
 import Unidades.Caballero;
 import Unidades.Unidad;
 import grafics.Windows;
@@ -20,12 +21,24 @@ public class MapaTablero {
 		this.sizeTile = sizeTile;
 		tablero = new Celda[FILAS][COLUMNAS];
 		generarTablero();
-		tablero[2][0].prueba();
-		tablero[2][1].prueba();
-
+		prueba();
 	}
 
 	// -----------------------------------------------------//
+
+	public void prueba() {
+		Arquero a1 = new Arquero(0, null);
+		Caballero c1 = new Caballero(1, null);
+		a1.setPosicion(tablero[2][1]);
+		c1.setPosicion(tablero[2][2]);
+		// mostrarTablero();
+		moverUnidadTablero(a1, a1.getPosicion(), tablero[0][0]);
+		moverUnidadTablero(a1, a1.getPosicion(), tablero[1][0]);
+		// moverUnidadTablero(c1, c1.getPosicion(), tablero[3][1]);
+		// a1.atacar(a1, c1);
+		// a1.atacar(a1, c1);
+		// a1.atacar(a1, c1);
+	}
 
 	public void generarTablero() {
 		int i = 0;
