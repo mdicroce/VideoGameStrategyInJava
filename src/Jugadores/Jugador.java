@@ -483,13 +483,8 @@ public class Jugador {
 		
 	}
 
-	public void terminarTurno() {
-		turno = false;
-	}
 
 	//public void selecionarUnida ();
 
-=======
->>>>>>> c5ebb77c68d8b0cc91c9ebe60e3a9da6e757db98
 }
 
