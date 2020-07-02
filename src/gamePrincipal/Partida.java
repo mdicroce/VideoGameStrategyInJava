@@ -12,6 +12,13 @@ import Unidades.Arquero;
 import Unidades.Caballero;
 import Unidades.Infanteria;
 
+
+/**
+ * Clase Partida que contiene 2 jugadores.
+ * En esta clase se puede crear una nueva partida, cargar una partida vieja y guardar una partida.
+ * @author Nahue
+ *
+ */
 public class Partida {
 	private Jugador jugador1;
 	private Jugador jugador2;
@@ -26,7 +33,11 @@ public class Partida {
 		jugador2 = new Jugador();
 	}
 	
-	
+	/**
+	 * Te devuelve un jugador segun el id pasado por parametro.
+	 * @param id del tipo int que represeta el id del jugador que se quiere que se devuelva.
+	 * @return Objeto de la clase Jugador.
+	 */
 	public Jugador getJugadorPorId(int id) {
 		if (id == jugador1.getIdPlayer()) {
 			return jugador1;
@@ -35,7 +46,9 @@ public class Partida {
 			}
 	}
 	
-	
+	/**
+	 * Se cargan los cuarteles de los jugadores con nuevas unidades;
+	 */
 	public void crearNuevaPartida() {
 		
 		cargarNuevoCuartel(jugador1);
@@ -43,6 +56,10 @@ public class Partida {
 		
 	}
 	
+	/**
+	 * Carga una partida a partir de un Archivo guardado.
+	 * @param nombreArchi String que es el nombre del Archivo
+	 */
 	public void cargarPartida(String nombreArchi) {
 		
 		JSONArray jsonArray;
@@ -58,56 +75,46 @@ public class Partida {
 	
 	}
 	
+	/**
+	 * Guarda una partida.
+	 */
 	public void guardarPartida() {
 		
-		String nombreArchi = "PG_"+obtenerFechaYHoraActual();
+		String nombreArchi = "PG_"+obtenerFechaYHoraActual()+".json";
 		
 		JsonUtiles.grabar(toJsonArray(), nombreArchi);
 	
 	}
 	
-	
+	/**
+	 * Crea las unidades y las agrega a el cuartel. 
+	 * @param jugador Jugador al que se le cargaran las unidades en su cuartel.
+	 */
 	public void cargarNuevoCuartel(Jugador jugador) {
 		int idPlayer = jugador.getIdPlayer();
 		
-		Arquero arquero1 = new Arquero(idPlayer, null);
-		Arquero arquero2 = new Arquero(idPlayer, null);
-		Arquero arquero3 = new Arquero(idPlayer, null);
-		Arquero arquero4 = new Arquero(idPlayer, null);
+		for (int i = 0; i < 4; i++) {
+			Arquero arquero = new Arquero(idPlayer, null);
+			jugador.agregarUnidadAlCuartel(arquero);
+		}
 		
-		Infanteria infanteria1 = new Infanteria(idPlayer, null);
-		Infanteria infanteria2= new Infanteria(idPlayer, null);
-		Infanteria infanteria3 = new Infanteria(idPlayer, null);
-		Infanteria infanteria4 = new Infanteria(idPlayer, null);
+		for (int i = 0; i < 4; i++) {
+			Infanteria infanteria = new Infanteria(idPlayer, null);
+			jugador.agregarUnidadAlCuartel(infanteria);
+		}
 		
-		Caballero caballero1 = new Caballero(idPlayer, null);
-		Caballero caballero2 = new Caballero(idPlayer, null);
-		Caballero caballero3 = new Caballero(idPlayer, null);
-		Caballero caballero4 = new Caballero(idPlayer, null);
-		Caballero caballero5 = new Caballero(idPlayer, null);
-		Caballero caballero6 = new Caballero(idPlayer, null);
-		Caballero caballero7 = new Caballero(idPlayer, null);
+		for (int i = 0; i < 7; i++) {
+			Caballero caballero = new Caballero(idPlayer, null);
+			jugador.agregarUnidadAlCuartel(caballero);
+		}
 		
-		jugador.agregarUnidadAlCuartel(arquero1);
-		jugador.agregarUnidadAlCuartel(arquero2);
-		jugador.agregarUnidadAlCuartel(arquero3);
-		jugador.agregarUnidadAlCuartel(arquero4);
-		
-		jugador.agregarUnidadAlCuartel(infanteria1);
-		jugador.agregarUnidadAlCuartel(infanteria2);
-		jugador.agregarUnidadAlCuartel(infanteria3);
-		jugador.agregarUnidadAlCuartel(infanteria4);
-		
-		jugador.agregarUnidadAlCuartel(caballero1);
-		jugador.agregarUnidadAlCuartel(caballero2);
-		jugador.agregarUnidadAlCuartel(caballero3);
-		jugador.agregarUnidadAlCuartel(caballero4);
-		jugador.agregarUnidadAlCuartel(caballero5);
-		jugador.agregarUnidadAlCuartel(caballero6);
-		jugador.agregarUnidadAlCuartel(caballero7);
-		
+
 	}
 	
+	/**
+	 * Convierte la partida a un JSONArray.
+	 * @return JSONArray creado a partir de la case Partida.
+	 */
 	public JSONArray toJsonArray() {
 		JSONArray jsonArray = new JSONArray();
 		
@@ -122,6 +129,10 @@ public class Partida {
 	return jsonArray;
 	}
 	
+	/**
+	 * Settea los jugadores a partir del JSONArray que se pasa por parametro.
+	 * @param jsonArray JSONArray con el que se cargaran los jugadores.
+	 */
 	public void decodeJsonArray(JSONArray jsonArray) {
 		
 		try {
@@ -136,6 +147,11 @@ public class Partida {
 		
 	}
 	
+	
+	/**
+	 * Funcion que obtiene la Fecha y Hora actual.
+	 * @return String que contiene Fecha y hora.
+	 */
 	public static String obtenerFechaYHoraActual() {
 		String formato = "dd-MM-yyyy HH:mm:ss";
 		DateTimeFormatter formateador = DateTimeFormatter.ofPattern(formato);
