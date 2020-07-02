@@ -2,9 +2,17 @@ package gamePrincipal;
 
 import GuardadoYCarga.ExceptionNoHayArchivosGuardados;
 
+/**
+ * En esta clase esta el metodo menu y sus opciones. 
+ * @author Nahue
+ *
+ */
+
 public class MenuPrincipal {
 	
-	
+	/**
+	 * El menu principal para iniciar el juego.
+	 */
 	public void menu() {
 		
 		PantallaOpciones.mostrarOpciones();
@@ -39,13 +47,18 @@ public class MenuPrincipal {
 		}     
 	}
 	
-	
+	/**
+	 * Opcion para crear una nueva partida.
+	 */
 	public void OPnuevoJuego() {
 		
 		Partida partidaNueva = PantallaOpciones.crearPartidaNueva();
 	
 	}
 	
+	/**
+	 * Opcion para cargar una partida y si eto no es posible se crea una nueva.
+	 */
 	public void OPcargarJuego() {
 		
 		try {
