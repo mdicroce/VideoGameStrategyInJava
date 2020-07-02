@@ -369,7 +369,7 @@ public class Jugador {
 				e.printStackTrace();
 			} catch (ExceptionNoSePudoAgregar e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 			i++;
 		}
