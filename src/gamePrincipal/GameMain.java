@@ -16,7 +16,7 @@ import grafics.ConvertidorDeTexto;
 import grafics.Cursor;
 import grafics.Windows;
 
-public class GamePruebasPantalla extends Canvas implements Runnable {
+public class GameMain extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
 	private static JFrame window;
@@ -40,7 +40,7 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 	private static BufferedImage imagen = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private static int[] pixeles = ((DataBufferInt) imagen.getRaster().getDataBuffer()).getData();
 
-	private GamePruebasPantalla() {
+	private GameMain() {
 		this.estado = 0;
 		mapa = new MapaTablero(10, 10, 32);
 		ventana = new Windows(WIDTH, HEIGHT, mapa);
@@ -60,7 +60,7 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 	}
 
 	public static void main(String[] args) {
-		GamePruebasPantalla jueguitos = new GamePruebasPantalla();
+		GameMain jueguitos = new GameMain();
 		jueguitos.iniciar();
 	}
 
@@ -94,7 +94,7 @@ public class GamePruebasPantalla extends Canvas implements Runnable {
 			createBufferStrategy(3);
 			return;
 		}
-		mapa.mostrar(GamePruebasPantalla.ventana, 32);
+		mapa.mostrar(GameMain.ventana, 32);
 		cursor.mostrar(ventana);
 		switch (estado) {
 		case 1:

@@ -3,7 +3,7 @@ package grafics;
 import java.util.ArrayList;
 
 import gamePrincipal.GameController;
-import gamePrincipal.GamePruebasPantalla;
+import gamePrincipal.GameMain;
 
 public class CuadroTextoG {
 	private ConvertidorDeTexto textosAMostrar;
