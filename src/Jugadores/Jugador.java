@@ -22,7 +22,7 @@ import Unidades.Unidad;
 
 /**
  * Clase Jugador que coniene un Contenedor Generico llamado cuartel que contiene Unidades.
- * En esta clase se puede sumar oro al jugador, restar oro al jugador, convertir la clase a un JSONObject.
+ * En esta clase se puede sumar oro al jugador, restar oro al jugador, agregar una unidad al Cuartel, eliminar una unidad del Cuartel, buscar una unidad del Cuartel, terminar turno, convertir la clase a un JSONObject, settear la clase a partir de un JSONObject.
  * @author Nahue
  *
  */
@@ -41,6 +41,8 @@ public class Jugador {
 	
 	private boolean turno;
 	
+	private int cantAcciones;
+	
 	private Cuartel<Unidad> cuartel;
 	
 	
@@ -58,6 +60,8 @@ public class Jugador {
 		
 		turno = false;
 		
+		cantAcciones = 0;
+		
 		cuartel = new Cuartel<Unidad>();
 	}
 
@@ -73,6 +77,8 @@ public class Jugador {
 		this.limiteYMenor = limiteYMenor;
 		
 		turno = false;
+		
+		this.cantAcciones = 3;
 		
 		cuartel = new Cuartel<Unidad>();
 	}
@@ -101,6 +107,10 @@ public class Jugador {
 	
 	public boolean getTurno() {
 		return turno;
+	}
+	
+	public int getCantAcciones() {
+		return cantAcciones;
 	}
 	
 	public Cuartel<Unidad> getCuartel() {
@@ -132,6 +142,10 @@ public class Jugador {
 	public void setTurno(boolean turno) {
 		this.turno = turno;
 	}
+	
+	public void setCantAcciones(int cantAcciones) {
+		this.cantAcciones = cantAcciones;
+	}
 
 	public void setCuartel(Cuartel<Unidad> cuartel) {
 		this.cuartel = cuartel;
@@ -139,14 +153,131 @@ public class Jugador {
 	
 // -------------------------------------METODOS PROPIOS-------------------------------------//
 
+	/**
+	 * Le resta el oro pasado por parametro a el jugador. 
+	 * @param cant Un double con la cantidad de oro a restar.
+	 */
 	public void restarOro(double cant) {
 		oro = oro - cant;
 	}
-	
+
+	/**
+	 * Le suma el oro pasado por parametro a el jugador.
+	 * @param cant Un double con la cantidad de oro a sumar.
+	 */
 	public void sumarOro(double cant) {
 		oro = oro + cant;
 	}
 	
+	
+	
+	/**
+	 * Agrega la unidad pasada por parametro al Cuartel.
+	 * @param unidad a agregar al cuartel.
+	 */
+	public void agregarUnidadAlCuartel(Unidad unidad) {
+		
+		try {
+			cuartel.agregar(unidad);
+		} catch (ExceptionNoSePudoAgregar e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+		
+	}
+	
+	/**
+	 * Busca y elimina la unidad pasada por parametro.
+	 * @param eliminar Objeto a eliminar del tipo unidad.
+	 */
+	public void eliminarUnidadAlCuartel(Unidad eliminar) {
+		
+			try {
+				cuartel.eliminar(eliminar);
+			} catch (ExceptionNoExiste e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExceptionEstaVacio e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
+	
+	/**
+	 * Busca la unidad pasada por parametro mediante la comparacion con las unidades que se encuentran dentro del Cuartel.
+	 * @param buscar Objeto a buscar del tipo unidad.
+	 * @return retorna la unidad buscada.
+	 */
+	public Unidad buscarUnidadAlCuartel(Unidad buscar) {
+		Unidad unidad = null;
+		
+		try {
+			unidad = cuartel.buscar(buscar);
+		} catch (ExceptionNoExiste e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExceptionEstaVacio e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return unidad;
+	}
+	
+	/**
+	 * Busca la unidad mediante la comparacion de las Celdas de las unidades con la Celda pasada por parametro.
+	 * @param posicion Una Celda donde se ubica la posicion del Objeto a buscar del tipo unidad.
+	 * @return retorna la unidad buscada.
+	 */
+	public Unidad buscarUnidadAlCuartel(Celda posicion) {
+		Unidad unidad = null;
+		try {
+			unidad = cuartel.buscar(posicion);
+		} catch (ExceptionNoExiste e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExceptionEstaVacio e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	return unidad;
+	}
+	
+	/**
+	 * Busca la unidad mediante la posicion pasada por parametro.
+	 * @param pos un int de la posicion a buscar en el Cuartel.
+	 * @return retorna la unidad buscada.
+	 */
+	public Unidad buscarUnidadAlCuartel(int pos) {
+		Unidad unidad = null;
+		try {
+			unidad = cuartel.buscar(pos);
+		} catch (ExceptionNoExiste e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExceptionEstaVacio e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	return unidad;
+	}
+	
+	/**
+	 * Termina el turno y vuelve la cantidad de acciones al valor Original
+	 */
+	public void terminarTurno() {
+		turno = false;
+		cantAcciones = 3;
+	}
+
+	
+	
+	/**
+	 * Convierte el jugador a un JSONObject.
+	 * @return Un JSONObject construido a partir de todos los elementos la clase jugador.
+	 * @throws JSONException es lanzada cuando ocurre un error con los puts del JSONObject.
+	 */
 	public JSONObject toJsonObject() throws JSONException {
 		JSONObject jsonObject = new JSONObject();
 		
@@ -156,17 +287,17 @@ public class Jugador {
 		jsonObject.put("Limite Y Mayor", limiteYMayor);
 		jsonObject.put("Limite Y Menor", limiteYMenor);
 		jsonObject.put("Turno", turno);
+		jsonObject.put("Cantidad de Acciones", cantAcciones);
 		jsonObject.put("Cuartel", toJsonArray());
 		
 	return jsonObject;	
 	}
 	
-/**
- * Convierte el arreglo a un JSONArray.	
- * @return JSONArray construido a partir del ArrayList y todos sus elementos.
- * @throws JSONException es lanzada cuando ocurre un error con los puts del JSONArray.
- */
-
+	/**
+	 * Convierte el Cuartel a un JSONArray.	
+	 * @return JSONArray construido a partir del Cuartel y todos sus elementos.
+	 * @throws JSONException es lanzada cuando ocurre un error con los puts del JSONArray.
+	 */
 	public JSONArray toJsonArray() {
 		JSONArray jsonArray = new JSONArray();
 		Unidad unidad;
@@ -202,6 +333,12 @@ public class Jugador {
 	}
 	
 	
+	/**
+	 * Settea los atributos de la clase Persona a partir de un JSONObject y la utilizacion de los Setters.
+	 * 
+	 * @param jsonObject Un JSONObject por parametro que se va a utilizar para settear el Jugador.
+	 * @throws JSONException es lanzada cuando ocurre un error con los gets del JSONObjects.
+	 */
 	public void decodeJsonObject(JSONObject jsonObject) throws JSONException {
 		
 		setName(jsonObject.getString("Nombre"));
@@ -210,10 +347,16 @@ public class Jugador {
 		setLimiteYMayor(jsonObject.getInt("Limite Y Mayor"));
 		setLimiteYMenor(jsonObject.getInt("Limite Y Menor"));
 		setTurno(jsonObject.getBoolean("Turno"));
+		setCantAcciones(jsonObject.getInt("Cantidad de Acciones"));
 		
 		decodeJsonArray(jsonObject.getJSONArray("Cuartel"));
 	}
 	
+	/**
+	 * Recorre el JSONArray y llama repetidamente a la funcion decodeUnidad que le pasa por parametro el JSONObject de la unidad que se quiera volver a cargar.
+	 * 
+	 * @param jsonArray Un JSONArray por parametro que se va a utilizar para cargar el cuartel.
+	 */
 	public void decodeJsonArray(JSONArray jsonArray) {
 		
 		int i = 0;
@@ -233,7 +376,12 @@ public class Jugador {
 		
 	}
 	
-	
+	/**
+	 * Crea la unidad a partir del JSONObject pasado por parametro y la agrega al Cuartel.
+	 * @param unidadJsonObject JSONObject de la unidad a decodificar y luego agregar al cuartel.
+	 * @throws JSONException es lanzada cuando ocurre un error con los gets del JSONObject.
+	 * @throws ExceptionNoSePudoAgregar es lanzada cuando no se puede agregar la unidad al Cuartel.
+	 */
 	public void decodeUnidad(JSONObject unidadJsonObject) throws JSONException, ExceptionNoSePudoAgregar {
 		
 		String nombre = unidadJsonObject.getString("Nombre");
@@ -259,6 +407,7 @@ public class Jugador {
 		
 	}
 	
+<<<<<<< HEAD
 	public void agregarUnidadAlCuartel(Unidad unidad) {
 		
 		try {
@@ -340,5 +489,7 @@ public class Jugador {
 
 	//public void selecionarUnida ();
 
+=======
+>>>>>>> c5ebb77c68d8b0cc91c9ebe60e3a9da6e757db98
 }
 

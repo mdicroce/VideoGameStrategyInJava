@@ -40,19 +40,16 @@ public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE H
 
 	// ---------------------------METODOSPROPIOS------------------------------//
 
-	public void setUnidad(Unidad unidad) {
-		this.unidad = unidad;
-	}
-
-	public void setOcupado(boolean ocupado) {
-		this.ocupado = ocupado;
-	}
-
 	public void quitarUnidadCelda(Celda celda) {
 		celda.unidad = null;
 		celda.ocupado = false;
 	}
-
+	
+	/**
+	 * Convierte la Celda a un JSONObject.
+	 * @return construido a partir de la Celda.
+	 * @throws JSONException es lanzada cuando ocurre un error con los puts del JSONObject.
+	 */
 	public JSONObject toJsonObject() throws JSONException {
 
 		JSONObject jsonObject = new JSONObject();
@@ -65,7 +62,12 @@ public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE H
 
 		return jsonObject;
 	}
-
+	
+	/**
+	 * Settea la Celda a partir del JSONObject pasado por parametro.
+	 * @param jsonObject Un JSONObject por parametro que se va a utilizar para settear la Celda.
+	 * @throws JSONException es lanzada cuando ocurre un error con los gets del JSONObject.
+	 */
 	public void decodeJsonObject(JSONObject jsonObject) throws JSONException {
 		setPosX(jsonObject.getInt("Pos X"));
 		setPosY(jsonObject.getInt("Pos Y"));
@@ -128,6 +130,14 @@ public class Celda { // PONGO LA CLASE CELDA SOLO PARA QUE VEAN UN POCO LO QUE H
 		this.tipoDeSprite = tipoDeSprite;
 	}
 
+	public void setUnidad(Unidad unidad) {
+		this.unidad = unidad;
+	}
+
+	public void setOcupado(boolean ocupado) {
+		this.ocupado = ocupado;
+	}
+	
 	@Override
 	public String toString() {
 		return "[ " + posX + "] [" + posY + "]" + unidad.toString();

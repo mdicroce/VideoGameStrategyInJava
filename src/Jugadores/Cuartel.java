@@ -34,6 +34,10 @@ public class Cuartel<T extends Unidad> {
 	public ArrayList<T> getCuartel() {
 		return cuartel;
 	}
+	
+	public int getValidos() {
+		return cuartel.size();
+	}
 
 // -------------------------------------SETTERS--------------------------------------------//
 	
@@ -116,11 +120,11 @@ public class Cuartel<T extends Unidad> {
 	
 	
 /**
- * Busca un elemento del Arraylist buscandolo mediante la comparacion con el objeto pasado por parametro..
+ * Busca un elemento del Arraylist buscandolo mediante la comparacion con el objeto pasado por parametro.
  * 
  * @param buscar objeto que extiende de Unidad a buscar.
  * @return Objeto del tipo Unidad buscado.
- * @throws ExceptionNoExiste se lanza cuando no existe un elemento con ese ID.
+ * @throws ExceptionNoExiste se lanza cuando no existe en el arreglo el elemento pasado por parametro.
  * @throws ExceptionEstaVacio se lanza cuando el ArrayList esta vacio.
  */
 
@@ -148,6 +152,15 @@ public class Cuartel<T extends Unidad> {
 	}
 	
 	
+	/**
+	 * Busca un elemento del Arraylist buscandolo mediante la posicion pasada por parametro.
+	 * 
+ 	 * @param pos posicion del tipo int del objeto que se quiere buscar.
+	 * @return Objeto del tipo Unidad buscado.
+	 * @throws ExceptionNoExiste se lanza cuando no existe un elemento en la posicion pasada por parametro.
+	 * @throws ExceptionEstaVacio se lanza cuando el ArrayList esta vacio.
+	 */
+	
 	public T buscar(int pos) throws ExceptionNoExiste, ExceptionEstaVacio {
 		
 		if(cuartel.isEmpty()) {
@@ -163,6 +176,11 @@ public class Cuartel<T extends Unidad> {
 		}
 	}
 	
+	/**
+	 * Lista el cuartel unidad por unidad y almacena cada toString de la unidad en una posicion del ArrayList.
+	 * @return un ArrayList de Strings con los toStrings de cada una de las unidades del cuartel.
+	 * @throws ExceptionEstaVacio se lanza cuando el ArrayList esta vacio.
+	 */
 	public ArrayList<String> listar() throws ExceptionEstaVacio{
 		Unidad unidad;
 		ArrayList<String> listado = new ArrayList<String>();
@@ -176,11 +194,6 @@ public class Cuartel<T extends Unidad> {
 		}
 		
 		return null;
-	}
-	
-	
-	public int getValidos() {
-		return cuartel.size();
 	}
 	
 
