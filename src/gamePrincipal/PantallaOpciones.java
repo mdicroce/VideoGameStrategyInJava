@@ -19,9 +19,9 @@ public class PantallaOpciones {
 	public static void mostrarOpciones() {
 		
 		System.out.println("\tMenu Principal");
-		System.out.println("\n\n 1 - Crear Partida Nueva");
-		System.out.println("\n\n 2 - Cargar Partida Guardada");
-		System.out.println("\n\n 0 - Salir");
+		System.out.println("\n 1 - Crear Partida Nueva");
+		System.out.println(" 2 - Cargar Partida Guardada");
+		System.out.println(" 0 - Salir");
 			
 	}
 	
@@ -59,7 +59,7 @@ public class PantallaOpciones {
 	public static int leerOpcionTeclado() {
 		int op;
 		Scanner scan = new Scanner(System.in);		
-		System.out.println("\n\tIngrese una opcion");
+		System.out.println("\n\tIngrese una opcion\n\t");
 		op = scan.nextInt();
 				
 		scan.close();
@@ -77,7 +77,7 @@ public class PantallaOpciones {
 		if (nombresArchivos.isEmpty()) {
 			throw new ExceptionNoHayArchivosGuardados("No hay ningun archivo guardado.");
 		} else {
-			System.out.println("\tPartidas Guardadas\n\n");
+			System.out.println("\n\n\n\n\n\tPartidas Guardadas\n\n");
 			
 			for (int i = 0; i < nombresArchivos.size(); i++) {
 				
@@ -85,7 +85,6 @@ public class PantallaOpciones {
 				numArch++;
 				}
 			}
-			
 	}
 	
 	/**
@@ -96,7 +95,7 @@ public class PantallaOpciones {
 	
 	public static String buscarNombreArchi(int posArchi) {
 		ArrayList<String> nombresArchivos = NombreArchivosGuardados.nombreArchivosGuardados();
-		int pos=posArchi-1;
+		int pos = posArchi-1;
 		
 		return  nombresArchivos.get(pos);
 	}

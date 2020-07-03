@@ -43,7 +43,7 @@ public class GameMain extends Canvas implements Runnable {
 	private static BufferedImage imagen = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private static int[] pixeles = ((DataBufferInt) imagen.getRaster().getDataBuffer()).getData();
 
-	private GameMain() {
+	public GameMain(Partida partida) {
 		this.estado = 0;
 		mapa = new MapaTablero(10, 10, 32);
 		ventana = new Windows(WIDTH, HEIGHT, mapa);
@@ -51,7 +51,7 @@ public class GameMain extends Canvas implements Runnable {
 		teclado = new GameController();
 		addKeyListener(teclado);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
-		nuevaPartida = new Partida(100);
+		nuevaPartida = partida;
 		window = new JFrame("JavaWars");
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setResizable(false);
@@ -66,11 +66,13 @@ public class GameMain extends Canvas implements Runnable {
 	}
 
 	public static void main(String[] args) {
-		GameMain jueguitos = new GameMain();
-		jueguitos.iniciar();
+		MenuPrincipal menuPrincipal = new MenuPrincipal();
+		menuPrincipal.menu();
+	
+		
 	}
 
-	private synchronized void iniciar() {
+	public synchronized void iniciar() {
 		enFuncionamiento = true;
 		thread = new Thread(this, "Grafics");
 		thread.start();
