@@ -9,7 +9,7 @@ import mensajes.Textos;
 public class CuadroTextoG {
 	private ConvertidorDeTexto textosAMostrar;
 	private ArrayList<String> textArray;
-	private byte selected;
+	public byte selected;
 	private boolean isSeleccionable;
 	private Textos textoActual;
 	public int tipoDeOpcion;
@@ -162,8 +162,10 @@ public class CuadroTextoG {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			teclado.enter = false;
 			return true;
 		}
 		return false;
 	}
+	
 }

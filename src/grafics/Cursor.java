@@ -12,16 +12,16 @@ import mensajes.apuntaPersonajeAliado;
 import mensajes.apuntaPersonajeEnemigo;
 
 public class Cursor {
-	private int posicionX;
-	private int posicionY;
+	public int posicionX;
+	public int posicionY;
 	private int limiteTOP;
 	private int limiteBOT;
 	private int limiteIZ;
 	private int limiteDER;
 	public int[] pixels;
 	public Jugador player;
-	private int posicionYaux;
-	private int posicionXaux;
+	public int posicionYaux;
+	public int posicionXaux;
 	
 	public Cursor(Windows pantalla, MapaTablero mapita) {
 		posicionY = pantalla.difTop;

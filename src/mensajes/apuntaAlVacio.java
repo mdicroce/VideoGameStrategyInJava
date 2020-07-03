@@ -22,6 +22,7 @@ public class apuntaAlVacio extends Textos {
 		textoG.cargarMensajes("pasar turno");
 		textoG.cargarMensajes("rendirse");
 		textoG.cargarMensajes("cancelar");
+		textoG.cargarMensajes("guardar");
 		textoG.setSeleccionable(true);
 		textoG.tipoDeOpcion = 0;
 	}
