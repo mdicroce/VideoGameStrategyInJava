@@ -296,7 +296,7 @@ public abstract class Unidad {
 
 	@Override
 	public String toString() {
-		return nombre + "PV: " + puntosVida+"\n Ataque "+puntosAtaque+" Defensa "+puntosDefensa;
+		return (nombre + "pv: " + puntosVida+"\n ataque "+puntosAtaque+" defensa "+puntosDefensa).toLowerCase();
 	}
 
 	@Override

@@ -193,7 +193,7 @@ public class Cuartel<T extends Unidad> {
 			}
 		}
 		
-		return null;
+		return listado;
 	}
 	
 

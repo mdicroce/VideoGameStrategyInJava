@@ -75,6 +75,18 @@ public class Partida {
 		}
 	
 	}
+	public void pasarTurno() {
+		if (jugador1.getTurno()) {
+			jugador1.terminarTurno();
+			jugador2.setTurno(true);
+		}
+		else 
+		{
+			jugador2.terminarTurno();
+			jugador1.setTurno(true);
+		}
+		
+	}
 	
 	/**
 	 * Guarda una partida y utiliza como nombre la Fecha y hora y un Identificador al principio.

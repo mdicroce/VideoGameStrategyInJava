@@ -12,6 +12,7 @@ public class CuadroTextoG {
 	private byte selected;
 	private boolean isSeleccionable;
 	private Textos textoActual;
+	public int tipoDeOpcion;
 	public CuadroTextoG(Textos textoNuevo) {
 		textosAMostrar = new ConvertidorDeTexto();
 		textArray = new ArrayList<String>();
@@ -48,13 +49,10 @@ public class CuadroTextoG {
 		dibujarCuadro(pantalla);
 		
 		int [] tipoAux;
-		int i2 = 1;
 		if (!isSeleccionable) {
 			for (int j = 0; j<textArray.size();j++) {
 				ArrayList<Integer> letrasArrayList = textosAMostrar.convertirMensaje(textArray.get(j));
-				for (int i = 0; i < letrasArrayList.size();i++,i2++) {
-					
-					
+				for (int i = 0, i2 = 0; i < letrasArrayList.size();i++,i2++) {
 					int inicioDeTexto = 8-j*4;
 					if (i%20 == 19) {
 						inicioDeTexto--;
@@ -84,12 +82,12 @@ public class CuadroTextoG {
 				ArrayList<Integer> letrasArrayList = textosAMostrar.convertirMensaje(textArray.get(j));
 				
 				if (selected == j) {
-					
 					int auxiliar = textosAMostrar.convertirMensaje(">").get(0);
+					
 					int inicioDeTexto = 8-j*4;
 					int x2=-1, y2=-1;
 					tipoAux = pantalla.tipoSprite.getPixeles(auxiliar);
-					for (int x = pantalla.getWidth()-(26-i2)*8; x < pantalla.getWidth()-(25-i2)*8;x++) {
+					for (int x = pantalla.getWidth()-(28-1)*8; x < pantalla.getWidth()-(27-1)*8;x++) {
 						x2++;
 						for(int y = pantalla.difTop-inicioDeTexto*8;y<pantalla.difTop-(inicioDeTexto-1)*8;y++) {
 							y2++;
@@ -97,7 +95,7 @@ public class CuadroTextoG {
 						}
 					}
 				}
-				for (int i = 0; i < letrasArrayList.size();i++,i2++) {
+				for (int i = 0, i2 = 0; i < letrasArrayList.size();i++,i2++) {
 					int inicioDeTexto = 8-j*4;
 					if (i%20 == 19) {
 						inicioDeTexto--;
@@ -128,18 +126,42 @@ public class CuadroTextoG {
 		return selected;
 	}
 	public boolean actualizar(GameController teclado) {
+		teclado.actualizar();
 		if (teclado.arriba) {
+			
 			if (selected > 0)
 			{
-				selected--;
+				try {
+					selected--;
+					Thread.sleep(200);
+					
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 		else if (teclado.abajo) {
-			if (selected < textArray.size()) {
-				selected++;
+			
+			if (selected < textArray.size()-1) {
+				try {
+					selected++;
+					Thread.sleep(200);
+					
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 			}
 		}
 		else if (teclado.enter) {
+			try {
+				Thread.sleep(200);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return true;
 		}
 		return false;

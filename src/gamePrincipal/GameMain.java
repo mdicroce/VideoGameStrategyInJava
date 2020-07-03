@@ -12,12 +12,14 @@ import javax.swing.JFrame;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.IconifyAction;
 
 import Jugadores.Jugador;
+import Mapa.Celda;
 import Mapa.MapaTablero;
 import grafics.ConvertidorDeTexto;
 import grafics.CuadroTextoG;
 import grafics.Cursor;
 import grafics.Windows;
 import mensajes.Textos;
+import mensajes.textoListaCuartel;
 
 public class GameMain extends Canvas implements Runnable {
 
@@ -63,6 +65,7 @@ public class GameMain extends Canvas implements Runnable {
 		nuevaPartida.getJugadorPorId(0).setTurno(true);
 		nuevaPartida.getJugadorPorId(1).setTurno(false);
 		cursor = new Cursor(ventana, mapa);
+		cursor.setJugador(nuevaPartida.getJugadorxTurno());
 	}
 
 	public static void main(String[] args) {
@@ -93,7 +96,33 @@ public class GameMain extends Canvas implements Runnable {
 			cursor.actualizar(teclado, mapa);
 		}
 		else if (textoG != null) {
-			textoG.actualizar(teclado);
+			if(textoG.actualizar(teclado))
+			{
+				if (textoG.tipoDeOpcion == 0) {
+					if (textoG.getSelected()==0) {
+						textoG = new CuadroTextoG(new textoListaCuartel(nuevaPartida.getJugadorxTurno()));
+					}
+					else if(textoG.getSelected()==1) {
+						nuevaPartida.pasarTurno();
+					}
+					else if(textoG.getSelected()==2) {
+						System.out.println("Aca no se rinde nadie!!!");
+					}
+					else {
+						textoG = null;
+					}
+				}
+				else if(textoG.tipoDeOpcion == 4) {
+					if (textoG.getSelected())
+					Celda auxCelda = cursor.actualizar(teclado, mapa,0);
+					if (auxCelda != null)
+					{
+						nuevaPartida.getJugadorxTurno().buscarUnidadAlCuartel(textoG.getSelected()).setPosicion(auxCelda);;
+					}
+					
+				}
+			}
+			
 			
 		}
 		else if (estado == 2) {

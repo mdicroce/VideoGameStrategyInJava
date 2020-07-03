@@ -1,6 +1,7 @@
 package grafics;
 
 import Jugadores.Jugador;
+import Mapa.Celda;
 import Mapa.MapaTablero;
 import gamePrincipal.GameController;
 import gamePrincipal.GameMain;
@@ -105,6 +106,7 @@ public class Cursor {
 		}
 		else if(teclado.enter)
 		{
+			
 			if (mapita.getTablero()[(posicionX-posicionXaux)/32][(posicionY-posicionYaux)/32].getOcupado()) {
 				if(mapita.getTablero()[(posicionX-posicionXaux)/32][(posicionY-posicionYaux)/32].getUnidad().getPropiedad()==this.player.getIdPlayer())
 				{
@@ -118,8 +120,73 @@ public class Cursor {
 			else
 			{
 				GameMain.textoG = new CuadroTextoG(new apuntaAlVacio(this.player, teclado));
-				GameMain.textoG.setSeleccionable(false);
+				GameMain.textoG.setSeleccionable(true);
 			}
 		}
+	}
+	public Celda actualizar(GameController teclado, MapaTablero mapa, int fefe) {
+		teclado.actualizar();
+		if (teclado.arriba) {
+			if(this.limiteTOP < this.posicionY) {
+				try {
+					this.posicionY -= 32;
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		else if (teclado.abajo)
+		{
+			if(this.limiteBOT > this.posicionY) {
+				try {
+					Thread.sleep(100);
+					this.posicionY+= 32;
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+		}
+		else if (teclado.derecha)
+		{
+			if(this.limiteDER>this.posicionX) {
+				try {
+					this.posicionX+=32;
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		}
+		else if (teclado.izquierda)
+		{
+			if (this.limiteIZ<this.posicionX) {
+				try {
+					this.posicionX-=32;
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		}
+		else if(teclado.enter)
+		{
+			
+			if (mapa.getTablero()[(posicionX-posicionXaux)/32][(posicionY-posicionYaux)/32].getOcupado()) {
+				return null;
+			}
+			else
+			{
+				return mapa.getTablero()[(posicionX-posicionXaux)/32][(posicionY-posicionYaux)/32];
+			}
+		}
+		return null;
 	}
 }
