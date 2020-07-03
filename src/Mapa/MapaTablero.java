@@ -1,5 +1,9 @@
 package Mapa;
 
+/**
+ * Clase que genera el tablero/mapa y contiene las funciones de movimientos dentro del mismo
+ * @author Lucas
+ */
 import Unidades.Arquero;
 import Unidades.Caballero;
 import Unidades.Unidad;
@@ -49,6 +53,10 @@ public class MapaTablero {
 		// a1.atacar(a1, c1);
 	}
 
+	/**
+	 * Funcion que genera el tablero
+	 */
+
 	public void generarTablero() {
 		int i = 0;
 		for (int x = 0; x < FILAS; x++) {
@@ -62,6 +70,14 @@ public class MapaTablero {
 		}
 	}
 
+	/**
+	 * Funcion para depositar una unidad dentro del mapa
+	 * 
+	 * @param unidad Unidad a insertar
+	 * @param celda  En que celda se quiere insertar la unidad
+	 * @throws CeldaOcupadaException
+	 */
+
 	public void insertarUnidadTablero(Unidad unidad, Celda celda) throws CeldaOcupadaException {
 		if (!celda.getOcupado()) {
 			celda.setUnidad(unidad); // INSERTO LA UNIDAD EN LA CELDA
@@ -71,6 +87,14 @@ public class MapaTablero {
 			throw new CeldaOcupadaException();
 		}
 	}
+
+	/**
+	 * Funcion
+	 * 
+	 * @param unidad    Unidad a mover
+	 * @param posActual La posicion en la que se encuentra la unidad
+	 * @param destino   Celda a la que quiere dirigirse la unidad
+	 */
 
 	public void moverUnidadTablero(Unidad unidad, Celda posActual, Celda destino) {
 		if (destino.getOcupado() == true) // SI QUIERE MOVERSE A UNA CELDA QUE ESTA OCUPADA POR UNA PIEZA ENEMIGA
@@ -110,6 +134,16 @@ public class MapaTablero {
 		}
 	}
 
+	/**
+	 * Funcion que determina si la unidad esta queriendo realizar un movimiento
+	 * valido o no
+	 * 
+	 * @param unidad    Unidad que quiere moverse
+	 * @param posActual Posicion en la que se encuentra
+	 * @param destino   Posicion a la que quiere moverse
+	 * @return Un booleano que en caso de ser falso, es un movimiento invalido
+	 * @throws MovimientoInvalidoException
+	 */
 	public static boolean validarMovimiento(Unidad unidad, Celda posActual, Celda destino)
 			throws MovimientoInvalidoException // EN
 	// CASO
