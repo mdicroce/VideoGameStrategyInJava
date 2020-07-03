@@ -11,7 +11,7 @@ import GuardadoYCarga.ExceptionNoHayArchivosGuardados;
 public class MenuPrincipal {
 	
 	/**
-	 * El menu principal para iniciar el juego.
+	 * El menu principal para iniciar el juego (este menu es temporal).
 	 */
 	public void menu() {
 		
