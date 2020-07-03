@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.IconifyAction;
 
 import Jugadores.Jugador;
 import Mapa.MapaTablero;
@@ -30,7 +31,7 @@ public class GameMain extends Canvas implements Runnable {
 	public static byte estado;
 
 	private static Partida nuevaPartida;
-	CuadroTextoG textoG = new CuadroTextoG();
+	public static CuadroTextoG textoG = null;
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 640;
 
@@ -85,13 +86,12 @@ public class GameMain extends Canvas implements Runnable {
 	}
 
 	private void actualizar() {
-		if (estado == 0)
+		if (this.textoG == null)
 		{
-			cursor.setJugador(nuevaPartida.getJugadorxTurno());
-			Textos auxTextos = cursor.actualizar(teclado, mapa);
-			this.estado = 1;
+			cursor.actualizar(teclado, mapa);
 		}
-		else if (estado == 1) {
+		else if (textoG != null) {
+			textoG.actualizar(teclado);
 			
 		}
 		else if (estado == 2) {
@@ -112,7 +112,10 @@ public class GameMain extends Canvas implements Runnable {
 		}
 		mapa.mostrar(GameMain.ventana, 32);
 		cursor.mostrar(ventana);
-		
+		if (textoG != null)
+		{
+			textoG.mostrar(ventana);
+		}
 		System.arraycopy(ventana.pixeles, 0, pixeles, 0, pixeles.length);
 		Graphics g = estrategia.getDrawGraphics();
 		g.drawImage(imagen, 0, 0, getWidth(), getHeight(), null);

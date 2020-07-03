@@ -4,17 +4,21 @@ import java.util.ArrayList;
 
 import gamePrincipal.GameController;
 import gamePrincipal.GameMain;
+import mensajes.Textos;
 
 public class CuadroTextoG {
 	private ConvertidorDeTexto textosAMostrar;
 	private ArrayList<String> textArray;
 	private byte selected;
 	private boolean isSeleccionable;
-	public CuadroTextoG() {
+	private Textos textoActual;
+	public CuadroTextoG(Textos textoNuevo) {
 		textosAMostrar = new ConvertidorDeTexto();
 		textArray = new ArrayList<String>();
-		selected = -1;
+		selected = 0;
 		isSeleccionable = false;
+		textoActual = textoNuevo;
+		textoNuevo.cargaDeMensajes(this);
 	}
 	
 	public void cargarMensajes(String mensaje) {
@@ -49,10 +53,12 @@ public class CuadroTextoG {
 			for (int j = 0; j<textArray.size();j++) {
 				ArrayList<Integer> letrasArrayList = textosAMostrar.convertirMensaje(textArray.get(j));
 				for (int i = 0; i < letrasArrayList.size();i++,i2++) {
+					
+					
 					int inicioDeTexto = 8-j*4;
 					if (i%20 == 19) {
 						inicioDeTexto--;
-						i2=1;
+						i2=0;
 					}
 					int x2=-1,y2=-1;
 					if (letrasArrayList.get(i) != -1) {
@@ -67,7 +73,7 @@ public class CuadroTextoG {
 					}
 					else {
 						inicioDeTexto--;
-						i2=1;
+						i2=0;
 					}
 	
 				}
@@ -76,7 +82,9 @@ public class CuadroTextoG {
 		else {
 			for (int j = 0; j<textArray.size();j++) {
 				ArrayList<Integer> letrasArrayList = textosAMostrar.convertirMensaje(textArray.get(j));
+				
 				if (selected == j) {
+					
 					int auxiliar = textosAMostrar.convertirMensaje(">").get(0);
 					int inicioDeTexto = 8-j*4;
 					int x2=-1, y2=-1;

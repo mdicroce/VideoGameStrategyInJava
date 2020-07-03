@@ -2,6 +2,7 @@ package mensajes;
 
 import Jugadores.Jugador;
 import gamePrincipal.GameController;
+import grafics.CuadroTextoG;
 import grafics.Windows;
 
 public class apuntaPersonajeEnemigo extends Textos{
@@ -10,7 +11,7 @@ public class apuntaPersonajeEnemigo extends Textos{
 		// TODO Auto-generated constructor stub
 	}
 	@Override
-	public void cargaDeMensajes() {
+	public void cargaDeMensajes(CuadroTextoG textoG) {
 		// TODO Auto-generated method stub
 		
 	}
