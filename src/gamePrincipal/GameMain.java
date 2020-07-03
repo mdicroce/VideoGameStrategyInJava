@@ -13,12 +13,15 @@ import javax.swing.plaf.basic.BasicInternalFrameTitlePane.IconifyAction;
 
 import Jugadores.Jugador;
 import Mapa.Celda;
+import Mapa.CeldaOcupadaException;
 import Mapa.MapaTablero;
+import Unidades.Unidad;
 import grafics.ConvertidorDeTexto;
 import grafics.CuadroTextoG;
 import grafics.Cursor;
 import grafics.Windows;
 import mensajes.Textos;
+import mensajes.apuntaAlVacio;
 import mensajes.textoListaCuartel;
 
 public class GameMain extends Canvas implements Runnable {
@@ -36,9 +39,9 @@ public class GameMain extends Canvas implements Runnable {
 	public static CuadroTextoG textoG = null;
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 640;
-
+	private static Unidad unidad;
 	private static volatile boolean enFuncionamiento = false;
-
+	private int tick = 0;
 	private static int x = 0;
 	private static int y = 0;
 
@@ -66,6 +69,7 @@ public class GameMain extends Canvas implements Runnable {
 		nuevaPartida.getJugadorPorId(1).setTurno(false);
 		cursor = new Cursor(ventana, mapa);
 		cursor.setJugador(nuevaPartida.getJugadorxTurno());
+		unidad = null;
 	}
 
 	public static void main(String[] args) {
@@ -91,11 +95,11 @@ public class GameMain extends Canvas implements Runnable {
 	}
 
 	private void actualizar() {
-		if (this.textoG == null)
+		/*if (this.textoG == null && estado == 0)
 		{
 			cursor.actualizar(teclado, mapa);
 		}
-		else if (textoG != null) {
+		else if (textoG != null && estado == 0) {
 			if(textoG.actualizar(teclado))
 			{
 				if (textoG.tipoDeOpcion == 0) {
@@ -112,6 +116,16 @@ public class GameMain extends Canvas implements Runnable {
 						textoG = null;
 					}
 				}
+<<<<<<< HEAD
+				else if(textoG.tipoDeOpcion == 4) {
+					if (unidad == null) {
+						unidad = nuevaPartida.getJugadorxTurno().buscarUnidadAlCuartel(textoG.getSelected());
+						this.estado = 2;
+					}
+					
+				}
+				
+=======
 				/*else if(textoG.tipoDeOpcion == 4) {
 					if (textoG.getSelected())
 					Celda auxCelda = cursor.actualizar(teclado, mapa,0);
@@ -121,13 +135,29 @@ public class GameMain extends Canvas implements Runnable {
 					}
 					
 				}*/
+>>>>>>> c43544bed65033c07a556925d92a5838d9e3d7d7
 			}
 			
 			
 		}
 		else if (estado == 2) {
-			
-		}
+			Celda auxCelda = cursor.actualizar(teclado, mapa, 0);
+			if (auxCelda != null)
+			{
+				unidad.setPosicion(auxCelda);
+				teclado.enter = false;
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				textoG = null;
+				estado = 0;
+			}
+		}*/ 
+		demoJugable();
 	}
 
 	public static void moverCuartel() // PARA MOVERSE POR CUARTEL
@@ -181,8 +211,159 @@ public class GameMain extends Canvas implements Runnable {
 				actualizar();
 				delta--;
 			}
-
 			mostrar();
 		}
+	}
+	public void demoJugable()
+	{
+		tick++;
+		if (tick == 60) {
+			cursor.posicionX+=32;
+		}
+		if (tick == 120) {
+			cursor.posicionY+=32;
+		}
+		
+		if (tick == 180)
+		{
+			textoG = new CuadroTextoG(new apuntaAlVacio(nuevaPartida.getJugadorxTurno(), teclado)) ;
+		}
+		if (tick == 60*4) {
+			textoG.selected++;
+		}
+		if (tick == 60*5)
+		{
+			textoG.selected++;
+		}
+		if (tick == 60*6)
+		{
+			textoG.selected--;
+		}
+		if (tick == 60*7)
+		{
+			textoG.selected--;
+		}
+		if(tick == 60*8)
+		{
+			textoG= new CuadroTextoG(new textoListaCuartel(nuevaPartida.getJugadorxTurno()));
+		}
+		if(tick == 60*9)
+		{
+			textoG.selected++;
+		}
+		if(tick == 60*10)
+		{
+			cursor.posicionX+=32;
+		}
+		if(tick == 60*11) {
+			cursor.posicionY+=32;
+		}
+		if(tick == 60*12)
+		{
+			cursor.posicionY+=32;
+		}
+		if(tick == 60*13)
+		{
+			//nuevaPartida.getJugadorxTurno().buscarUnidadAlCuartel(1).setPosicion(mapa.getTablero()[(cursor.posicionX-cursor.posicionXaux)/32][(cursor.posicionY-cursor.posicionYaux)/32]);
+			try {
+				mapa.insertarUnidadTablero(nuevaPartida.getJugadorxTurno().buscarUnidadAlCuartel(1), mapa.getTablero()[(cursor.posicionX-cursor.posicionXaux)/32][(cursor.posicionY-cursor.posicionYaux)/32]);
+			} catch (CeldaOcupadaException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//nuevaPartida.getJugadorxTurno().eliminarUnidadAlCuartel(nuevaPartida.getJugadorxTurno().buscarUnidadAlCuartel(1));
+			nuevaPartida.pasarTurno();
+		}
+		if(tick == 60*14)
+		{
+			cursor.posicionY+=32;
+		}
+		if(tick == 60*15)
+		{
+			textoG = new CuadroTextoG(new apuntaAlVacio(nuevaPartida.getJugadorxTurno(), teclado)) ;
+		}
+		if (tick == 60*16)
+		{
+			textoG.selected++;
+		}
+		if(tick== 60*17)
+		{
+			cursor.posicionX+=(32*7);
+			cursor.posicionY+=(32*5);
+		}
+		if(tick == 60*18) {
+			cursor.posicionX-=32;
+		}
+		if (tick == 60*19)
+		{
+			cursor.posicionY-=32;
+		}
+		if (tick == 60 * 20)
+		{
+			textoG = new CuadroTextoG(new apuntaAlVacio(nuevaPartida.getJugadorxTurno(), teclado)) ;
+		}
+		if (tick == 60*21) {
+			textoG= new CuadroTextoG(new textoListaCuartel(nuevaPartida.getJugadorxTurno()));
+		}
+		if (tick == 60*22)
+		{
+			textoG.selected++;
+			textoG.selected++;
+		}
+		if (tick == 60*23)
+		{
+			textoG.selected++;
+			textoG.selected++;
+		}
+		if(tick == 60*24)
+		{
+			textoG.selected++;
+			textoG.selected++;
+		}
+		if (tick == 60*25)
+		{
+			cursor.posicionX -=64;
+		}
+		if (tick == 60*26)
+		{
+			cursor.posicionX -= 64;
+		}
+		if (tick == 60 * 27)
+		{
+			cursor.posicionX-=64;
+		}
+		if (tick == 60*28)
+		{
+			cursor.posicionY -=64;
+		}
+		if (tick == 60*29)
+		{
+			try {
+				mapa.insertarUnidadTablero(nuevaPartida.getJugadorxTurno().buscarUnidadAlCuartel(textoG.selected), mapa.getTablero()[(cursor.posicionX-cursor.posicionXaux)/32][(cursor.posicionY-cursor.posicionYaux)/32]);
+			} catch (CeldaOcupadaException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//nuevaPartida.getJugadorxTurno().eliminarUnidadAlCuartel(nuevaPartida.getJugadorxTurno().buscarUnidadAlCuartel(1));
+			nuevaPartida.pasarTurno();
+		}
+		if (tick == 60*30)
+		{
+			cursor.posicionY -= 32*3;
+		}
+		if (tick == 60*31)
+		{
+			textoG.selected++;
+		}
+		if (tick == 60*32)
+		{
+			textoG.selected = 4;
+		}
+		if (tick == 60*33)
+		{
+			nuevaPartida.guardarPartida();
+		}
+			
+		
 	}
 }
