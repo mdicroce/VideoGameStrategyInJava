@@ -77,7 +77,7 @@ public class PantallaOpciones {
 		if (nombresArchivos.isEmpty()) {
 			throw new ExceptionNoHayArchivosGuardados("No hay ningun archivo guardado.");
 		} else {
-			System.out.println("\tPartidas Guardadas\n\n");
+			System.out.println("\n\n\n\n\n\tPartidas Guardadas\n\n");
 			
 			for (int i = 0; i < nombresArchivos.size(); i++) {
 				
