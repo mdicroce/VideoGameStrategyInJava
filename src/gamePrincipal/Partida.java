@@ -64,6 +64,7 @@ public class Partida {
 		
 		JSONArray jsonArray;
 		
+		
 		try {
 			jsonArray = new JSONArray(JsonUtiles.leer(nombreArchi));
 			decodeJsonArray(jsonArray);
@@ -76,7 +77,7 @@ public class Partida {
 	}
 	
 	/**
-	 * Guarda una partida.
+	 * Guarda una partida y utiliza como nombre la Fecha y hora y un Identificador al principio.
 	 */
 	public void guardarPartida() {
 		

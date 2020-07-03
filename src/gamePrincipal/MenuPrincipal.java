@@ -53,19 +53,24 @@ public class MenuPrincipal {
 	public void OPnuevoJuego() {
 		
 		Partida partidaNueva = PantallaOpciones.crearPartidaNueva();
-	
+		GameMain  jueguitos = new GameMain(partidaNueva);
+		jueguitos.iniciar();
+		
+		
 	}
 	
 	/**
-	 * Opcion para cargar una partida y si eto no es posible se crea una nueva.
+	 * Opcion para cargar una partida y si eto no es posible crea un nuevo juego.
 	 */
+	
 	public void OPcargarJuego() {
 		
 		try {
 			PantallaOpciones.mostrarArchivosGuardados();
 			int posArch = PantallaOpciones.leerOpcionTeclado();
 			Partida partidaCargada = PantallaOpciones.cargarPartidaGuardada(PantallaOpciones.buscarNombreArchi(posArch));
-	
+			GameMain  jueguitos = new GameMain(partidaCargada);
+			jueguitos.iniciar();
 		} catch (ExceptionNoHayArchivosGuardados e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
