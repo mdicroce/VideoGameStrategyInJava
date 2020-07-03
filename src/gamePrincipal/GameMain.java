@@ -112,7 +112,7 @@ public class GameMain extends Canvas implements Runnable {
 						textoG = null;
 					}
 				}
-				else if(textoG.tipoDeOpcion == 4) {
+				/*else if(textoG.tipoDeOpcion == 4) {
 					if (textoG.getSelected())
 					Celda auxCelda = cursor.actualizar(teclado, mapa,0);
 					if (auxCelda != null)
@@ -120,7 +120,7 @@ public class GameMain extends Canvas implements Runnable {
 						nuevaPartida.getJugadorxTurno().buscarUnidadAlCuartel(textoG.getSelected()).setPosicion(auxCelda);;
 					}
 					
-				}
+				}*/
 			}
 			
 			
