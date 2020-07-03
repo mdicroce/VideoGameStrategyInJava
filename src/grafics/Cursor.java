@@ -4,6 +4,10 @@ import Jugadores.Jugador;
 import Mapa.MapaTablero;
 import gamePrincipal.GameController;
 import gamePrincipal.PantallaOpciones;
+import mensajes.Textos;
+import mensajes.apuntaAlVacio;
+import mensajes.apuntaPersonajeAliado;
+import mensajes.apuntaPersonajeEnemigo;
 
 public class Cursor {
 	private int posicionX;
@@ -46,7 +50,7 @@ public class Cursor {
 	public void setJugador(Jugador jugadorActual) {
 		this.player = jugadorActual;
 	}
-	public void actualizar(GameController teclado, MapaTablero mapita) {
+	public Textos actualizar(GameController teclado, MapaTablero mapita) {
 		teclado.actualizar();
 		if (teclado.arriba) {
 			if(this.limiteTOP < this.posicionY) {
@@ -103,17 +107,18 @@ public class Cursor {
 			if (mapita.getTablero()[(posicionX-posicionXaux)/32][(posicionY-posicionYaux)/32].getOcupado()) {
 				if(mapita.getTablero()[(posicionX-posicionXaux)/32][(posicionY-posicionYaux)/32].getUnidad().getPropiedad()==this.player.getIdPlayer())
 				{
-					
+					return new apuntaPersonajeAliado(this.player,teclado);
 				}
 				else
 				{
-					
+					return new apuntaPersonajeEnemigo(this.player,teclado);
 				}
 			}
 			else
 			{
-				
+				return new apuntaAlVacio(player, teclado);
 			}
 		}
+		return null;
 	}
 }

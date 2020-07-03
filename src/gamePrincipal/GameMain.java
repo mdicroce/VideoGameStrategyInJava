@@ -16,6 +16,7 @@ import grafics.ConvertidorDeTexto;
 import grafics.CuadroTextoG;
 import grafics.Cursor;
 import grafics.Windows;
+import mensajes.Textos;
 
 public class GameMain extends Canvas implements Runnable {
 
@@ -88,8 +89,9 @@ public class GameMain extends Canvas implements Runnable {
 	private void actualizar() {
 		if (estado == 0)
 		{
-			//cursor.setJugador(nuevaPartida.getJugadorxTurno());
-			cursor.actualizar(teclado, mapa);
+			cursor.setJugador(nuevaPartida.getJugadorxTurno());
+			Textos auxTextos = cursor.actualizar(teclado, mapa);
+			this.estado = 1;
 		}
 		else if (estado == 1) {
 			
