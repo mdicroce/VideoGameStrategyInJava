@@ -6,6 +6,8 @@ import gamePrincipal.GameController;
 import gamePrincipal.PantallaOpciones;
 import mensajes.Textos;
 import mensajes.apuntaAlVacio;
+import mensajes.apuntaPersonajeAliado;
+import mensajes.apuntaPersonajeEnemigo;
 
 public class Cursor {
 	private int posicionX;
@@ -105,11 +107,11 @@ public class Cursor {
 			if (mapita.getTablero()[(posicionX-posicionXaux)/32][(posicionY-posicionYaux)/32].getOcupado()) {
 				if(mapita.getTablero()[(posicionX-posicionXaux)/32][(posicionY-posicionYaux)/32].getUnidad().getPropiedad()==this.player.getIdPlayer())
 				{
-					return 
+					return new apuntaPersonajeAliado(this.player,teclado);
 				}
 				else
 				{
-					return 
+					return new apuntaPersonajeEnemigo(this.player,teclado);
 				}
 			}
 			else
@@ -117,5 +119,6 @@ public class Cursor {
 				return new apuntaAlVacio(player, teclado);
 			}
 		}
+		return null;
 	}
 }

@@ -116,7 +116,10 @@ public class CuadroTextoG {
 		}
 		
 	}
-	public void actualizar(GameController teclado) {
+	public byte getSelected() {
+		return selected;
+	}
+	public boolean actualizar(GameController teclado) {
 		if (teclado.arriba) {
 			if (selected > 0)
 			{
@@ -129,7 +132,8 @@ public class CuadroTextoG {
 			}
 		}
 		else if (teclado.enter) {
-			
+			return true;
 		}
+		return false;
 	}
 }
