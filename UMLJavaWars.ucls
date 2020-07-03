@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="gamePrincipal.Partida" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/gamePrincipal/Partida.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2849" y="1386"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="grafics.Cursor" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/grafics/Cursor.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="315" width="262" x="2585" y="482"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="mensajes.apuntaPersonajeEnemigo" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/mensajes/apuntaPersonajeEnemigo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="270" x="1421" y="1246"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="grafics.CuadroTextoG" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/grafics/CuadroTextoG.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="279" width="196" x="1984" y="482"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="gamePrincipal.GameController" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/gamePrincipal/GameController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2465" y="1767"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="gamePrincipal.MenuPrincipal" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/gamePrincipal/MenuPrincipal.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="132" x="2094" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="Jugadores.ExceptionNoExiste" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/Jugadores/ExceptionNoExiste.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="151" x="1254" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="Unidades.Arquero" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/Unidades/Arquero.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="115" x="1894" y="3674"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="Jugadores.Jugador" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/Jugadores/Jugador.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="783" width="215" x="2653" y="1565"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="Jugadores.Cuartel" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/Jugadores/Cuartel.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="243" width="169" x="2458" y="2388"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="Unidades.Unidad" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/Unidades/Unidad.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="963" width="349" x="2049" y="2671"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="gamePrincipal.GameMain" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/gamePrincipal/GameMain.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="405" width="157" x="2545" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="grafics.Windows" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/grafics/Windows.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2195" y="1694"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="grafics.Sprite" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/grafics/Sprite.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="132" x="2011" y="2388"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="Mapa.CeldaOcupadaException" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/Mapa/CeldaOcupadaException.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="163" x="41" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="Unidades.Infanteria" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/Unidades/Infanteria.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="205" x="2209" y="3674"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="Unidades.Caballero" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/Unidades/Caballero.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="120" x="2049" y="3674"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="grafics.SpriteSheet" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/grafics/SpriteSheet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="146" x="244" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="Jugadores.ExceptionNoSePudoAgregar" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/Jugadores/ExceptionNoSePudoAgregar.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="235" x="2183" y="2388"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="GuardadoYCarga.NombreArchivosGuardados" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/GuardadoYCarga/NombreArchivosGuardados.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="256" x="958" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="gamePrincipal.PantallaOpciones" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/gamePrincipal/PantallaOpciones.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="211" x="450" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="maps.cuadros.Tiles" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/maps/cuadros/Tiles.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1925" y="1617"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="mensajes.apuntaAlVacio" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/mensajes/apuntaAlVacio.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="219" x="2305" y="1246"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="mensajes.textoListaCuartel" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/mensajes/textoListaCuartel.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="213" x="1731" y="1246"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="Mapa.MapaTablero" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/Mapa/MapaTablero.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="423" width="253" x="1381" y="482"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="Mapa.Celda" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/Mapa/Celda.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1669" y="3834"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="Jugadores.ExceptionEstaVacio" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/Jugadores/ExceptionEstaVacio.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="157" x="1897" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="mensajes.apuntaPersonajeAliado" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/mensajes/apuntaPersonajeAliado.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="260" x="1984" y="1246"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="Mapa.MovimientoInvalidoException" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/Mapa/MovimientoInvalidoException.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="81" width="198" x="1659" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="mensajes.Textos" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/mensajes/Textos.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="219" x="1984" y="945"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="grafics.CaracterNoExisteException" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/grafics/CaracterNoExisteException.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="135" width="217" x="701" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="32" language="java" name="grafics.ConvertidorDeTexto" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/grafics/ConvertidorDeTexto.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="261" width="238" x="1706" y="945"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="33" language="java" name="GuardadoYCarga.JsonUtiles" project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/GuardadoYCarga/JsonUtiles.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="174" x="1445" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="34" language="java" name="GuardadoYCarga.ExceptionNoHayArchivosGuardados" 
+    project="VideoGameStrategyInJava-master" 
+    file="/VideoGameStrategyInJava-master/src/GuardadoYCarga/ExceptionNoHayArchivosGuardados.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="239" x="2266" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="35">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="30"/>  
+  </generalization>  
+  <association id="36">    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="37" name="sprites"/>      
+      <multiplicity id="38" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="39">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <association id="40">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="41" name="hojaPrueba"/>      
+      <multiplicity id="42" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="43">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="44" name="playerActual"/>      
+      <multiplicity id="45" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="46">    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="30"/>  
+  </generalization>  
+  <association id="47">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="48" name="jugador1"/>      
+      <multiplicity id="49" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="50">    
+    <bendpoint x="2274" y="482"/>    
+    <bendpoint x="2274" y="945"/>    
+    <bendpoint x="2274" y="1246"/>    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="51" name="ventana"/>      
+      <multiplicity id="52" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="53">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="30"/>  
+  </generalization>  
+  <association id="54">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="55" name="cuartel"/>      
+      <multiplicity id="56" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="57">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="58" name="cuartel"/>      
+      <multiplicity id="59" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="60">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="61" name="tipoSprite"/>      
+      <multiplicity id="62" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="63">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="64" name="textoG"/>      
+      <multiplicity id="65" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="66">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="67" name="posicion"/>      
+      <multiplicity id="68" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="69">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="30"/>  
+  </generalization>  
+  <association id="70">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="71" name="hojaTipos"/>      
+      <multiplicity id="72" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="73">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="74" name="jugador2"/>      
+      <multiplicity id="75" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="76">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="77" name="teclado"/>      
+      <multiplicity id="78" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="79">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="80" name="textosAMostrar"/>      
+      <multiplicity id="81" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="32" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="82">    
+    <bendpoint x="2554" y="482"/>    
+    <bendpoint x="2554" y="945"/>    
+    <bendpoint x="2554" y="1246"/>    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="83" name="teclado"/>      
+      <multiplicity id="84" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="85">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="86" name="ventana"/>      
+      <multiplicity id="87" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="88">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <association id="89">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="90" name="mapa"/>      
+      <multiplicity id="91" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="92">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="93" name="textoActual"/>      
+      <multiplicity id="94" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="95">    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="96" name="unidad"/>      
+      <multiplicity id="97" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="98">    
+    <bendpoint x="2628" y="945"/>    
+    <bendpoint x="2628" y="1246"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="99" name="player"/>      
+      <multiplicity id="100" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="101">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="102" name="cursor"/>      
+      <multiplicity id="103" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="104">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="105" name="sprites"/>      
+      <multiplicity id="106" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="107">    
+    <bendpoint x="2877" y="482"/>    
+    <bendpoint x="2877" y="945"/>    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="108" name="nuevaPartida"/>      
+      <multiplicity id="109" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="110">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="111" name="unidad"/>      
+      <multiplicity id="112" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="113">    
+    <bendpoint x="1390" y="945"/>    
+    <bendpoint x="1390" y="1246"/>    
+    <bendpoint x="1390" y="1565"/>    
+    <bendpoint x="1390" y="2388"/>    
+    <bendpoint x="1390" y="2671"/>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="114" name="tablero"/>      
+      <multiplicity id="115" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="116">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="11"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

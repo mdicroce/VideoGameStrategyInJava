@@ -87,6 +87,13 @@ public abstract class Unidad {
 		}
 	}
 
+	/**
+	 * 
+	 * @param atacante  Unidad que ataca
+	 * @param defensora Unidad que es atacada
+	 * @return Un booleano para verificar si la unidad atacada murio
+	 */
+
 	public boolean atacar(Unidad atacante, Unidad defensora) {
 		boolean murio = false;
 		boolean valido = validarAtaque(atacante, defensora); // Valido si la unidad puede atacar.
@@ -109,6 +116,15 @@ public abstract class Unidad {
 		return murio;
 	}
 
+	/**
+	 * Funcion para verificar si un ataque es valido en cuanto a la posicion del
+	 * atacante y defensor
+	 * 
+	 * @param atacante  Unidad que ataca
+	 * @param defensora Unidad que es atacada
+	 * @return True en caso de ser valido
+	 */
+
 	public boolean validarAtaque(Unidad atacante, Unidad defensora) {
 		boolean bandera = false;
 		if (atacante instanceof Arquero) { // ARQUERO PUEDE ATACAR A DOS CELDAS DE DISTANCIA
@@ -125,6 +141,14 @@ public abstract class Unidad {
 		return bandera;
 	}
 
+	/**
+	 * Funcion para restar el poder de ataque del atacante con la defensa del
+	 * defensor
+	 * 
+	 * @param atacante  Unidad que ataca
+	 * @param defensora Unidad que es atacada
+	 * @return
+	 */
 	public double defender(Unidad atacante, Unidad defensora) {
 		double hurtOcasionado = 0;
 		if (defensora instanceof Infanteria) // BONUS INFANTERIA
@@ -296,7 +320,7 @@ public abstract class Unidad {
 
 	@Override
 	public String toString() {
-		return (nombre + "pv: " + puntosVida+"\n ataque "+puntosAtaque+" defensa "+puntosDefensa).toLowerCase();
+		return (nombre + "pv: " + puntosVida + "\n ataque " + puntosAtaque + " defensa " + puntosDefensa).toLowerCase();
 	}
 
 	@Override
