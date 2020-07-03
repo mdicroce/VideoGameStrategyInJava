@@ -116,6 +116,7 @@ public class GameMain extends Canvas implements Runnable {
 						textoG = null;
 					}
 				}
+
 				else if(textoG.tipoDeOpcion == 4) {
 					if (unidad == null) {
 						unidad = nuevaPartida.getJugadorxTurno().buscarUnidadAlCuartel(textoG.getSelected());
@@ -124,15 +125,7 @@ public class GameMain extends Canvas implements Runnable {
 					
 				}
 				
-				/*else if(textoG.tipoDeOpcion == 4) {
-					if (textoG.getSelected())
-					Celda auxCelda = cursor.actualizar(teclado, mapa,0);
-					if (auxCelda != null)
-					{
-						nuevaPartida.getJugadorxTurno().buscarUnidadAlCuartel(textoG.getSelected()).setPosicion(auxCelda);;
-					}
-					
-				}
+
 			}
 			
 			
