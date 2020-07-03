@@ -28,7 +28,8 @@ public abstract class Unidad {
 	private double costoOroEnCampo; // PUESTO EN EL TABLERO
 	private Celda posicion;
 	protected int pos1, pos2;
-
+	
+	
 	public Unidad() {
 		nombre = "";
 		puntosAtaque = -1;
@@ -57,7 +58,8 @@ public abstract class Unidad {
 	}
 
 	// -------------------------------------METODOSPROPIOS-------------------------------------//
-
+	
+	
 	public void mostrar(Windows pantalla) {
 		int x2 = -1;
 		int y2 = -1;
@@ -86,7 +88,14 @@ public abstract class Unidad {
 			}
 		}
 	}
-
+	
+	
+	/**
+	 * En este metodo se realiza el ataque de una unidad atacante a la defensora.
+	 * @param atacante Unidad atacante.
+	 * @param defensora Unidad defensora.
+	 * @return Un boolean que devuelve true si la unidad defensora muere y un false si la unidad defensora no murio.
+	 */
 	public boolean atacar(Unidad atacante, Unidad defensora) {
 		boolean murio = false;
 		boolean valido = validarAtaque(atacante, defensora); // Valido si la unidad puede atacar.
@@ -108,7 +117,13 @@ public abstract class Unidad {
 
 		return murio;
 	}
-
+	
+	/**
+	 * Valida si la unidad atacante puede atacar a la defensora segun su posicion , la posicion del defensor y el rango de ataque del atacante.
+	 * @param atacante Unidad atacante.
+	 * @param defensora Unidad defensora.
+	 * @return Un boolean que devuelve true si el ataque es valido y un false si el ataque no es valido.
+	 */
 	public boolean validarAtaque(Unidad atacante, Unidad defensora) {
 		boolean bandera = false;
 		if (atacante instanceof Arquero) { // ARQUERO PUEDE ATACAR A DOS CELDAS DE DISTANCIA
@@ -124,7 +139,13 @@ public abstract class Unidad {
 		}
 		return bandera;
 	}
-
+	
+	/**
+	 * En este metodo se realiza la defensa de una unidad contra un ataque.
+	 * @param atacante Unidad que ataca.
+	 * @param defensora Unidad que se va a defender. 
+	 * @return un double con la cantidad de vida que pierde el defensor.
+	 */
 	public double defender(Unidad atacante, Unidad defensora) {
 		double hurtOcasionado = 0;
 		if (defensora instanceof Infanteria) // BONUS INFANTERIA
@@ -138,19 +159,31 @@ public abstract class Unidad {
 		return hurtOcasionado;
 	}
 
-	public void setPosicion(Celda posicion) {
-		this.posicion = posicion;
-	}
-
+	
+	/**
+	 * Mueve a la unidad pasada por parametro a la celda de destino.
+	 * @param unidad Objeto del tipo unidad a mover.
+	 * @param destino Objeto del tipo celda que representa la posicion a donde se quiere mover.
+	 */
 	public void moverArriba(Unidad unidad, Celda destino) {
 		unidad.posicion = posicion;
 
 	}
-
+	
+	/**
+	 * Elimina una unidad de la celda debido a que murio.
+	 * @param unidad Objeto del tipo unidad que murio.
+	 * @param posicionActual Objeto del tipo celda que representa la posicion de la unidad que murio.
+	 */
 	public void morir(Unidad unidad, Celda posicionActual) {
 		unidad.posicion.quitarUnidadCelda(posicionActual);
 	}
 
+	/**
+	 * Convierte la unidad a un JSONObject.
+	 * @return Un JSONObject construido a partir de todos los elementos la clase Unidad.
+	 * @throws JSONException es lanzada cuando ocurre un error con los puts del JSONObject.
+	 */
 	public JSONObject toJsonObject() throws JSONException {
 		JSONObject jsonObject = new JSONObject();
 
@@ -169,7 +202,12 @@ public abstract class Unidad {
 
 		return jsonObject;
 	}
-
+	
+	/**
+	 * Settea los atributos de la clase Unidad a partir de un JSONObject y la utilizacion de los Setters. 
+	 * @param jsonObject Un JSONObject por parametro que se va a utilizar para settear la Unidad.
+	 * @throws JSONException es lanzada cuando ocurre un error con los gets del JSONObject.
+	 */
 	public void decodeJsonObject(JSONObject jsonObject) throws JSONException {
 
 		setNombre(jsonObject.getString("Nombre"));
@@ -290,6 +328,10 @@ public abstract class Unidad {
 
 	public void setPos2(int pos2) {
 		this.pos2 = pos2;
+	}
+
+	public void setPosicion(Celda posicion) {
+		this.posicion = posicion;
 	}
 
 	// -------------------------------------------OVERRIDES----------------------------------------//
