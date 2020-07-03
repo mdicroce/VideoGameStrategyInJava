@@ -88,8 +88,7 @@ public abstract class Unidad {
 			}
 		}
 	}
-	
-	
+
 	/**
 	 * En este metodo se realiza el ataque de una unidad atacante a la defensora.
 	 * @param atacante Unidad atacante.
@@ -117,12 +116,15 @@ public abstract class Unidad {
 
 		return murio;
 	}
-	
+
+
 	/**
-	 * Valida si la unidad atacante puede atacar a la defensora segun su posicion , la posicion del defensor y el rango de ataque del atacante.
-	 * @param atacante Unidad atacante.
-	 * @param defensora Unidad defensora.
-	 * @return Un boolean que devuelve true si el ataque es valido y un false si el ataque no es valido.
+	 * Funcion para verificar si un ataque es valido en cuanto a la posicion del
+	 * atacante y defensor
+	 * 
+	 * @param atacante  Unidad que ataca
+	 * @param defensora Unidad que es atacada
+	 * @return True en caso de ser valido
 	 */
 	public boolean validarAtaque(Unidad atacante, Unidad defensora) {
 		boolean bandera = false;
@@ -139,11 +141,14 @@ public abstract class Unidad {
 		}
 		return bandera;
 	}
-	
+
+
 	/**
-	 * En este metodo se realiza la defensa de una unidad contra un ataque.
-	 * @param atacante Unidad que ataca.
-	 * @param defensora Unidad que se va a defender. 
+	 * Funcion para restar el poder de ataque del atacante con la defensa del
+	 * defensor
+	 * 
+	 * @param atacante  Unidad que ataca
+	 * @param defensora Unidad que es atacada
 	 * @return un double con la cantidad de vida que pierde el defensor.
 	 */
 	public double defender(Unidad atacante, Unidad defensora) {
@@ -338,7 +343,7 @@ public abstract class Unidad {
 
 	@Override
 	public String toString() {
-		return (nombre + "pv: " + puntosVida+"\n ataque "+puntosAtaque+" defensa "+puntosDefensa).toLowerCase();
+		return (nombre + "pv: " + puntosVida + "\n ataque " + puntosAtaque + " defensa " + puntosDefensa).toLowerCase();
 	}
 
 	@Override
